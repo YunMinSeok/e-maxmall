@@ -1,3 +1,110 @@
+// ESLint 공식레퍼런스: https://eslint.org/
+// TypeScript-ESLint 공식레퍼런스: https://typescript-eslint.io/
+// Next.js-ESLint 공식레퍼런스: https://nextjs.org/docs/basic-features/eslint
+
+// Next.js + Typescript + ESLint + Prettier 상세설정가이드: https://www.daleseo.com/eslint-config/
+
+// airbnb javascript 스타일가이드: https://github.com/airbnb/javascript
+// airbnb react 스타일가이드: https://github.com/airbnb/javascript/tree/master/react
 {
-  "extends": "next/core-web-vitals"
+  // 최상위 ESLint 설정파일임을 명시한다.
+  // 추후 모노레포로의 확장성이 고려되었다.
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  // 타입스크립트를 사용하기 위해 파서를 타입스크립트파서로 변경한다.
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      //    서울에 위성이 떨어지더라도 tsx를 사용한다.
+      //      "jsx": true,
+      "tsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  // 린팅하지 않을 파일들을 정의한다.
+  "ignorePatterns": [
+    "node_modules/",
+    ".next/*",
+    "**/*.json",
+    "**/next*",
+    ".gitignore"
+  ],
+  // 기본규칙 이외에 확장된 규칙이 정의되어 있는 플러그인을 추가한다.
+  "plugins": ["@typescript-eslint", "prettier"],
+  // 미리 정의된 룰셋을 기반설정으로 사용할 수 있다.
+  // 하위에 정의된 룰셋이 우선순위로 적용된다.
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "next",
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:prettier/recommended"
+  ],
+  // 규칙하나하나를 세세하게 제어할 수 있다.
+  // extends 옵션을 통해 정의된 룰셋들 중 같은 룰일 경우 덮어씌워진다.
+  "rules": {
+    // 운영빌드 시 console.log제거로 인해 no-console룰은 비활성한다.
+    "no-console": "off",
+    "no-used-vars": "off",
+    "max-classes-per-file": "off",
+    // 중첩된 삼항 표현식 허용 안 함
+    "no-nested-ternary": "off",
+    "import/prefer-default-export": "off",
+    "import/no-anonymous-default-export": "off",
+    // 테스트 또는 개발환경을 구성하는 파일에서는 devDependency 사용을 허용한다.
+    //    "import/no-extraneous-dependencies": ["error", {
+    //        "devDependencies": ["**/*.config.ts"]
+    //    }],
+    // 리액트의 함수형 컴포넌트를 정의하는 방식을 정의한다.
+    // 기명함수컴포넌트의 경우 화살표함수를 사용한다.
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    // 'React' must be in scope when using JSX 에러 지우기(Next.js)
+    "react/react-in-jsx-scope": "off",
+    // ts파일에서 tsx구문 허용(Next.js)
+    // should add ".ts" if typescript project
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".ts", ".tsx"]
+      }
+    ],
+    // Fragement 허용
+    "react/jsx-no-useless-fragment": [2, { "allowExpressions": true }],
+    // prop 타입 설정 미적용 허용
+    "react/prop-types": 0,
+    // return 문에 여러 종류 넣을수 있게허용
+    "consistent-return": "off",
+    // label input 연관성 강요 htmlfor로 대체
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelAttributes": ["htmlFor"]
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".d.ts"]
+      }
+    },
+    "eslint.workingDirectories": [
+      {
+        "mode": "auto"
+      }
+    ]
+  }
 }
