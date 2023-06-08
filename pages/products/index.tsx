@@ -1,16 +1,28 @@
-import { NextPage } from "next";
+import { NextPage, GetServerSideProps } from "next";
+import axios from "axios";
 
-// css
-import { ProductsWrap } from "@styles/products/products";
+// templates
+import ProductsTemplate from "@templates/products/ProductsTemplate";
 
-const Products: NextPage = () => {
-  return (
-    <ProductsWrap>
-      <div className="SectionTitle">
-        <span>상품 목록페이지</span>
-      </div>
-    </ProductsWrap>
-  );
+// type
+import { ProductVO } from "@type/products/products";
+interface ProductsType {
+  products: { productItems: ProductVO[] };
+}
+
+// 상품 리스트 페이지
+const Products: NextPage<ProductsType> = ({ products }) => {
+  return <ProductsTemplate products={products.productItems} />;
 };
 
 export default Products;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await axios.get("http://localhost:3000/api/products");
+
+  return {
+    props: {
+      products: res.data,
+    },
+  };
+};
