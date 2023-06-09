@@ -15,8 +15,10 @@ const ProductsTemplate = ({ products }: ProductsTemplateType) => {
   console.log(products);
   return (
     <ProductsWrap>
-      <div className="SectionTitle">
+      <div className="section-title">
         <span>상품 목록페이지</span>
+      </div>
+      <div className="section-content">
         {products.map(product => {
           return <ProductsItem product={product} />;
         })}
