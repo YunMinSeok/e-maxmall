@@ -8,9 +8,7 @@ export const ProductsWrap = styled.div`
     margin-bottom: 27px;
     display: flex;
     flex-direction: column;
-    -webkit-box-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
     align-items: center;
     span {
       color: rgb(51, 51, 51);
@@ -22,7 +20,9 @@ export const ProductsWrap = styled.div`
   }
   .section-content {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 209px);
+    gap: 31px 0;
     width: 1050px;
     margin: 0px auto;
     overflow: hidden;
