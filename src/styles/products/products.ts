@@ -47,6 +47,9 @@ export const ProductItemWrap = styled.div`
     overflow: hidden;
     background-color: rgb(245, 245, 245);
     height: 270px;
+    img {
+      object-fit: cover;
+    }
   }
   .product-info {
     position: relative;

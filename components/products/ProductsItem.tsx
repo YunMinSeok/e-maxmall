@@ -11,12 +11,11 @@ interface ProductItemType {
 }
 
 const ProductsItem = ({ product }: ProductItemType) => {
-  console.log(product);
   return (
     <ProductItemWrap>
       <Link href={`/products/${product.item_no}`}>
         <div className="image-container">
-          <Image src={product.detail_image_url} fill alt="상품 이미지" />
+          <Image src={product.detail_image_url} width={199} height={270} alt="상품 이미지" />
         </div>
         <div className="product-info">
           <h3 className="product-name">{product.item_name}</h3>

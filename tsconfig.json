@@ -28,7 +28,7 @@
       "@util/*": ["src/util/*"],
       "@config/*": ["src/config/*"],
       "@state/*": ["src/state/*"],
-      "@image/*": ["src/image/*"],
+      "@images/*": ["src/images/*"],
       "@query/*": ["src/react-query/*"]
     }
   },
