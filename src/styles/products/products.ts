@@ -42,13 +42,22 @@ export const ProductItemWrap = styled.div`
     cursor: pointer;
     width: 199px;
   }
-  .image-container {
+  .product-image-container {
     position: relative;
     overflow: hidden;
     background-color: rgb(245, 245, 245);
     height: 270px;
     img {
       object-fit: cover;
+    }
+    .product-cart-container {
+      position: absolute;
+      display: flex;
+      right: 16px;
+      bottom: 16px;
+      padding: 3px;
+      border-radius: 50%;
+      background-color: #ffffff;
     }
   }
   .product-info {
