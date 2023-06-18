@@ -3,10 +3,11 @@ import "../styles/global.css";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { RecoilRoot } from "recoil";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
+    <RecoilRoot>
       <Head>
         <title>e-maxmall</title>
         <meta charSet="UTF-8" />
@@ -16,7 +17,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
       <Component {...pageProps} />
-    </>
+    </RecoilRoot>
   );
 };
 

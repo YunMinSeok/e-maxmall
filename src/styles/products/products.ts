@@ -49,10 +49,10 @@ export const ProductItemWrap = styled.div`
     height: 270px;
     img {
       object-fit: cover;
-      transition: all 0.2s linear;
+      transition: all 0.5s ease-in-out 0s;
     }
     img:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
     .product-cart-container {
       position: absolute;
