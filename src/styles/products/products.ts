@@ -49,6 +49,10 @@ export const ProductItemWrap = styled.div`
     height: 270px;
     img {
       object-fit: cover;
+      transition: all 0.2s linear;
+    }
+    img:hover {
+      transform: scale(1.1);
     }
     .product-cart-container {
       position: absolute;
