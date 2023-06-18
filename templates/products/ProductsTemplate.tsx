@@ -12,7 +12,6 @@ interface ProductsTemplateType {
 }
 
 const ProductsTemplate = ({ products }: ProductsTemplateType) => {
-  console.log(products);
   return (
     <ProductsWrap>
       <div className="section-title">
@@ -20,7 +19,7 @@ const ProductsTemplate = ({ products }: ProductsTemplateType) => {
       </div>
       <div className="section-content">
         {products.map(product => {
-          return <ProductsItem product={product} />;
+          return <ProductsItem key={product.item_no} product={product} />;
         })}
       </div>
     </ProductsWrap>

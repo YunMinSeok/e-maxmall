@@ -47,12 +47,9 @@ export const ProductItemWrap = styled.div`
     overflow: hidden;
     background-color: rgb(245, 245, 245);
     height: 270px;
-    img {
+    .product-image {
       object-fit: cover;
       transition: all 0.5s ease-in-out 0s;
-    }
-    img:hover {
-      transform: scale(1.05);
     }
     .product-cart-container {
       position: absolute;
@@ -62,6 +59,11 @@ export const ProductItemWrap = styled.div`
       padding: 3px;
       border-radius: 50%;
       background-color: #ffffff;
+    }
+  }
+  .product-image-container:hover {
+    .product-image {
+      transform: scale(1.05);
     }
   }
   .product-info {

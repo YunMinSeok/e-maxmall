@@ -1,9 +1,12 @@
+import { MouseEvent } from "react";
 import Image from "next/image";
+import { useSetRecoilState } from "recoil";
 // images
 import Cart from "@images/icon/shopping_cart.png";
 // type
 import { ProductVO } from "@type/products/products";
-
+// recil
+import { cart } from "src/states/atom/atom";
 // css
 import { ProductItemWrap } from "@styles/products/products";
 import Link from "next/link";
@@ -13,13 +16,31 @@ interface ProductItemType {
 }
 
 const ProductsItem = ({ product }: ProductItemType) => {
+  const setCart = useSetRecoilState<Array<number>>(cart); // recoil 주택 형태 값
+  const handleAddCart = async (e: MouseEvent, itemNo: number) => {
+    e.preventDefault();
+    setCart(prevState => [...prevState, itemNo]);
+  };
+
   return (
     <ProductItemWrap>
       <Link href={`/products/${product.item_no}`}>
         <div className="product-image-container">
-          <Image src={product.detail_image_url} width={199} height={270} alt="상품 이미지" />
+          <Image
+            className="product-image"
+            src={product.detail_image_url}
+            width={199}
+            height={270}
+            alt="상품 이미지"
+          />
           <div>
-            <button type="button" className="product-cart-container">
+            <button
+              type="button"
+              className="product-cart-container"
+              onClick={(e: MouseEvent) => {
+                handleAddCart(e, product.item_no);
+              }}
+            >
               <Image src={Cart} width={35} height={35} alt="장바구니 아이콘" />
             </button>
           </div>
