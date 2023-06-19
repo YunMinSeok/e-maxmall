@@ -6,6 +6,10 @@ import ProductsTemplate from "@templates/products/ProductsTemplate";
 
 // type
 import { ProductVO } from "@type/products/products";
+
+// query
+import { queryClient } from "@query/queryClient";
+import { queryKeys, commonOptions } from "@query/constant";
 interface ProductsType {
   products: { productItems: ProductVO[] };
 }
@@ -18,11 +22,26 @@ const Products: NextPage<ProductsType> = ({ products }) => {
 export default Products;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await axios.get("http://localhost:3000/api/products");
-  console.log(res);
-  return {
-    props: {
-      products: res.data,
-    },
-  };
+  try {
+    const res = await queryClient.fetchQuery(
+      [queryKeys.product],
+      () => axios.get("http://localhost:3000/api/products"),
+      {
+        ...commonOptions,
+      },
+    );
+    return {
+      props: {
+        products: res.data,
+      },
+    };
+  } catch (err) {
+    if (err instanceof Error) {
+      throw new Error(err.message);
+    } else {
+      throw new Error("error");
+    }
+  } finally {
+    queryClient.clear();
+  }
 };
