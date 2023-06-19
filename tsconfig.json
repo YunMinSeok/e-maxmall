@@ -29,7 +29,7 @@
       "@config/*": ["src/config/*"],
       "@state/*": ["src/state/*"],
       "@images/*": ["src/images/*"],
-      "@query/*": ["src/react-query/*"]
+      "@query/*": ["src/query/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.css"],
