@@ -60,6 +60,33 @@ export const ProductItemWrap = styled.div`
       border-radius: 50%;
       background-color: #ffffff;
     }
+    .product-cart-click-container {
+      position: absolute;
+      display: flex;
+      top: -0.2px;
+      left: -0.2px;
+      width: 35px;
+      height: 35px;
+      padding: 3px;
+      border-radius: 50%;
+      justify-content: center;
+      background: transparent;
+      transition: opacity 0.5s ease-in-out 0s;
+      span {
+        align-self: center;
+        font-size: 16px;
+        color: black;
+        opacity: 0;
+      }
+    }
+    .product-cart-container:hover {
+      .product-cart-click-container {
+        background: #ffffff;
+        span {
+          opacity: 1;
+        }
+      }
+    }
   }
   .product-image-container:hover {
     .product-image {

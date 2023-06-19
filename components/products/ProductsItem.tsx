@@ -42,6 +42,9 @@ const ProductsItem = ({ product }: ProductItemType) => {
               }}
             >
               <Image src={Cart} width={35} height={35} alt="장바구니 아이콘" />
+              <div className="product-cart-click-container">
+                <span>+</span>
+              </div>
             </button>
           </div>
         </div>
