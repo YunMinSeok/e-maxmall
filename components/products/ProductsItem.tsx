@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect } from "react";
+import { MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 // images

@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 // recoil
@@ -8,6 +9,7 @@ interface UseproductsType {
   isHaveCart: (itemNo: number) => boolean;
 }
 
+// product에서 사용되는 함수들
 export function useProducts(): UseproductsType {
   const cartValue = useRecoilState(cart);
   console.log(cartValue);
