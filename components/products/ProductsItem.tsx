@@ -1,43 +1,20 @@
 import { MouseEvent, useEffect } from "react";
 import Image from "next/image";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import Link from "next/link";
 // images
 import Cart from "@images/icon/shopping_cart.png";
 // type
 import { ProductVO } from "@type/products/products";
-// recil
-import { cart } from "src/states/atom/atom";
 // css
 import { ProductItemWrap } from "@styles/products/products";
-import Link from "next/link";
+import { useProducts } from "@hooks/products/useProducts";
 
 interface ProductItemType {
   product: ProductVO;
 }
 
 const ProductsItem = ({ product }: ProductItemType) => {
-  const cartValue = useRecoilState(cart);
-  const setCart = useSetRecoilState<Array<number>>(cart); // recoil 주택 형태 값
-
-  // 장바구니 버튼 클릭
-  const handleClickCart = async (e: MouseEvent, itemNo: number) => {
-    e.preventDefault();
-    // 장바구니 없으면 추가 있으면 삭제
-    if (isHaveCart(itemNo)) {
-      setCart(prevState => [...prevState, itemNo]);
-    } else {
-      setCart(prevState => prevState.filter(item => item !== itemNo));
-    }
-  };
-
-  // 카트에 상품이 담겨있는지
-  const isHaveCart = (itemNo: number) => {
-    return cartValue[0].indexOf(product.item_no) === -1;
-  };
-
-  useEffect(() => {
-    console.log(cartValue[0]);
-  }, [cartValue]);
+  const { handleClickCart, isHaveCart } = useProducts();
 
   return (
     <ProductItemWrap>
