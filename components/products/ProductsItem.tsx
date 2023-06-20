@@ -22,8 +22,12 @@ const ProductsItem = ({ product }: ProductItemType) => {
   // 장바구니 버튼 클릭
   const handleClickCart = async (e: MouseEvent, itemNo: number) => {
     e.preventDefault();
-
-    setCart(prevState => [...prevState, itemNo]);
+    // 장바구니 없으면 추가 있으면 삭제
+    if (isHaveCart(itemNo)) {
+      setCart(prevState => [...prevState, itemNo]);
+    } else {
+      setCart(prevState => prevState.filter(item => item !== itemNo));
+    }
   };
 
   // 카트에 상품이 담겨있는지
