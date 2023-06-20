@@ -1,6 +1,6 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect } from "react";
 import Image from "next/image";
-import { useSetRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilState } from "recoil";
 // images
 import Cart from "@images/icon/shopping_cart.png";
 // type
@@ -16,11 +16,24 @@ interface ProductItemType {
 }
 
 const ProductsItem = ({ product }: ProductItemType) => {
+  const cartValue = useRecoilState(cart);
   const setCart = useSetRecoilState<Array<number>>(cart); // recoil 주택 형태 값
-  const handleAddCart = async (e: MouseEvent, itemNo: number) => {
+
+  // 장바구니 버튼 클릭
+  const handleClickCart = async (e: MouseEvent, itemNo: number) => {
     e.preventDefault();
+
     setCart(prevState => [...prevState, itemNo]);
   };
+
+  // 카트에 상품이 담겨있는지
+  const isHaveCart = (itemNo: number) => {
+    return cartValue[0].indexOf(product.item_no) === -1;
+  };
+
+  useEffect(() => {
+    console.log(cartValue[0]);
+  }, [cartValue]);
 
   return (
     <ProductItemWrap>
@@ -38,12 +51,12 @@ const ProductsItem = ({ product }: ProductItemType) => {
               type="button"
               className="product-cart-container"
               onClick={(e: MouseEvent) => {
-                handleAddCart(e, product.item_no);
+                handleClickCart(e, product.item_no);
               }}
             >
               <Image src={Cart} width={35} height={35} alt="장바구니 아이콘" />
               <div className="product-cart-click-container">
-                <span>+</span>
+                <span>{isHaveCart(product.item_no) ? "+" : "-"}</span>
               </div>
             </button>
           </div>
