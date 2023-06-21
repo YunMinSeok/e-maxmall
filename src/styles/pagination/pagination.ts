@@ -4,7 +4,6 @@ export const PaginationWrap = styled.div`
   height: 54px;
   width: 100%;
   text-align: center;
-  margin: 20px auto 0 auto;
   background-color: rgba(255, 255, 255, 0.9);
   position: fixed;
   z-index: 1000;

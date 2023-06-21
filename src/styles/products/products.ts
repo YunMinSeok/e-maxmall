@@ -25,6 +25,7 @@ export const ProductsWrap = styled.div`
     gap: 31px 0;
     width: 1050px;
     margin: 0px auto;
+    padding-bottom: 60px;
     overflow: hidden;
   }
 `;

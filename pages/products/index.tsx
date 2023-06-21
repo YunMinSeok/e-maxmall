@@ -30,6 +30,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
         ...commonOptions,
       },
     );
+
+    res.data.productItems.sort((a: any, b: any) => {
+      return b.score - a.score;
+    });
+
     return {
       props: {
         products: res.data,
