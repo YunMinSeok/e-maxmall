@@ -1,4 +1,5 @@
 // components
+import Pagination from "@components/pagination/Pagination";
 import ProductsItem from "@components/products/ProductsItem";
 
 // css
@@ -22,6 +23,7 @@ const ProductsTemplate = ({ products }: ProductsTemplateType) => {
           return <ProductsItem key={product.item_no} product={product} />;
         })}
       </div>
+      <Pagination />
     </ProductsWrap>
   );
 };
