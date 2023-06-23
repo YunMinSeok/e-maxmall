@@ -11,6 +11,7 @@ export const PaginationWrap = styled.div`
   left: 0;
   border-top: 1px solid #fff;
   box-shadow: 0 -3px 3px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(2px);
   .pagination-list-wrap {
     display: inline-block;
     width: 768px;
