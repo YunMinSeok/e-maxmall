@@ -12,13 +12,12 @@ interface UseproductsType {
 // product에서 사용되는 함수들
 export function useProducts(): UseproductsType {
   const cartValue = useRecoilState(cart);
-  console.log(cartValue);
 
   const setCart = useSetRecoilState<Array<number>>(cart); // recoil
 
   // 장바구니 버튼 클릭
   const handleClickCart = async (e: MouseEvent, itemNo: number) => {
-    e.stopPropagation();
+    e.preventDefault();
     // 장바구니 없으면 추가 있으면 삭제
     if (isHaveCart(itemNo)) {
       setCart(prevState => [...prevState, itemNo]);
