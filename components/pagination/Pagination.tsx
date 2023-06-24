@@ -1,7 +1,12 @@
 // style
 import { PaginationWrap } from "@styles/pagination/pagination";
 
-const Pagination = () => {
+interface PaginationType {
+  page: number;
+  totalPage: number;
+}
+
+const Pagination = ({ page, totalPage }: PaginationType) => {
   return (
     <PaginationWrap>
       <div className="pagination-list-wrap">

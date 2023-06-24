@@ -9,21 +9,26 @@ import { ProductsWrap } from "@styles/products/products";
 import { ProductVO } from "@type/products/products";
 
 interface ProductsTemplateType {
-  products: ProductVO[];
+  products: {
+    page: number;
+    totalPage: number;
+    productItems: ProductVO[];
+  };
 }
 
 const ProductsTemplate = ({ products }: ProductsTemplateType) => {
+  const { page, totalPage, productItems } = products;
   return (
     <ProductsWrap>
       <div className="section-title">
         <span>상품 목록페이지</span>
       </div>
       <div className="section-content">
-        {products.map(product => {
+        {productItems.map(product => {
           return <ProductsItem key={product.item_no} product={product} />;
         })}
       </div>
-      <Pagination />
+      <Pagination page={page} totalPage={totalPage} />
     </ProductsWrap>
   );
 };

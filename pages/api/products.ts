@@ -1,4 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+// type
+import { ProductVO } from "@type/products/products";
 
 // images
 import Image1 from "@images/product_image_1.jpg";
@@ -226,13 +228,16 @@ const productItems = [
 ];
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const page = Number(req.query.page as string) * 5;
+  // page 별 pagination 처리
+  const page = Number(req.query.page) * 5;
 
+  // score 기준 내림차순
   productItems.sort((a: any, b: any) => {
     return b.score - a.score;
   });
 
   res.status(200).json({
+    page: Number(req.query.page),
     totalPage: 6,
     productItems: productItems.slice(page - 5, page),
   });

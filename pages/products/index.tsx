@@ -11,17 +11,21 @@ import { ProductVO } from "@type/products/products";
 import { queryClient } from "@query/queryClient";
 import { queryKeys, commonOptions } from "@query/constant";
 interface ProductsType {
-  products: { productItems: ProductVO[] };
+  products: {
+    page: number;
+    totalPage: number;
+    productItems: ProductVO[];
+  };
 }
 
 // 상품 리스트 페이지
 const Products: NextPage<ProductsType> = ({ products }) => {
-  return <ProductsTemplate products={products.productItems} />;
+  return <ProductsTemplate products={products} />;
 };
 
 export default Products;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async context => {
   try {
     const res = await queryClient.fetchQuery(
       [queryKeys.product],
