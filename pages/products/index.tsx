@@ -25,15 +25,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const res = await queryClient.fetchQuery(
       [queryKeys.product],
-      () => axios.get("http://localhost:3000/api/products"),
+      () => axios.get("http://localhost:3000/api/products?page=2"),
       {
         ...commonOptions,
       },
     );
-
-    res.data.productItems.sort((a: any, b: any) => {
-      return b.score - a.score;
-    });
 
     return {
       props: {
