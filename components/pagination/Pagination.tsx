@@ -6,17 +6,13 @@ interface PaginationType {
   totalPage: number;
 }
 
-function createNumberArray(length: number) {
-  return Array.from({ length }, (_, index) => index + 1);
-}
-
 const Pagination = ({ page, totalPage }: PaginationType) => {
   return (
     <PaginationWrap>
       <div className="pagination-list-wrap">
         <a className="button">&lt;</a>
-        {Array.from({ totalPage }, (_, index) => index + 1).map((element, index) => {
-          return <a>{index}</a>;
+        {Array.from({ length: totalPage }, (_, index) => index + 1).map((element, index) => {
+          return <a key={element}>{element}</a>;
         })}
         <a className="button">&gt;</a>
       </div>
