@@ -32,5 +32,9 @@ export const PaginationWrap = styled.div`
     .button {
       vertical-align: middle;
     }
+    .selected {
+      color: #0073e9;
+      border: 1px solid #0073e9;
+    }
   }
 `;

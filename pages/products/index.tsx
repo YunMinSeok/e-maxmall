@@ -27,9 +27,11 @@ export default Products;
 
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
+    const params = { search: { page: context.query.page } };
+    console.log(params);
     const res = await queryClient.fetchQuery(
       [queryKeys.product],
-      () => axios.get("http://localhost:3000/api/products?page=2"),
+      () => axios.get("http://localhost:3000/api/products", { params }),
       {
         ...commonOptions,
       },

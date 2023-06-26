@@ -18,6 +18,7 @@ interface ProductsTemplateType {
 
 const ProductsTemplate = ({ products }: ProductsTemplateType) => {
   const { page, totalPage, productItems } = products;
+  console.log(page);
   return (
     <ProductsWrap>
       <div className="section-title">

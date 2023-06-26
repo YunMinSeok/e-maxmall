@@ -12,7 +12,11 @@ const Pagination = ({ page, totalPage }: PaginationType) => {
       <div className="pagination-list-wrap">
         <a className="button">&lt;</a>
         {Array.from({ length: totalPage }, (_, index) => index + 1).map((element, index) => {
-          return <a key={element}>{element}</a>;
+          return (
+            <a key={element} className={element === page ? "selected" : ""}>
+              {element}
+            </a>
+          );
         })}
         <a className="button">&gt;</a>
       </div>
