@@ -10,7 +10,7 @@ export const CartWrap = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    span {
+    .title {
       color: rgb(51, 51, 51);
       font-size: 28px;
       line-height: 1.15;
@@ -32,6 +32,11 @@ export const CartTable = styled.table`
     text-align: center;
   }
 
+  th {
+    height: 40px;
+    font-size: 13px;
+  }
+
   .none {
     display: block;
     text-indent: -9em;
@@ -39,6 +44,17 @@ export const CartTable = styled.table`
     height: 0;
     overflow: hidden;
     font-size: 0;
+  }
+  .head {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    th {
+      background: #fafafa;
+      text-align: center;
+    }
+    .all-item-select {
+      position: absolute;
+    }
   }
 
   .cartTable-itemWrap {
@@ -91,12 +107,14 @@ export const CartTable = styled.table`
             font-size: 12px;
             line-height: 24px;
             .unit-cost {
+              padding-right: 5px;
               font-size: 12px;
               color: #888;
               letter-spacing: 0;
-              vertical-align: top;
             }
             .select-select {
+              display: inline-block;
+              line-height: 24px;
               .quantity-select {
                 width: 52px;
               }
