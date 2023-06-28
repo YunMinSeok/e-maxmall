@@ -1,4 +1,6 @@
 import axios from "axios";
+import Link from "next/link";
+import Image from "next/image";
 // components
 import Pagination from "@components/pagination/Pagination";
 import ProductsItem from "@components/products/ProductsItem";
@@ -12,6 +14,9 @@ import { ProductVO } from "@type/products/products";
 // query
 import { queryClient } from "@query/queryClient";
 import { queryKeys, commonOptions } from "@query/constant";
+
+//image
+import Cart from "@images/icon/shopping_cart.png";
 interface ProductsTemplateType {
   products: {
     page: number;
@@ -37,6 +42,9 @@ const ProductsTemplate = ({ products }: ProductsTemplateType) => {
     <ProductsWrap>
       <div className="section-title">
         <span>상품 목록페이지</span>
+        <Link href={"/cart"} className="cart-icon">
+          <Image src={Cart} alt="장바구니 아이콘" width={35} height={35} />
+        </Link>
       </div>
       <div className="section-content">
         {productItems.map(product => {

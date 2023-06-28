@@ -7,7 +7,6 @@ export const ProductsWrap = styled.div`
   .section-title {
     margin-bottom: 27px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     span {
@@ -16,6 +15,10 @@ export const ProductsWrap = styled.div`
       line-height: 1.15;
       letter-spacing: -0.26px;
       font-weight: 500;
+    }
+    .cart-icon {
+      margin-left: auto;
+      padding-right: 18px;
     }
   }
   .section-content {
