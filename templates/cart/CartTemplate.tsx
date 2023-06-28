@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRecoilValue } from "recoil";
+import { useRef } from "react";
 
 // recoil
 import { cart } from "@states/atom/atom";
@@ -70,8 +71,11 @@ const CartTemplate = () => {
                       <span className="unit-cost">{product.price}</span>
                       <span className="select-select">
                         <select className="quantity-select">
-                          <option>1</option>
-                          <option>2</option>
+                          {Array.from({ length: 99 }, (_, index) => index + 1).map(
+                            (element, index) => {
+                              return <option>{element}</option>;
+                            },
+                          )}
                         </select>
                       </span>
                     </div>
