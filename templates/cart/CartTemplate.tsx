@@ -20,7 +20,7 @@ const CartTemplate = () => {
         <caption className="none">장바구니</caption>
         <thead>
           <tr className="head">
-            <th scope="col" className="all-select-event">
+            <th scope="col" className="all-item-select">
               <label>
                 <input
                   title="모든 상품을 결제상품으로 설정"

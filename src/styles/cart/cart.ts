@@ -52,7 +52,7 @@ export const CartTable = styled.table`
       background: #fafafa;
       text-align: center;
     }
-    .all-item-select {
+    .all-item-select span {
       position: absolute;
     }
   }
