@@ -9,5 +9,14 @@ html {
 }
 body {
   box-sizing: border-box;
-  color: #000000;
+  color: #111;
+  font-family: Dotum, \\B3CB\C6C0, sans-serif;
+}
+
+option {
+  font-weight: normal;
+  display: block;
+  white-space-collapse: collapse;
+  text-wrap: nowrap;
+  min-height: 1.2em;
 }
