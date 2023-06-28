@@ -32,12 +32,12 @@ const ProductsItem = ({ product }: ProductItemType) => {
               type="button"
               className="product-cart-container"
               onClick={(e: MouseEvent) => {
-                handleClickCart(e, product.item_no);
+                handleClickCart(e, product);
               }}
             >
               <Image src={Cart} width={35} height={35} alt="장바구니 아이콘" />
               <div className="product-cart-click-container">
-                <span>{isHaveCart(product.item_no) ? "+" : "-"}</span>
+                <span>{isHaveCart(product) ? "+" : "-"}</span>
               </div>
             </button>
           </div>

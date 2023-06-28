@@ -27,7 +27,7 @@
       "@type/*": ["src/type/*"],
       "@util/*": ["src/util/*"],
       "@config/*": ["src/config/*"],
-      "@state/*": ["src/state/*"],
+      "@states/*": ["src/states/*"],
       "@images/*": ["src/images/*"],
       "@query/*": ["src/query/*"]
     }

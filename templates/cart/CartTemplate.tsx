@@ -1,9 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useRecoilValue } from "recoil";
 
+// recoil
+import { cart } from "@states/atom/atom";
+
+// css
 import { CartWrap, CartTable } from "@styles/cart/cart";
 
 const CartTemplate = () => {
+  const cartValue = useRecoilValue(cart); // 장바구니 recoil 값
+  console.log(cartValue);
   return (
     <CartWrap>
       <div className="section-title">
