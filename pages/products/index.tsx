@@ -1,5 +1,6 @@
 import { NextPage, GetServerSideProps } from "next";
 import axios from "axios";
+import { dehydrate } from "react-query";
 
 // templates
 import ProductsTemplate from "@templates/products/ProductsTemplate";
@@ -28,7 +29,6 @@ export default Products;
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
     const params = { search: { page: context.query.page } };
-    console.log(params);
     const res = await queryClient.fetchQuery(
       [queryKeys.product],
       () => axios.get("http://localhost:3000/api/products", { params }),
@@ -40,14 +40,17 @@ export const getServerSideProps: GetServerSideProps = async context => {
     return {
       props: {
         products: res.data,
+        // TODO: MAX => query hydrate 오류 고쳐야함
+        // dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
       },
     };
   } catch (err) {
-    if (err instanceof Error) {
-      throw new Error(err.message);
-    } else {
-      throw new Error("error");
-    }
+    return {
+      redirect: {
+        destination: "/error",
+        statusCode: 307,
+      },
+    };
   } finally {
     queryClient.clear();
   }

@@ -1,3 +1,4 @@
+import axios from "axios";
 // components
 import Pagination from "@components/pagination/Pagination";
 import ProductsItem from "@components/products/ProductsItem";
@@ -8,6 +9,9 @@ import { ProductsWrap } from "@styles/products/products";
 // type
 import { ProductVO } from "@type/products/products";
 
+// query
+import { queryClient } from "@query/queryClient";
+import { queryKeys, commonOptions } from "@query/constant";
 interface ProductsTemplateType {
   products: {
     page: number;
@@ -18,7 +22,17 @@ interface ProductsTemplateType {
 
 const ProductsTemplate = ({ products }: ProductsTemplateType) => {
   const { page, totalPage, productItems } = products;
-  console.log(page);
+
+  const getProduct = async () => {
+    const params = { search: { page: page } };
+    await queryClient.fetchQuery(
+      [queryKeys.product],
+      () => axios.get("http://localhost:3000/api/products", { params }),
+      {
+        ...commonOptions,
+      },
+    );
+  };
   return (
     <ProductsWrap>
       <div className="section-title">

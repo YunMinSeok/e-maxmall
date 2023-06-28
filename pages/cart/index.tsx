@@ -1,7 +1,9 @@
 import { NextPage } from "next";
 
+import CartTemplate from "@templates/cart/CartTemplate";
+
 const Cart: NextPage = () => {
-  return <>장바구니 페이지</>;
+  return <CartTemplate />;
 };
 
 export default Cart;
