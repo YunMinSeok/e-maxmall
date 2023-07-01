@@ -29,6 +29,9 @@ const CartTemplate = () => {
                   title="모든 상품을 결제상품으로 설정"
                   type="checkbox"
                   className="all-item-select"
+                  // TODO : MAX => 전체선택 로직 구현 해야함
+                  checked={false}
+                  onClick={() => console.log(1)}
                 />
                 <span>&nbsp;&nbsp;전체선택</span>
               </label>
