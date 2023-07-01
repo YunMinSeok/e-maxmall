@@ -3,6 +3,9 @@ import Image from "next/image";
 import { useRecoilValue } from "recoil";
 import { useRef } from "react";
 
+// components
+import CartItem from "@components/cart/CartItem";
+
 // recoil
 import { cart } from "@states/atom/atom";
 
@@ -10,8 +13,7 @@ import { cart } from "@states/atom/atom";
 import { CartWrap, CartTable } from "@styles/cart/cart";
 
 const CartTemplate = () => {
-  const cartValue = useRecoilValue(cart); // 장바구니 recoil 값
-  console.log(cartValue);
+  const cartList = useRecoilValue(cart); // 장바구니 recoil 값
   return (
     <CartWrap>
       <div className="section-title">
@@ -43,50 +45,8 @@ const CartTemplate = () => {
             </th>
           </tr>
         </thead>
-        {cartValue.map(product => {
-          return (
-            <tbody className="cartTable-itemWrap">
-              <tr className="cart-item">
-                <td className="product-select-event">
-                  <input type="checkbox" title={product.item_name} value={product.item_no} />
-                </td>
-                <td className="product-item-image">
-                  <Link href="">
-                    <Image
-                      src={product.detail_image_url}
-                      width={78}
-                      height={78}
-                      alt={product.item_name}
-                    />
-                  </Link>
-                </td>
-                <td className="product-box">
-                  <div className="product-name-part">
-                    <Link href={`/product/${product.item_no}`} className="product-name">
-                      {product.item_name}
-                    </Link>
-                  </div>
-                  <div className="option-item">
-                    <div className="option-price-part">
-                      <span className="unit-cost">{product.price}</span>
-                      <span className="select-select">
-                        <select className="quantity-select">
-                          {Array.from({ length: 99 }, (_, index) => index + 1).map(
-                            (element, index) => {
-                              return <option>{element}</option>;
-                            },
-                          )}
-                        </select>
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td className="unit-total-price">
-                  <div className="unit-total-sale-price">{product.price}</div>
-                </td>
-              </tr>
-            </tbody>
-          );
+        {cartList.map(product => {
+          return <CartItem product={product} />;
         })}
       </CartTable>
     </CartWrap>
