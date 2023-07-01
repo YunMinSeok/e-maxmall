@@ -3,12 +3,14 @@ import Image from "next/image";
 
 // type
 import { ProductVO } from "@type/products/products";
+import { useState } from "react";
 
 interface CartItemType {
   product: ProductVO;
 }
 
 const CartItem = ({ product }: CartItemType) => {
+  const [count, setCount] = useState<number>(1);
   return (
     <tbody className="cartTable-itemWrap">
       <tr className="cart-item">
@@ -30,9 +32,12 @@ const CartItem = ({ product }: CartItemType) => {
             <div className="option-price-part">
               <span className="unit-cost">{product.price}</span>
               <span className="select-select">
-                <select className="quantity-select">
+                <select
+                  className="quantity-select"
+                  onChange={e => setCount(Number(e.target.value))}
+                >
                   {Array.from({ length: 99 }, (_, index) => index + 1).map((element, index) => {
-                    return <option>{element}</option>;
+                    return <option value={element}>{element}</option>;
                   })}
                 </select>
               </span>
@@ -40,7 +45,7 @@ const CartItem = ({ product }: CartItemType) => {
           </div>
         </td>
         <td className="unit-total-price">
-          <div className="unit-total-sale-price">{product.price}</div>
+          <div className="unit-total-sale-price">{Number(product.price) * count}</div>
         </td>
       </tr>
     </tbody>

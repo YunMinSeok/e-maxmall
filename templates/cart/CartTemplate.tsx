@@ -46,7 +46,7 @@ const CartTemplate = () => {
           </tr>
         </thead>
         {cartList.map(product => {
-          return <CartItem product={product} />;
+          return <CartItem key={product.item_no} product={product} />;
         })}
       </CartTable>
     </CartWrap>
