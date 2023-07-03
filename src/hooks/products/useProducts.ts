@@ -20,12 +20,18 @@ export function useProducts(): UseproductsType {
   // 장바구니 버튼 클릭
   const handleClickCart = async (e: MouseEvent, item: ProductVO) => {
     e.preventDefault();
-    // 장바구니 없으면 추가 있으면 삭제
-    if (isHaveCart(item)) {
-      setCart(prevState => [...prevState, item]);
-    } else {
+    // 장바구니 있으면 삭제
+    if (!isHaveCart(item)) {
       setCart(prevState => prevState.filter(prevItem => prevItem.item_no !== item.item_no));
+      return;
     }
+    // 장바구니 최대 수량 을 넘으면 return
+    if (cartValue[0].length >= 3) {
+      alert("장바구니의 최대 수량은 3개 입니다.");
+      return;
+    }
+
+    setCart(prevState => [...prevState, item]);
   };
 
   // 카트에 상품이 담겨있는지
