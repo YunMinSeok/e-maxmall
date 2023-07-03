@@ -3,15 +3,20 @@ import Image from "next/image";
 
 // type
 import { ProductVO } from "@type/products/products";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface CartItemType {
   product: ProductVO;
+  allCheck: boolean;
 }
 
-const CartItem = ({ product }: CartItemType) => {
+const CartItem = ({ product, allCheck }: CartItemType) => {
   const [count, setCount] = useState<number>(1);
   const [check, setCheck] = useState<boolean>(false);
+
+  useEffect(() => {
+    setCheck(allCheck);
+  }, [allCheck]);
   return (
     <tbody className="cartTable-itemWrap">
       <tr className="cart-item">

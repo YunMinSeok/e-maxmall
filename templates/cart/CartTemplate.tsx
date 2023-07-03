@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRecoilValue } from "recoil";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 // components
 import CartItem from "@components/cart/CartItem";
@@ -14,6 +14,8 @@ import { CartWrap, CartTable } from "@styles/cart/cart";
 
 const CartTemplate = () => {
   const cartList = useRecoilValue(cart); // 장바구니 recoil 값
+  const [allCheck, setAllCheck] = useState(false);
+
   return (
     <CartWrap>
       <div className="section-title">
@@ -29,9 +31,8 @@ const CartTemplate = () => {
                   title="모든 상품을 결제상품으로 설정"
                   type="checkbox"
                   className="all-item-select"
-                  // TODO : MAX => 전체선택 로직 구현 해야함
-                  checked={false}
-                  onClick={() => console.log(1)}
+                  checked={allCheck}
+                  onChange={() => setAllCheck(!allCheck)}
                 />
                 <span>&nbsp;&nbsp;전체선택</span>
               </label>
@@ -49,7 +50,7 @@ const CartTemplate = () => {
           </tr>
         </thead>
         {cartList.map(product => {
-          return <CartItem key={product.item_no} product={product} />;
+          return <CartItem key={product.item_no} product={product} allCheck={allCheck} />;
         })}
       </CartTable>
     </CartWrap>
