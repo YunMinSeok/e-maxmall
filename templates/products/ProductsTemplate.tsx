@@ -1,6 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
+
 // components
 import Pagination from "@components/pagination/Pagination";
 import ProductsItem from "@components/products/ProductsItem";
@@ -28,16 +29,14 @@ interface ProductsTemplateType {
 const ProductsTemplate = ({ products }: ProductsTemplateType) => {
   const { page, totalPage, productItems } = products;
 
-  const getProduct = async () => {
-    const params = { search: { page: page } };
-    await queryClient.fetchQuery(
-      [queryKeys.product],
-      () => axios.get("http://localhost:3000/api/products", { params }),
-      {
-        ...commonOptions,
-      },
-    );
-  };
+  queryClient.fetchQuery(
+    [queryKeys.product, page],
+    () => axios.get("http://localhost:3000/api/products", { params: { search: { page: page } } }),
+    {
+      ...commonOptions,
+    },
+  );
+
   return (
     <ProductsWrap>
       <div className="section-title">

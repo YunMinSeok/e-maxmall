@@ -12,9 +12,9 @@ import { queryClient } from "@query/queryClient";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydrateState}>
-        <RecoilRoot>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydrateState}>
           <Head>
             <title>e-maxmall</title>
             <meta charSet="UTF-8" />
@@ -25,9 +25,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           </Head>
           <Component {...pageProps} />
           <ReactQueryDevtools />
-        </RecoilRoot>
-      </Hydrate>
-    </QueryClientProvider>
+        </Hydrate>
+      </QueryClientProvider>
+    </RecoilRoot>
   );
 };
 

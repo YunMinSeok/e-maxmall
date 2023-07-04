@@ -11,6 +11,10 @@ import { ProductVO } from "@type/products/products";
 // query
 import { queryClient } from "@query/queryClient";
 import { queryKeys, commonOptions } from "@query/constant";
+
+// api
+import { ProductApi } from "@api/product";
+
 interface ProductsType {
   products: {
     page: number;
@@ -29,19 +33,17 @@ export default Products;
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
     const params = { search: { page: context.query.page } };
-    const res = await queryClient.fetchQuery(
-      [queryKeys.product],
-      () => axios.get("http://localhost:3000/api/products", { params }),
-      {
-        ...commonOptions,
-      },
-    );
+    const res = await queryClient.fetchQuery([queryKeys.product], () => ProductApi().getCoupons(), {
+      ...commonOptions,
+    });
+
+    console.log(res);
 
     return {
       props: {
-        products: res.data,
-        // TODO: MAX => query hydrate 오류 고쳐야함
+        products: JSON.parse(JSON.stringify(res.data)),
         // dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+        dehydratedState: dehydrate(queryClient),
       },
     };
   } catch (err) {

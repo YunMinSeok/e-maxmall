@@ -17,6 +17,7 @@ const CartItem = ({ product, allCheck }: CartItemType) => {
   useEffect(() => {
     setCheck(allCheck);
   }, [allCheck]);
+
   return (
     <tbody className="cartTable-itemWrap">
       <tr className="cart-item">
