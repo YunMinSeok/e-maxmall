@@ -1,4 +1,3 @@
-import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -10,29 +9,26 @@ import ProductsItem from "@components/products/ProductsItem";
 import { ProductsWrap } from "@styles/products/products";
 
 // type
-import { ProductVO } from "@type/products/products";
+import { ProductVO, ProductItemVO } from "@type/products/products";
 
+// api
+import { getProduct } from "@api/product";
 // query
-import { queryClient } from "@query/queryClient";
 import { queryKeys, commonOptions } from "@query/constant";
 
 //image
 import Cart from "@images/icon/shopping_cart.png";
-interface ProductsTemplateType {
-  products: {
-    page: number;
-    totalPage: number;
-    productItems: ProductVO[];
-  };
-}
+import { useRouter } from "next/router";
+import { useQuery } from "react-query";
 
-const ProductsTemplate = ({ products }: ProductsTemplateType) => {
-  const { page, totalPage, productItems } = products;
+const ProductsTemplate = ({ products }: ProductVO) => {
+  const router = useRouter();
 
-  queryClient.fetchQuery(
-    [queryKeys.product, page],
-    () => axios.get("http://localhost:3000/api/products", { params: { search: { page: page } } }),
+  const { data } = useQuery(
+    [queryKeys.product, router.query.page],
+    () => getProduct(String(router.query.page)),
     {
+      initialData: products,
       ...commonOptions,
     },
   );
@@ -46,11 +42,11 @@ const ProductsTemplate = ({ products }: ProductsTemplateType) => {
         </Link>
       </div>
       <div className="section-content">
-        {productItems.map(product => {
+        {data?.productItems.map((product: ProductItemVO) => {
           return <ProductsItem key={product.item_no} product={product} />;
         })}
       </div>
-      <Pagination page={page} totalPage={totalPage} />
+      <Pagination page={data?.page} totalPage={data?.totalPage} />
     </ProductsWrap>
   );
 };

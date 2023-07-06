@@ -13,22 +13,31 @@ const Pagination = ({ page, totalPage }: PaginationType) => {
   return (
     <PaginationWrap>
       <div className="pagination-list-wrap">
-        <a className="button">&lt;</a>
+        <Link
+          key={"product-list-previous"}
+          className="button"
+          href={`${router.pathname}?page=${page - 1}`}
+        >
+          &lt;
+        </Link>
         {Array.from({ length: totalPage }, (_, index) => index + 1).map((element, index) => {
           return (
             <Link
               key={"product-list-" + element}
               className={element === page ? "selected" : ""}
-              href={{
-                pathname: router.pathname,
-                query: { page: element },
-              }}
+              href={`${router.pathname}?page=${element}`}
             >
               {element}
             </Link>
           );
         })}
-        <a className="button">&gt;</a>
+        <Link
+          key={"product-list-next"}
+          className="button"
+          href={`${router.pathname}?page=${page + 1}`}
+        >
+          &gt;
+        </Link>
       </div>
     </PaginationWrap>
   );

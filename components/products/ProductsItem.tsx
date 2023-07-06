@@ -4,16 +4,12 @@ import Link from "next/link";
 // images
 import Cart from "@images/icon/shopping_cart.png";
 // type
-import { ProductVO } from "@type/products/products";
+import { ProductItemVO } from "@type/products/products";
 // css
 import { ProductItemWrap } from "@styles/products/products";
 import { useProducts } from "@hooks/products/useProducts";
 
-interface ProductItemType {
-  product: ProductVO;
-}
-
-const ProductsItem = ({ product }: ProductItemType) => {
+const ProductsItem = ({ product }: ProductItemVO) => {
   const { handleClickCart, isHaveCart } = useProducts();
 
   return (

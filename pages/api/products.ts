@@ -1,6 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-// type
-import { ProductVO } from "@type/products/products";
 
 // images
 import Image1 from "@images/product_image_1.jpg";

@@ -12,18 +12,10 @@ import { queryClient } from "@query/queryClient";
 import { queryKeys, commonOptions } from "@query/constant";
 
 // api
-import getProduct from "@api/product";
-
-interface ProductsType {
-  products: {
-    page: number;
-    totalPage: number;
-    productItems: ProductVO[];
-  };
-}
+import { getProduct } from "@api/product";
 
 // 상품 리스트 페이지
-const Products: NextPage<ProductsType> = ({ products }) => {
+const Products: NextPage<ProductVO> = ({ products }) => {
   return <ProductsTemplate products={products} />;
 };
 
@@ -31,20 +23,18 @@ export default Products;
 
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
-    const res = await queryClient.fetchQuery(
-      [queryKeys.product, context.query.page],
-      () => getProduct(String(context.query.page)),
+    const page = context.query.page ?? 1;
+    const products = await queryClient.fetchQuery(
+      [queryKeys.product, page],
+      () => getProduct(String(page)),
       {
         ...commonOptions,
       },
     );
 
-    console.log(res);
-
     return {
       props: {
-        products: JSON.parse(JSON.stringify(res.data)),
-        // dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+        products: products,
         dehydratedState: dehydrate(queryClient),
       },
     };
