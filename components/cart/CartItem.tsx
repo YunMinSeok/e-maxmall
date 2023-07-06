@@ -2,11 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 // type
-import { ProductVO } from "@type/products/products";
+import { ProductItemVO } from "@type/products/products";
 import { useEffect, useState } from "react";
 
 interface CartItemType {
-  product: ProductVO;
+  product: ProductItemVO;
   allCheck: boolean;
 }
 
