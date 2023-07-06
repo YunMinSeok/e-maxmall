@@ -12,7 +12,7 @@ interface UseproductsType {
 }
 
 // product에서 사용되는 함수들
-export function useProducts(): UseproductsType {
+export const useProducts = (): UseproductsType => {
   const cartValue = useRecoilState(cart);
 
   const setCart = useSetRecoilState<Array<ProductItemVO>>(cart); // recoil
@@ -39,4 +39,4 @@ export function useProducts(): UseproductsType {
     return cartValue[0].indexOf(item) === -1;
   };
   return { handleClickCart, isHaveCart };
-}
+};

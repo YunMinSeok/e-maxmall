@@ -1,20 +1,14 @@
-import Link from "next/link";
-import Image from "next/image";
-import { useRecoilValue } from "recoil";
-import { useRef, useState } from "react";
-
 // components
 import CartItem from "@components/cart/CartItem";
 
-// recoil
-import { cart } from "@states/atom/atom";
+// hooks
+import { useCart } from "@hooks/cart/useCart";
 
 // css
 import { CartWrap, CartTable } from "@styles/cart/cart";
 
 const CartTemplate = () => {
-  const cartList = useRecoilValue(cart); // 장바구니 recoil 값
-  const [allCheck, setAllCheck] = useState(false);
+  const { cartList, allCheck, setAllCheck } = useCart();
 
   return (
     <CartWrap>
