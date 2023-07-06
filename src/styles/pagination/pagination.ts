@@ -32,6 +32,10 @@ export const PaginationWrap = styled.div`
     .button {
       vertical-align: middle;
     }
+    .disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
     .selected {
       color: #0073e9;
       border: 1px solid #0073e9;
