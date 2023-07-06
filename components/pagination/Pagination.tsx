@@ -12,6 +12,7 @@ const Pagination = ({ page, totalPage }: PaginationType) => {
   const router = useRouter();
   const firstNum = Math.floor((page - 1) / 5) * 5 + 1;
   const lastNum = Math.min(firstNum + 4, totalPage);
+
   return (
     <PaginationWrap>
       <div className="pagination-list-wrap">

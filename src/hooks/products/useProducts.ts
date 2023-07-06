@@ -38,6 +38,5 @@ export function useProducts(): UseproductsType {
   const isHaveCart = (item: ProductItemVO) => {
     return cartValue[0].indexOf(item) === -1;
   };
-
   return { handleClickCart, isHaveCart };
 }
