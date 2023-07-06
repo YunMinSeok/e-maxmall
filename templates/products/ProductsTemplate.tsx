@@ -3,7 +3,7 @@ import Image from "next/image";
 
 // components
 import Pagination from "@components/pagination/Pagination";
-import ProductsItem from "@components/products/ProductsItem";
+import ProductItem from "@components/products/ProductItem";
 
 // css
 import { ProductsWrap } from "@styles/products/products";
@@ -43,7 +43,7 @@ const ProductsTemplate = ({ products }: ProductVO) => {
       </div>
       <div className="section-content">
         {data?.productItems.map((product: ProductItemVO) => {
-          return <ProductsItem key={product.item_no} product={product} />;
+          return <ProductItem key={product.item_no} product={product} />;
         })}
       </div>
       <Pagination page={data?.page} totalPage={data?.totalPage} />

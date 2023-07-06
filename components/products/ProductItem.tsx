@@ -9,7 +9,11 @@ import { ProductItemVO } from "@type/products/products";
 import { ProductItemWrap } from "@styles/products/products";
 import { useProducts } from "@hooks/products/useProducts";
 
-const ProductsItem = ({ product }: ProductItemVO) => {
+interface ProductItem {
+  product: ProductItemVO;
+}
+
+const ProductItem = ({ product }: ProductItem) => {
   const { handleClickCart, isHaveCart } = useProducts();
 
   return (
@@ -49,4 +53,4 @@ const ProductsItem = ({ product }: ProductItemVO) => {
   );
 };
 
-export default ProductsItem;
+export default ProductItem;
