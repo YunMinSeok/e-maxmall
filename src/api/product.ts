@@ -1,13 +1,11 @@
 import axios from "axios";
 
-const ProductApi = () => {
-  const getCoupons = async (page: number) => {
-    const res = await axios.get("http://localhost:3000/api/products", {
-      params: { search: { page: page } },
-    });
+const getProduct = async (page: string) => {
+  const res = await axios.get("http://localhost:3000/api/products", {
+    params: { search: { page: page } },
+  });
 
-    return res.data;
-  };
+  return res.data;
 };
 
-export default ProductApi;
+export default getProduct;

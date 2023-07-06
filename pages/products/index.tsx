@@ -1,5 +1,4 @@
 import { NextPage, GetServerSideProps } from "next";
-import axios from "axios";
 import { dehydrate } from "react-query";
 
 // templates
@@ -13,7 +12,7 @@ import { queryClient } from "@query/queryClient";
 import { queryKeys, commonOptions } from "@query/constant";
 
 // api
-import { ProductApi } from "@api/product";
+import getProduct from "@api/product";
 
 interface ProductsType {
   products: {
@@ -32,10 +31,13 @@ export default Products;
 
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
-    const params = { search: { page: context.query.page } };
-    const res = await queryClient.fetchQuery([queryKeys.product], () => ProductApi().getCoupons(), {
-      ...commonOptions,
-    });
+    const res = await queryClient.fetchQuery(
+      [queryKeys.product, context.query.page],
+      () => getProduct(String(context.query.page)),
+      {
+        ...commonOptions,
+      },
+    );
 
     console.log(res);
 
@@ -49,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   } catch (err) {
     return {
       redirect: {
-        destination: "/error",
+        destination: "/products",
         statusCode: 307,
       },
     };
