@@ -10,30 +10,29 @@ interface PaginationType {
 
 const Pagination = ({ page, totalPage }: PaginationType) => {
   const router = useRouter();
-  const firstNum = page - (page % 5);
-  const lastNum = page - (page % 5) + 5 > totalPage ? totalPage : page - (page % 5) + 5;
-
+  const firstNum = Math.floor((page - 1) / 5) * 5 + 1;
+  const lastNum = Math.min(firstNum + 4, totalPage);
   return (
     <PaginationWrap>
       <div className="pagination-list-wrap">
         <Link
           key={"product-list-previous"}
-          className={firstNum + 1 === 1 ? "button disabled" : "button"}
+          className={firstNum === 1 ? "button disabled" : "button"}
           href={`${router.pathname}?page=${lastNum - 5}`}
         >
           &lt;
         </Link>
         {Array.from({ length: 5 }, (_, i) => {
-          if (firstNum + 1 + i > totalPage) {
-            return;
+          if (firstNum + i > totalPage) {
+            return null;
           }
           return (
             <Link
               key={"product-list-" + i}
-              className={firstNum + 1 + i === page ? "selected" : ""}
-              href={`${router.pathname}?page=${firstNum + 1 + i}`}
+              className={firstNum + i === page ? "selected" : ""}
+              href={`${router.pathname}?page=${firstNum + i}`}
             >
-              {firstNum + 1 + i}
+              {firstNum + i}
             </Link>
           );
         })}
