@@ -12,7 +12,6 @@ const Pagination = ({ page, totalPage }: PaginationType) => {
   const router = useRouter();
   const firstNum = Math.floor((page - 1) / 5) * 5 + 1;
   const lastNum = Math.min(firstNum + 4, totalPage);
-
   return (
     <PaginationWrap>
       <div className="pagination-list-wrap">
@@ -23,20 +22,19 @@ const Pagination = ({ page, totalPage }: PaginationType) => {
         >
           &lt;
         </Link>
-        {Array.from({ length: 5 }, (_, i) => {
-          if (firstNum + i > totalPage) {
-            return null;
-          }
-          return (
-            <Link
-              key={"product-list-" + i}
-              className={firstNum + i === page ? "selected" : ""}
-              href={`${router.pathname}?page=${firstNum + i}`}
-            >
-              {firstNum + i}
-            </Link>
-          );
-        })}
+        {Array.from(
+          { length: 5 },
+          (_, i) =>
+            firstNum + i <= totalPage && (
+              <Link
+                key={"product-list-" + i}
+                className={firstNum + i === page ? "selected" : ""}
+                href={`${router.pathname}?page=${firstNum + i}`}
+              >
+                {firstNum + i}
+              </Link>
+            ),
+        )}
         <Link
           key={"product-list-next"}
           className={lastNum === totalPage ? "button disabled" : "button"}
