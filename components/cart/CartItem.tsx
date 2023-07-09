@@ -5,18 +5,16 @@ import Image from "next/image";
 import { ProductItemVO } from "@type/products/products";
 import { useEffect, useState } from "react";
 
+// hooks
+import { useCart } from "@hooks/cart/useCart";
+
 interface CartItemType {
   product: ProductItemVO;
-  allCheck: boolean;
 }
 
-const CartItem = ({ product, allCheck }: CartItemType) => {
+const CartItem = ({ product }: CartItemType) => {
+  const { checkedButtons, checkedItemHandler } = useCart();
   const [count, setCount] = useState<number>(1);
-  const [check, setCheck] = useState<boolean>(false);
-
-  useEffect(() => {
-    setCheck(allCheck);
-  }, [allCheck]);
 
   return (
     <tbody className="cartTable-itemWrap">
@@ -26,8 +24,10 @@ const CartItem = ({ product, allCheck }: CartItemType) => {
             type="checkbox"
             title={product.item_name}
             value={product.item_no}
-            checked={check}
-            onChange={e => setCheck(e.target.checked)}
+            checked={checkedButtons.includes(product.item_no) ? true : false}
+            onChange={e => {
+              checkedItemHandler(product.item_no, e.target.checked);
+            }}
           />
         </td>
         <td className="product-item-image">
@@ -49,7 +49,7 @@ const CartItem = ({ product, allCheck }: CartItemType) => {
                   className="quantity-select"
                   onChange={e => setCount(Number(e.target.value))}
                 >
-                  {Array.from({ length: 99 }, (_, index) => index + 1).map((element, index) => {
+                  {Array.from({ length: 10 }, (_, index) => index + 1).map((element, index) => {
                     return (
                       <option key={product.item_no + element} value={element}>
                         {element}
