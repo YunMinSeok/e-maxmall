@@ -13,7 +13,7 @@ interface CartItemType {
 }
 
 const CartItem = ({ product }: CartItemType) => {
-  const { checkedButtons, checkedItemHandler } = useCart();
+  const { checkedItems, checkedItemHandler } = useCart();
   const [count, setCount] = useState<number>(1);
 
   return (
@@ -24,7 +24,7 @@ const CartItem = ({ product }: CartItemType) => {
             type="checkbox"
             title={product.item_name}
             value={product.item_no}
-            checked={checkedButtons.includes(product.item_no) ? true : false}
+            checked={checkedItems.includes(product.item_no)}
             onChange={e => {
               checkedItemHandler(product.item_no, e.target.checked);
             }}

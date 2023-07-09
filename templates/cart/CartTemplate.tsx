@@ -8,7 +8,7 @@ import { useCart } from "@hooks/cart/useCart";
 import { CartWrap, CartTable } from "@styles/cart/cart";
 
 const CartTemplate = () => {
-  const { cartList, allCheck, setAllCheck } = useCart();
+  const { cartList, allCheck, setAllCheck, allCheckedItemHandler } = useCart();
 
   return (
     <CartWrap>
@@ -26,7 +26,7 @@ const CartTemplate = () => {
                   type="checkbox"
                   className="all-item-select"
                   checked={allCheck}
-                  onChange={() => setAllCheck(!allCheck)}
+                  onChange={() => allCheckedItemHandler(!allCheck)}
                 />
                 <span>&nbsp;&nbsp;전체선택</span>
               </label>
