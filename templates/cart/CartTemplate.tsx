@@ -5,7 +5,7 @@ import CartItem from "@components/cart/CartItem";
 import { useCart } from "@hooks/cart/useCart";
 
 // css
-import { CartWrap, CartTable } from "@styles/cart/cart";
+import { CartWrap, CartTable, CartTotalPrice } from "@styles/cart/cart";
 
 const CartTemplate = () => {
   const { cartList, allCheck, checkedItems, allCheckedItemHandler, checkedItemHandler } = useCart();
@@ -54,6 +54,18 @@ const CartTemplate = () => {
           );
         })}
       </CartTable>
+      <CartTotalPrice>
+        <div className="cart-total-price__inner">
+          <div className="price-area">
+            총 상품가격
+            <em className="final-product-price">0원</em>
+            <span className="symbol">-</span>총 할인가격
+            <em className="final-product-price">0원</em>
+            <span className="symbol">=</span>총 주문 금액
+            <em className="final-order-price">0원</em>
+          </div>
+        </div>
+      </CartTotalPrice>
     </CartWrap>
   );
 };

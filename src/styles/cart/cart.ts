@@ -135,3 +135,33 @@ export const CartTable = styled.table`
     }
   }
 `;
+
+export const CartTotalPrice = styled.div`
+  clear: both;
+  border: 4px solid #c8c8c8;
+  text-align: center;
+  .cart-total-price__inner {
+    display: inline-block;
+    margin: 0 auto;
+    vertical-align: top;
+    em {
+      padding: 0 4px 0 5px;
+      font: 700 17px/17px tahoma;
+      color: #111;
+    }
+    .price-area {
+      padding: 20px 15px 18px;
+      font-size: 14px;
+      line-height: 17px;
+      color: #555;
+      text-align: center;
+    }
+    .symbol {
+      margin: 0 11px 0 10px;
+    }
+    .final-order-price {
+      color: #ea0000;
+      font-size: 20px;
+    }
+  }
+`;
