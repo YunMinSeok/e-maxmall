@@ -3,17 +3,18 @@ import Image from "next/image";
 
 // type
 import { ProductItemVO } from "@type/products/products";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // hooks
-import { useCart } from "@hooks/cart/useCart";
 
 interface CartItemType {
   product: ProductItemVO;
+  checkedItems: Array<number>;
+  checkedItemHandler: (itemNo: number, checked: boolean) => void;
 }
 
-const CartItem = ({ product }: CartItemType) => {
-  const { checkedItems, checkedItemHandler } = useCart();
+const CartItem = ({ product, checkedItems, checkedItemHandler }: CartItemType) => {
+  // const { checkedItems, checkedItemHandler } = useCart();
   const [count, setCount] = useState<number>(1);
 
   return (
