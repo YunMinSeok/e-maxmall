@@ -19,11 +19,16 @@ export const useCart = () => {
   };
 
   const allCheckedItemHandler = () => {
+    if (!allCheck) {
+      const itemNos = cartList.map(item => item.item_no);
+      setCheckedItems(itemNos);
+    } else {
+      setCheckedItems([]);
+    }
     setAllCheck(!allCheck);
   };
 
   useEffect(() => {
-    console.log(checkedItems);
     if (checkedItems.length === cartList.length) {
       setAllCheck(true);
     } else {
