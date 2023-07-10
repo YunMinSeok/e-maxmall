@@ -29,6 +29,10 @@ export const useCart = () => {
   };
 
   useEffect(() => {
+    if (cartList.length === 0) {
+      return;
+    }
+
     if (checkedItems.length === cartList.length) {
       setAllCheck(true);
     } else {

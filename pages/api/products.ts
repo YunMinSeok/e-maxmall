@@ -19,6 +19,7 @@ const productItems = [
     detail_image_url: Image1,
     price: 1000,
     score: 500,
+    availableCoupon: false,
   },
   {
     item_no: 2,
@@ -47,6 +48,7 @@ const productItems = [
     detail_image_url: Image5,
     price: 5000,
     score: 100,
+    availableCoupon: false,
   },
   {
     item_no: 6,
@@ -61,6 +63,7 @@ const productItems = [
     detail_image_url: Image7,
     price: 7000,
     score: 700,
+    availableCoupon: false,
   },
   {
     item_no: 8,
@@ -75,6 +78,7 @@ const productItems = [
     detail_image_url: Image9,
     price: 9000,
     score: 400,
+    availableCoupon: false,
   },
   {
     item_no: 10,
@@ -96,6 +100,7 @@ const productItems = [
     detail_image_url: Image2,
     price: 2000,
     score: 400,
+    availableCoupon: false,
   },
   {
     item_no: 13,
@@ -124,6 +129,7 @@ const productItems = [
     detail_image_url: Image6,
     price: 6000,
     score: 600,
+    availableCoupon: false,
   },
   {
     item_no: 17,
@@ -138,6 +144,7 @@ const productItems = [
     detail_image_url: Image8,
     price: 8000,
     score: 500,
+    availableCoupon: false,
   },
   {
     item_no: 19,
@@ -159,6 +166,7 @@ const productItems = [
     detail_image_url: Image1,
     price: 1000,
     score: 500,
+    availableCoupon: false,
   },
   {
     item_no: 22,
@@ -180,6 +188,7 @@ const productItems = [
     detail_image_url: Image4,
     price: 4000,
     score: 200,
+    availableCoupon: false,
   },
   {
     item_no: 25,
@@ -187,6 +196,7 @@ const productItems = [
     detail_image_url: Image5,
     price: 5000,
     score: 100,
+    availableCoupon: false,
   },
   {
     item_no: 26,
@@ -201,6 +211,7 @@ const productItems = [
     detail_image_url: Image7,
     price: 7000,
     score: 700,
+    availableCoupon: false,
   },
   {
     item_no: 28,
@@ -222,6 +233,7 @@ const productItems = [
     detail_image_url: Image10,
     price: 10000,
     score: "00",
+    availableCoupon: false,
   },
 ];
 

@@ -60,7 +60,7 @@ input[type="checkbox" i] {
   cursor: default;
   appearance: auto;
   box-sizing: border-box;
-  margin: 3px 3px 3px 4px;
+  margin: 1px 3px 3px 4px;
   padding: initial;
   border: initial;
 }
