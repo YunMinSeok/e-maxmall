@@ -11,7 +11,7 @@ import ProductItem from "@components/products/ProductItem";
 import { ProductsWrap } from "@styles/products/products";
 
 // type
-import { ProductVO, ProductItemVO } from "@type/products/products";
+import { ProductVO, ProductItemVO } from "@type/product/product";
 
 // api
 import { getProduct } from "@api/product";

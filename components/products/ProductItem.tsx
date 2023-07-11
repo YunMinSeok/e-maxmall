@@ -4,7 +4,7 @@ import Link from "next/link";
 // images
 import Cart from "@images/icon/shopping_cart.png";
 // type
-import { ProductItemVO } from "@type/products/products";
+import { ProductItemVO } from "@type/product/product";
 // css
 import { ProductItemWrap } from "@styles/products/products";
 import { useProducts } from "@hooks/products/useProducts";

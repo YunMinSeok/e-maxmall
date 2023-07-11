@@ -5,7 +5,7 @@ import { dehydrate } from "react-query";
 import ProductsTemplate from "@templates/products/ProductsTemplate";
 
 // type
-import { ProductVO } from "@type/products/products";
+import { ProductVO } from "@type/product/product";
 
 // query
 import { queryClient } from "@query/queryClient";

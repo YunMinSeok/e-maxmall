@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
 // type
-import { ProductItemVO } from "@type/products/products";
+import { ProductItemVO } from "@type/product/product";
 
 // 장바구니
 export const cart = atom({

@@ -1,5 +1,6 @@
 export const queryKeys = {
   product: "product",
+  coupon: "coupon",
 };
 
 export const commonOptions = {
