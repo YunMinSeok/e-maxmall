@@ -136,6 +136,15 @@ export const CartTable = styled.table`
   }
 `;
 
+export const CartCoupon = styled.div`
+  position: relative;
+  margin: 20px 0 40px;
+  padding: 20px 20px 20px 54px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  font-size: 14px;
+`;
+
 export const CartTotalPrice = styled.div`
   clear: both;
   border: 4px solid #c8c8c8;

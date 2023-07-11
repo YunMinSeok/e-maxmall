@@ -5,7 +5,7 @@ import CartItem from "@components/cart/CartItem";
 import { useCart } from "@hooks/cart/useCart";
 
 // css
-import { CartWrap, CartTable, CartTotalPrice } from "@styles/cart/cart";
+import { CartWrap, CartTable, CartCoupon, CartTotalPrice } from "@styles/cart/cart";
 import { ProductItemVO } from "@type/products/products";
 
 const CartTemplate = () => {
@@ -56,6 +56,12 @@ const CartTemplate = () => {
           );
         })}
       </CartTable>
+      <CartCoupon>
+        <div>
+          <h3>쿠폰 이름</h3>
+          <span>쿠폰 금액</span>
+        </div>
+      </CartCoupon>
       <CartTotalPrice>
         <div className="cart-total-price__inner">
           <div className="price-area">
