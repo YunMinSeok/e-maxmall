@@ -3,25 +3,28 @@ import { useRecoilValue } from "recoil";
 
 // recoil
 import { cart } from "@states/atom/atom";
+// type
+import { ProductItemVO } from "@type/products/products";
 
 // cart에 쓰이는 로직 및 값
 export const useCart = () => {
   const cartList = useRecoilValue(cart); // 장바구니 recoil 값
-  const [checkedItems, setCheckedItems] = useState<Array<number>>([]);
+  const [checkedItems, setCheckedItems] = useState<Array<ProductItemVO>>([]);
   const [allCheck, setAllCheck] = useState(false);
 
-  const checkedItemHandler = (itemNo: number, checked: boolean) => {
+  const checkedItemHandler = (product: ProductItemVO, checked: boolean) => {
     if (checked) {
-      setCheckedItems(prevCheckedItems => [...prevCheckedItems, itemNo]);
+      setCheckedItems(prevCheckedItems => [...prevCheckedItems, product]);
     } else {
-      setCheckedItems(prevCheckedItems => prevCheckedItems.filter(button => button !== itemNo));
+      setCheckedItems(prevCheckedItems =>
+        prevCheckedItems.filter(button => button.item_no !== product.item_no),
+      );
     }
   };
 
   const allCheckedItemHandler = () => {
     if (!allCheck) {
-      const itemNos = cartList.map(item => item.item_no);
-      setCheckedItems(itemNos);
+      setCheckedItems(cartList);
     } else {
       setCheckedItems([]);
     }

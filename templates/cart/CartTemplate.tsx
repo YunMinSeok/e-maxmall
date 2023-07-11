@@ -6,10 +6,12 @@ import { useCart } from "@hooks/cart/useCart";
 
 // css
 import { CartWrap, CartTable, CartTotalPrice } from "@styles/cart/cart";
+import { ProductItemVO } from "@type/products/products";
 
 const CartTemplate = () => {
   const { cartList, allCheck, checkedItems, allCheckedItemHandler, checkedItemHandler } = useCart();
 
+  console.log(checkedItems);
   return (
     <CartWrap>
       <div className="section-title">
@@ -58,7 +60,13 @@ const CartTemplate = () => {
         <div className="cart-total-price__inner">
           <div className="price-area">
             총 상품가격
-            <em className="final-product-price">0원</em>
+            <em className="final-product-price">
+              {/* 체크 기준 현재 가격 */}
+              {checkedItems.reduce((acc: number, val: ProductItemVO) => {
+                return acc + Number(val.price);
+              }, 0)}
+              원
+            </em>
             <span className="symbol">-</span>총 할인가격
             <em className="final-product-price">0원</em>
             <span className="symbol">=</span>총 주문 금액

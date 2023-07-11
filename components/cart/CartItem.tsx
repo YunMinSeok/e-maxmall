@@ -9,12 +9,11 @@ import { useState } from "react";
 
 interface CartItemType {
   product: ProductItemVO;
-  checkedItems: Array<number>;
-  checkedItemHandler: (itemNo: number, checked: boolean) => void;
+  checkedItems: Array<ProductItemVO>;
+  checkedItemHandler: (itemNo: ProductItemVO, checked: boolean) => void;
 }
 
 const CartItem = ({ product, checkedItems, checkedItemHandler }: CartItemType) => {
-  // const { checkedItems, checkedItemHandler } = useCart();
   const [count, setCount] = useState<number>(1);
 
   return (
@@ -25,9 +24,9 @@ const CartItem = ({ product, checkedItems, checkedItemHandler }: CartItemType) =
             type="checkbox"
             title={product.item_name}
             value={product.item_no}
-            checked={checkedItems.includes(product.item_no)}
+            checked={checkedItems.find(item => item.item_no === product.item_no) !== undefined}
             onChange={e => {
-              checkedItemHandler(product.item_no, e.target.checked);
+              checkedItemHandler(product, e.target.checked);
             }}
           />
         </td>
