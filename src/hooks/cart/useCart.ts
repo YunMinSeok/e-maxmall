@@ -89,10 +89,10 @@ export const useCart = () => {
 
     console.log(availableCouponItemAmount);
     if (selectCoupon.type === "percent") {
-      discount = (availableCouponItemAmount * selectCoupon.price) / 100;
+      discount = Math.floor((availableCouponItemAmount * selectCoupon.price) / 100);
     }
 
-    totalPrice = allPrice - discount;
+    totalPrice = Math.floor(allPrice - discount);
 
     return {
       allMount: String(allPrice),
