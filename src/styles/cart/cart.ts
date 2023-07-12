@@ -143,7 +143,14 @@ export const CartCoupon = styled.div`
   border: 1px solid #ddd;
   border-radius: 2px;
   font-size: 14px;
+  .coupon-info {
+    h3 {
+      margin-bottom: 20px;
+    }
+  }
   .coupon-select {
+    display: flex;
+    justify-content: center;
     margin-left: auto;
   }
 `;

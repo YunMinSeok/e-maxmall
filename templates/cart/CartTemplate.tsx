@@ -16,7 +16,16 @@ interface CartTemplateType {
 }
 
 const CartTemplate = ({ coupons }: CartTemplateType) => {
-  const { cartList, allCheck, checkedItems, allCheckedItemHandler, checkedItemHandler } = useCart();
+  const {
+    cartList,
+    allCheck,
+    checkedItems,
+    selectCoupon,
+    setCouponData,
+    allCheckedItemHandler,
+    checkedItemHandler,
+    getDiscountPrice,
+  } = useCart();
   return (
     <CartWrap>
       <div className="section-title">
@@ -63,14 +72,17 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
       </CartTable>
       <CartCoupon>
         <div className="coupon-info">
-          <h3>쿠폰 이름 : {}</h3>
-          <span>쿠폰 금액 : {}</span>
+          <h3>
+            쿠폰 이름 : {selectCoupon ? String(selectCoupon?.price) + selectCoupon?.name : ""}
+          </h3>
+          <span>쿠폰 금액 : {selectCoupon ? String(selectCoupon?.price) : ""}</span>
         </div>
         <div className="coupon-select">
-          <select className="coupon-select" onChange={e => console.log(e.target.value)}>
+          <select className="coupon-select" onChange={e => setCouponData(Number(e.target.value))}>
+            <option value="">선택 안 함</option>
             {coupons.map((element, index) => {
               return (
-                <option key={element.name + index} value={element.name}>
+                <option key={element.name + index} value={element.id}>
                   {element.price + element.name}
                 </option>
               );
@@ -84,15 +96,12 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
             총 상품가격
             <em className="final-product-price">
               {/* 체크 기준 현재 가격 */}
-              {checkedItems.reduce((acc: number, val: ProductItemVO) => {
-                return acc + Number(val.price);
-              }, 0)}
-              원
+              {getDiscountPrice().allMount}원
             </em>
             <span className="symbol">-</span>총 할인가격
-            <em className="final-product-price">0원</em>
+            <em className="final-product-price">{getDiscountPrice().discount}원</em>
             <span className="symbol">=</span>총 주문 금액
-            <em className="final-order-price">0원</em>
+            <em className="final-order-price">{getDiscountPrice().totalAmount}원</em>
           </div>
         </div>
       </CartTotalPrice>

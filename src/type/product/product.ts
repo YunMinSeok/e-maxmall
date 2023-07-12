@@ -12,4 +12,5 @@ export interface ProductItemVO {
   detail_image_url: string;
   price: string;
   score: string;
+  availableCoupon?: boolean;
 }
