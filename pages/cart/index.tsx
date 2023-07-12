@@ -14,17 +14,18 @@ import { queryKeys, commonOptions } from "@query/constant";
 // api
 import { getCoupon } from "@api/coupon";
 
-const Cart: NextPage<Array<CouponVO>> = ({ coupons }) => {
-  console.log(coupons);
-  return <CartTemplate />;
+interface CartType {
+  coupons: CouponVO[];
+}
+
+const Cart: NextPage<CartType> = ({ coupons }) => {
+  return <CartTemplate coupons={coupons} />;
 };
 
 export default Cart;
 
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
-    const page = context.query.page ?? 1;
-
     const coupons = await queryClient.fetchQuery([queryKeys.coupon], () => getCoupon(), {
       ...commonOptions,
     });

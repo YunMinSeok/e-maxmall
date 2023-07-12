@@ -21,7 +21,6 @@ export const CartWrap = styled.div`
 `;
 
 export const CartTable = styled.table`
-  width: 898px;
   border-top: 0;
   border-collapse: collapse;
   border-spacing: 0;

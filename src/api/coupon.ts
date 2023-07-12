@@ -7,5 +7,6 @@ export const getCoupon = async () => {
     },
   });
 
-  return res.data;
+  console.log("1", res.data);
+  return res.data.coupons;
 };

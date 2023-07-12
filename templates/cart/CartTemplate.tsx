@@ -4,14 +4,20 @@ import CartItem from "@components/cart/CartItem";
 // hooks
 import { useCart } from "@hooks/cart/useCart";
 
+// type
+import { CouponVO } from "@type/coupon/coupon";
+
 // css
 import { CartWrap, CartTable, CartCoupon, CartTotalPrice } from "@styles/cart/cart";
-import { ProductItemVO } from "@type/products/products";
+import { ProductItemVO } from "@type/product/product";
 
-const CartTemplate = () => {
+interface CartTemplateType {
+  coupons: CouponVO[];
+}
+
+const CartTemplate = ({ coupons }: CartTemplateType) => {
+  console.log(coupons);
   const { cartList, allCheck, checkedItems, allCheckedItemHandler, checkedItemHandler } = useCart();
-
-  console.log(checkedItems);
   return (
     <CartWrap>
       <div className="section-title">

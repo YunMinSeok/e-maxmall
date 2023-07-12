@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 // recoil
 import { cart } from "@states/atom/atom";
 // type
-import { ProductItemVO } from "@type/products/products";
+import { ProductItemVO } from "@type/product/product";
 
 // cart에 쓰이는 로직 및 값
 export const useCart = () => {

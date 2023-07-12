@@ -2,7 +2,7 @@ import { MouseEvent } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 // type
-import { ProductItemVO } from "@type/products/products";
+import { ProductItemVO } from "@type/product/product";
 // recoil
 import { cart } from "src/states/atom/atom";
 

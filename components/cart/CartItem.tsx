@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 // type
-import { ProductItemVO } from "@type/products/products";
+import { ProductItemVO } from "@type/product/product";
 import { useState } from "react";
 
 // hooks
