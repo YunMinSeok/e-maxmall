@@ -137,11 +137,15 @@ export const CartTable = styled.table`
 
 export const CartCoupon = styled.div`
   position: relative;
+  display: flex;
   margin: 20px 0 40px;
   padding: 20px 20px 20px 54px;
   border: 1px solid #ddd;
   border-radius: 2px;
   font-size: 14px;
+  .coupon-select {
+    margin-left: auto;
+  }
 `;
 
 export const CartTotalPrice = styled.div`

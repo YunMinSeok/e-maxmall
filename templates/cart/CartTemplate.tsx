@@ -16,7 +16,6 @@ interface CartTemplateType {
 }
 
 const CartTemplate = ({ coupons }: CartTemplateType) => {
-  console.log(coupons);
   const { cartList, allCheck, checkedItems, allCheckedItemHandler, checkedItemHandler } = useCart();
   return (
     <CartWrap>
@@ -63,9 +62,20 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
         })}
       </CartTable>
       <CartCoupon>
-        <div>
-          <h3>쿠폰 이름</h3>
-          <span>쿠폰 금액</span>
+        <div className="coupon-info">
+          <h3>쿠폰 이름 : {}</h3>
+          <span>쿠폰 금액 : {}</span>
+        </div>
+        <div className="coupon-select">
+          <select className="coupon-select" onChange={e => console.log(e.target.value)}>
+            {coupons.map((element, index) => {
+              return (
+                <option key={element.name + index} value={element.name}>
+                  {element.price + element.name}
+                </option>
+              );
+            })}
+          </select>
         </div>
       </CartCoupon>
       <CartTotalPrice>
