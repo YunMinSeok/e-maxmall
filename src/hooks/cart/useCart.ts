@@ -17,9 +17,16 @@ export const useCart = () => {
   const [selectCoupon, setSelectCoupon] = useState<CouponVO | null>(null);
 
   // 체크 버트 누르면 일어나는 함수
-  const checkedItemHandler = (product: ProductItemInterface, checked: boolean) => {
+  const checkedItemHandler = (
+    product: ProductItemInterface,
+    checked: boolean,
+    count: number | null,
+  ) => {
     if (checked) {
-      setCheckedItems(prevCheckedItems => [...prevCheckedItems, product]);
+      setCheckedItems(prevCheckedItems => [
+        ...prevCheckedItems,
+        count ? Object.assign({}, product, { count }) : product,
+      ]);
     } else {
       setCheckedItems(prevCheckedItems =>
         prevCheckedItems.filter(button => button.item_no !== product.item_no),

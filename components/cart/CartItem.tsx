@@ -14,10 +14,6 @@ interface CartItemType {
 
 const CartItem = ({ product, checkedItems, setCheckedItems, checkedItemHandler }: CartItemType) => {
   const countRef = useRef<HTMLSelectElement>(null);
-
-  console.log(product.count);
-  console.log(countRef.current?.value);
-
   return (
     <tbody className="cartTable-itemWrap">
       <tr className="cart-item">
@@ -29,7 +25,7 @@ const CartItem = ({ product, checkedItems, setCheckedItems, checkedItemHandler }
             // 체크된 아이템 담는 배열에 item_no가 있냐
             checked={checkedItems.find(item => item.item_no === product.item_no) !== undefined}
             onChange={e => {
-              checkedItemHandler(product, e.target.checked);
+              checkedItemHandler(product, e.target.checked, countRef.current?.value);
             }}
           />
         </td>
