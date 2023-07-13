@@ -19,6 +19,7 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
     cartList,
     allCheck,
     checkedItems,
+    setCheckedItems,
     selectCoupon,
     setCouponData,
     allCheckedItemHandler,
@@ -64,6 +65,7 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
               key={product.item_no}
               product={product}
               checkedItems={checkedItems}
+              setCheckedItems={setCheckedItems}
               checkedItemHandler={checkedItemHandler}
             />
           );

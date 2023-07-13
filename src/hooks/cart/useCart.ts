@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 // recoil
 import { cart } from "@states/atom/atom";
 // type
-import { ProductItemVO } from "@type/product/product";
+import { ProductItemInterface } from "@type/product/product";
 import { CouponVO } from "@type/coupon/coupon";
 // api
 import { getCoupon } from "@api/coupon";
@@ -12,12 +12,12 @@ import { getCoupon } from "@api/coupon";
 // cart에 쓰이는 로직 및 값
 export const useCart = () => {
   const cartList = useRecoilValue(cart); // 장바구니 recoil 값
-  const [checkedItems, setCheckedItems] = useState<Array<ProductItemVO>>([]);
+  const [checkedItems, setCheckedItems] = useState<Array<ProductItemInterface>>([]);
   const [allCheck, setAllCheck] = useState(false);
   const [selectCoupon, setSelectCoupon] = useState<CouponVO | null>(null);
 
   // 체크 버트 누르면 일어나는 함수
-  const checkedItemHandler = (product: ProductItemVO, checked: boolean) => {
+  const checkedItemHandler = (product: ProductItemInterface, checked: boolean) => {
     if (checked) {
       setCheckedItems(prevCheckedItems => [...prevCheckedItems, product]);
     } else {
@@ -60,24 +60,27 @@ export const useCart = () => {
 
   // 할인가격, 총 주문금액 구하는 함수
   const getDiscountPrice = useCallback(() => {
-    let discount = 0;
-    let allPrice = 0;
-    let totalPrice = 0;
+    let discount = 0; // 할인금액
+    let allPrice = 0; // 체크 상품 총액
+    let totalPrice = 0; // 구매 총액
 
     // 클릭한 아이템 총액 구하기
-    allPrice = checkedItems.reduce((acc: number, val: ProductItemVO) => {
-      return acc + Number(val.price);
+    allPrice = checkedItems.reduce((acc: number, val: ProductItemInterface) => {
+      return acc + Number(val.price) * (val.count || 1);
     }, 0);
 
     // 쿠폰을 선택 했을때
     if (selectCoupon) {
       // 쿠폰 가능 아이템 총액 구하기
-      const availableCouponItemAmount = checkedItems.reduce((acc: number, val: ProductItemVO) => {
-        if (val.availableCoupon !== false) {
-          return acc + Number(val.price);
-        }
-        return acc;
-      }, 0);
+      const availableCouponItemAmount = checkedItems.reduce(
+        (acc: number, val: ProductItemInterface) => {
+          if (val.availableCoupon !== false) {
+            return acc + Number(val.price) * (val.count || 1);
+          }
+          return acc;
+        },
+        0,
+      );
 
       // 쿠폰이 원일때
       if (selectCoupon.type === "won") {
@@ -103,6 +106,7 @@ export const useCart = () => {
     cartList,
     allCheck,
     checkedItems,
+    setCheckedItems,
     selectCoupon,
     setCouponData,
     setAllCheck,

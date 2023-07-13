@@ -14,3 +14,7 @@ export interface ProductItemVO {
   score: string;
   availableCoupon?: boolean;
 }
+
+export interface ProductItemInterface extends ProductItemVO {
+  count: number;
+}

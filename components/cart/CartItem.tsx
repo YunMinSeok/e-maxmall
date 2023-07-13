@@ -2,19 +2,21 @@ import Link from "next/link";
 import Image from "next/image";
 
 // type
-import { ProductItemVO } from "@type/product/product";
-import { useState } from "react";
-
-// hooks
+import { ProductItemInterface } from "@type/product/product";
+import { useRef } from "react";
 
 interface CartItemType {
-  product: ProductItemVO;
-  checkedItems: Array<ProductItemVO>;
-  checkedItemHandler: (itemNo: ProductItemVO, checked: boolean) => void;
+  product: ProductItemInterface;
+  checkedItems: Array<ProductItemInterface>;
+  setCheckedItems: React.Dispatch<React.SetStateAction<Array<ProductItemInterface>>>;
+  checkedItemHandler: (itemNo: ProductItemInterface, checked: boolean) => void;
 }
 
-const CartItem = ({ product, checkedItems, checkedItemHandler }: CartItemType) => {
-  const [count, setCount] = useState<number>(1);
+const CartItem = ({ product, checkedItems, setCheckedItems, checkedItemHandler }: CartItemType) => {
+  const countRef = useRef<HTMLSelectElement>(null);
+
+  console.log(product.count);
+  console.log(countRef.current?.value);
 
   return (
     <tbody className="cartTable-itemWrap">
@@ -24,6 +26,7 @@ const CartItem = ({ product, checkedItems, checkedItemHandler }: CartItemType) =
             type="checkbox"
             title={product.item_name}
             value={product.item_no}
+            // 체크된 아이템 담는 배열에 item_no가 있냐
             checked={checkedItems.find(item => item.item_no === product.item_no) !== undefined}
             onChange={e => {
               checkedItemHandler(product, e.target.checked);
@@ -46,10 +49,19 @@ const CartItem = ({ product, checkedItems, checkedItemHandler }: CartItemType) =
               <span className="unit-cost">{product.price}</span>
               <span className="select-select">
                 <select
+                  ref={countRef}
                   className="quantity-select"
-                  onChange={e => setCount(Number(e.target.value))}
+                  onChange={e => {
+                    setCheckedItems(prevState =>
+                      prevState.map((checkItem: ProductItemInterface) => {
+                        return checkItem.item_no === product.item_no
+                          ? { ...checkItem, count: Number(e.target.value) }
+                          : { ...checkItem };
+                      }),
+                    );
+                  }}
                 >
-                  {Array.from({ length: 10 }, (_, index) => index + 1).map((element, index) => {
+                  {Array.from({ length: 10 }, (_, index) => index + 1).map(element => {
                     return (
                       <option key={product.item_no + element} value={element}>
                         {element}
@@ -62,7 +74,9 @@ const CartItem = ({ product, checkedItems, checkedItemHandler }: CartItemType) =
           </div>
         </td>
         <td className="unit-total-price">
-          <div className="unit-total-sale-price">{Number(product.price) * count}</div>
+          <div className="unit-total-sale-price">
+            {Number(product.price) * (product.count || Number(countRef.current?.value) || 1)}
+          </div>
         </td>
       </tr>
     </tbody>
