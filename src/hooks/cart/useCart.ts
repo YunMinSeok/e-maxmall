@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRecoilValue } from "recoil";
 
 // recoil
@@ -51,47 +51,45 @@ export const useCart = () => {
   }, [checkedItems]);
 
   // 쿠폰 선택시
-  const setCouponData = async (id: number) => {
+  const setCouponData = useCallback(async (id: number) => {
     const couponData = await getCoupon();
     const filterCouponData = couponData.filter((coupon: CouponVO) => coupon.id === id);
     setSelectCoupon(filterCouponData[0]);
     getDiscountPrice();
-  };
+  }, []);
 
   // 할인가격, 총 주문금액 구하는 함수
-  const getDiscountPrice = () => {
+  const getDiscountPrice = useCallback(() => {
     let discount = 0;
     let allPrice = 0;
     let totalPrice = 0;
 
-    if (!selectCoupon) {
-      return {
-        allMount: "0",
-        discount: "0",
-        totalAmount: "0",
-      };
-    }
-
-    const availableCouponItemAmount = checkedItems.reduce((acc: number, val: ProductItemVO) => {
-      if (val.availableCoupon !== false) {
-        return acc + Number(val.price);
-      }
-      return acc;
-    }, 0);
-
+    // 클릭한 아이템 총액 구하기
     allPrice = checkedItems.reduce((acc: number, val: ProductItemVO) => {
       return acc + Number(val.price);
     }, 0);
 
-    if (selectCoupon.type === "won") {
-      discount = selectCoupon.price;
+    // 쿠폰을 선택 했을때
+    if (selectCoupon) {
+      // 쿠폰 가능 아이템 총액 구하기
+      const availableCouponItemAmount = checkedItems.reduce((acc: number, val: ProductItemVO) => {
+        if (val.availableCoupon !== false) {
+          return acc + Number(val.price);
+        }
+        return acc;
+      }, 0);
+
+      // 쿠폰이 원일때
+      if (selectCoupon.type === "won") {
+        discount = selectCoupon.price;
+      }
+      // 쿠폰이 퍼센트일떄
+      if (selectCoupon.type === "percent") {
+        discount = Math.floor((availableCouponItemAmount * selectCoupon.price) / 100);
+      }
     }
 
-    console.log(availableCouponItemAmount);
-    if (selectCoupon.type === "percent") {
-      discount = Math.floor((availableCouponItemAmount * selectCoupon.price) / 100);
-    }
-
+    // 총액 = 아이템 총액 - 할인 금액
     totalPrice = Math.floor(allPrice - discount);
 
     return {
@@ -99,7 +97,7 @@ export const useCart = () => {
       discount: String(discount),
       totalAmount: String(totalPrice),
     };
-  };
+  }, [selectCoupon, checkedItems]);
 
   return {
     cartList,
