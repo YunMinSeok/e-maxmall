@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     return {
       props: {
         products: products,
-        dehydratedState: dehydrate(queryClient),
+        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
       },
     };
   } catch (err) {

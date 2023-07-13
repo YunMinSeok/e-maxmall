@@ -24,7 +24,7 @@ const Cart: NextPage<CartType> = ({ coupons }) => {
 
 export default Cart;
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const coupons = await queryClient.fetchQuery([queryKeys.coupon], () => getCoupon(), {
       ...commonOptions,
