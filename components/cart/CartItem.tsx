@@ -9,7 +9,11 @@ interface CartItemType {
   product: ProductItemInterface;
   checkedItems: Array<ProductItemInterface>;
   setCheckedItems: React.Dispatch<React.SetStateAction<Array<ProductItemInterface>>>;
-  checkedItemHandler: (itemNo: ProductItemInterface, checked: boolean) => void;
+  checkedItemHandler: (
+    itemNo: ProductItemInterface,
+    checked: boolean,
+    count: number | null,
+  ) => void;
 }
 
 const CartItem = ({ product, checkedItems, setCheckedItems, checkedItemHandler }: CartItemType) => {
@@ -25,7 +29,7 @@ const CartItem = ({ product, checkedItems, setCheckedItems, checkedItemHandler }
             // 체크된 아이템 담는 배열에 item_no가 있냐
             checked={checkedItems.find(item => item.item_no === product.item_no) !== undefined}
             onChange={e => {
-              checkedItemHandler(product, e.target.checked, countRef.current?.value);
+              checkedItemHandler(product, e.target.checked, Number(countRef.current?.value));
             }}
           />
         </td>
