@@ -107,8 +107,14 @@ const ProductDetailTemplate = ({ product }: ProductDetailTemplateType) => {
                   </div>
                 </dd>
               </dl>
-              {/* TODO: 장바구니 담기 부분 해야함 */}
             </ProductDetailInfoTable>
+          </div>
+          <div className="product-info-totalPrice">
+            <div>
+              <span className="title">총 상품금액:</span>
+              <span className="total-price">{product.price}</span>
+              <span className="won">원</span>
+            </div>
           </div>
         </ProductDetailInfoWrap>
       </ProductDetailMainWrap>

@@ -78,6 +78,35 @@ export const ProductDetailInfoWrap = styled.section`
       vertical-align: top;
     }
   }
+  .product-info-totalPrice {
+    padding-top: 30px;
+    div {
+      display: flex;
+      -webkit-box-pack: end;
+      justify-content: flex-end;
+      align-items: flex-end;
+      .title {
+        padding-right: 12px;
+        font-size: 13px;
+        font-weight: 500;
+        color: rgb(51, 51, 51);
+        line-height: 20px;
+      }
+      .total-price {
+        font-weight: bold;
+        font-size: 32px;
+        color: rgb(51, 51, 51);
+        line-height: 36px;
+      }
+      .won {
+        padding-left: 5px;
+        font-size: 20px;
+        font-weight: 600;
+        color: rgb(51, 51, 51);
+        line-height: 30px;
+      }
+    }
+  }
 `;
 
 export const ProductDetailInfoTable = styled.div`
