@@ -54,6 +54,7 @@ export const ProductItemWrap = styled.div`
     .product-image {
       object-fit: cover;
       transition: all 0.5s ease-in-out 0s;
+      cursor: pointer;
     }
     .product-cart-container {
       position: absolute;

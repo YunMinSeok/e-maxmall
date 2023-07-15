@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
-const Product: NextPage = () => {
+const ProductDetail: NextPage = () => {
   return <>상품 상세페이지</>;
 };
 
-export default Product;
+export default ProductDetail;
