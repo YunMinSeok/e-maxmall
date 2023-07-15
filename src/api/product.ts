@@ -16,4 +16,14 @@ export const getProduct = async (page: string) => {
 };
 
 // 상품 상세 조회하기
-export const getProductDetail = async (productNo: number) => {};
+export const getProductDetail = async (productNo: number) => {
+  const res = await axios.get(`http://localhost:3000/api/products/${productNo}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  console.log(res);
+
+  return res.data;
+};
