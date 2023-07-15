@@ -59,10 +59,10 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
             </th>
           </tr>
         </thead>
-        {cartList.map(product => {
+        {cartList.map((product, index) => {
           return (
             <CartItem
-              key={product.item_no}
+              key={"cart -" + product.item_no + index}
               product={product}
               checkedItems={checkedItems}
               setCheckedItems={setCheckedItems}
@@ -73,17 +73,15 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
       </CartTable>
       <CartCoupon>
         <div className="coupon-info">
-          <h3>
-            쿠폰 이름 : {selectCoupon ? String(selectCoupon?.price) + selectCoupon?.name : ""}
-          </h3>
-          <span>쿠폰 금액 : {selectCoupon ? String(selectCoupon?.price) : ""}</span>
+          <h3>쿠폰 이름 : {selectCoupon ? String(selectCoupon.price) + selectCoupon.name : ""}</h3>
+          <span>쿠폰 금액 : {selectCoupon ? String(selectCoupon.price) : ""}</span>
         </div>
         <div className="coupon-select">
           <select className="coupon-select" onChange={e => setCouponData(Number(e.target.value))}>
             <option value="">선택 안 함</option>
             {coupons.map((element, index) => {
               return (
-                <option key={element.name + index} value={element.id}>
+                <option key={element.price + element.name + index} value={element.id}>
                   {element.price + element.name}
                 </option>
               );
