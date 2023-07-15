@@ -21,16 +21,17 @@ export const ProductsWrap = styled.div`
       padding-right: 18px;
     }
   }
-  .section-content {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 209px);
-    gap: 31px 0;
-    width: 1050px;
-    margin: 0px auto;
-    padding-bottom: 60px;
-    overflow: hidden;
-  }
+`;
+
+export const ProductSection = styled.section`
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 209px);
+  gap: 31px 0;
+  width: 1050px;
+  margin: 0px auto;
+  padding-bottom: 60px;
+  overflow: hidden;
 `;
 
 export const ProductItemWrap = styled.div`

@@ -1,8 +1,5 @@
 import axios from "axios";
 
-// type
-import { ProductItemVO } from "@type/product/product";
-
 // 상품 조회하기
 export const getProduct = async (page: string) => {
   const res = await axios.get("http://localhost:3000/api/products", {
@@ -16,14 +13,12 @@ export const getProduct = async (page: string) => {
 };
 
 // 상품 상세 조회하기
-export const getProductDetail = async (productNo: number) => {
+export const getProductDetail = async (productNo: string) => {
   const res = await axios.get(`http://localhost:3000/api/products/${productNo}`, {
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-  console.log(res);
-
-  return res.data;
+  return res.data.product;
 };

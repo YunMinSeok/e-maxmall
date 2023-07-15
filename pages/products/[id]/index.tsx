@@ -2,6 +2,7 @@ import { NextPage, GetServerSideProps } from "next";
 import { dehydrate } from "react-query";
 
 // templates
+import ProductDetailTemplate from "@templates/products/ProductsDetailTemplate";
 
 // type
 import { ProductItemVO } from "@type/product/product";
@@ -18,8 +19,7 @@ interface ProductDetailType {
 }
 
 const ProductDetail: NextPage<ProductDetailType> = ({ product }) => {
-  console.log(product);
-  return <>상품 상세페이지</>;
+  return <ProductDetailTemplate product={product} />;
 };
 
 export default ProductDetail;
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
     return {
       props: {
-        product,
+        product: product,
         dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
       },
     };

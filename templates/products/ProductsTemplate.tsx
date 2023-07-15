@@ -8,7 +8,7 @@ import Pagination from "@components/pagination/Pagination";
 import ProductItem from "@components/products/ProductItem";
 
 // css
-import { ProductsWrap } from "@styles/products/products";
+import { ProductsWrap, ProductSection } from "@styles/products/products";
 
 // type
 import { ProductVO, ProductItemVO } from "@type/product/product";
@@ -41,12 +41,12 @@ const ProductsTemplate = ({ products }: ProductVO) => {
           <Image src={Cart} alt="장바구니 아이콘" width={35} height={35} />
         </Link>
       </div>
-      <div className="section-content">
-        {data?.productItems.map((product: ProductItemVO) => {
+      <ProductSection>
+        {data.productItems.map((product: ProductItemVO) => {
           return <ProductItem key={product.item_no} product={product} />;
         })}
-      </div>
-      <Pagination page={data?.page} totalPage={data?.totalPage} />
+      </ProductSection>
+      <Pagination page={data.page} totalPage={data.totalPage} />
     </ProductsWrap>
   );
 };
