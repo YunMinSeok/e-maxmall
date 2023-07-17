@@ -2,12 +2,12 @@ import { MouseEvent } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 // type
-import { ProductItemInterface } from "@type/product/product";
+import { ProductItemVO, ProductItemInterface } from "@type/product/product";
 // recoil
 import { cart } from "src/states/atom/atom";
 
 interface UseproductsType {
-  handleClickCart: (e: MouseEvent, item: ProductItemInterface) => void;
+  handleClickCart: (e: MouseEvent, item: ProductItemVO, count: number) => void;
   isHaveCart: (item: ProductItemInterface) => boolean;
 }
 
@@ -17,11 +17,18 @@ export const useProducts = (): UseproductsType => {
 
   const setCart = useSetRecoilState<Array<ProductItemInterface>>(cart); // recoil
 
+  // 카트에 상품이 담겨있는지
+  const isHaveCart = (item: ProductItemInterface) => {
+    return cartValue[0].indexOf(item) === -1;
+  };
+
   // 장바구니 버튼 클릭
-  const handleClickCart = async (e: MouseEvent, item: ProductItemInterface) => {
+  const handleClickCart = async (e: MouseEvent, item: ProductItemVO, count: number) => {
     e.preventDefault();
+
+    const convertProduct: ProductItemInterface = { ...item, count: count };
     // 장바구니 있으면 삭제
-    if (!isHaveCart(item)) {
+    if (!isHaveCart(convertProduct)) {
       setCart(prevState => prevState.filter(prevItem => prevItem.item_no !== item.item_no));
       return;
     }
@@ -31,12 +38,10 @@ export const useProducts = (): UseproductsType => {
       return;
     }
 
-    setCart(prevState => [...prevState, item]);
+    setCart(prevState => [...prevState, convertProduct]);
+
+    alert("장바구니에 " + item.item_name + "을 담았습니다.");
   };
 
-  // 카트에 상품이 담겨있는지
-  const isHaveCart = (item: ProductItemInterface) => {
-    return cartValue[0].indexOf(item) === -1;
-  };
   return { handleClickCart, isHaveCart };
 };

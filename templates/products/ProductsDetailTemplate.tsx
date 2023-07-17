@@ -14,15 +14,18 @@ import {
 
 //image
 import Cart from "@images/icon/shopping_cart.png";
-import { useState } from "react";
+
+// hooks
 import { useProductDetail } from "@hooks/products/useProductDetail";
+import { useProducts } from "@hooks/products/useProducts";
 
 interface ProductDetailTemplateType {
   product: ProductItemVO;
 }
 
 const ProductDetailTemplate = ({ product }: ProductDetailTemplateType) => {
-  const { count, setCount } = useProductDetail();
+  const { count, handleSetCount } = useProductDetail();
+  const { handleClickCart } = useProducts();
   return (
     <ProductDetailWrap>
       <div className="section-title">
@@ -97,18 +100,9 @@ const ProductDetailTemplate = ({ product }: ProductDetailTemplateType) => {
                     </div>
                     <div className="item-price">
                       <div className="count-wrap">
-                        <button
-                          onClick={() => {
-                            if (count === 1) {
-                              return;
-                            }
-                            setCount(count - 1);
-                          }}
-                        >
-                          -
-                        </button>
+                        <button onClick={() => handleSetCount("minus")}>-</button>
                         <div className="count">{count}</div>
-                        <button onClick={() => setCount(count + 1)}>+</button>
+                        <button onClick={() => handleSetCount("plus")}>+</button>
                       </div>
                       <div>
                         <span className="price">{product.price}원</span>
@@ -130,7 +124,12 @@ const ProductDetailTemplate = ({ product }: ProductDetailTemplateType) => {
           {/* 장바구니 */}
           <div className="product-cart-wrap">
             <div className="cart-button-wrap">
-              <button className="cart-button">
+              <button
+                className="cart-button"
+                onClick={e => {
+                  handleClickCart(e, product, count);
+                }}
+              >
                 <span>장바구니 담기</span>
               </button>
             </div>
