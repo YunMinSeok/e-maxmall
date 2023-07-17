@@ -15,13 +15,14 @@ import {
 //image
 import Cart from "@images/icon/shopping_cart.png";
 import { useState } from "react";
+import { useProductDetail } from "@hooks/products/useProductDetail";
 
 interface ProductDetailTemplateType {
   product: ProductItemVO;
 }
 
 const ProductDetailTemplate = ({ product }: ProductDetailTemplateType) => {
-  const [count, setCount] = useState<number>(1);
+  const { count, setCount } = useProductDetail();
   return (
     <ProductDetailWrap>
       <div className="section-title">
@@ -96,9 +97,18 @@ const ProductDetailTemplate = ({ product }: ProductDetailTemplateType) => {
                     </div>
                     <div className="item-price">
                       <div className="count-wrap">
-                        <button>-</button>
+                        <button
+                          onClick={() => {
+                            if (count === 1) {
+                              return;
+                            }
+                            setCount(count - 1);
+                          }}
+                        >
+                          -
+                        </button>
                         <div className="count">{count}</div>
-                        <button>+</button>
+                        <button onClick={() => setCount(count + 1)}>+</button>
                       </div>
                       <div>
                         <span className="price">{product.price}원</span>
@@ -109,13 +119,15 @@ const ProductDetailTemplate = ({ product }: ProductDetailTemplateType) => {
               </dl>
             </ProductDetailInfoTable>
           </div>
+          {/* 상품 금액 */}
           <div className="product-info-totalPrice">
             <div>
               <span className="title">총 상품금액:</span>
-              <span className="total-price">{product.price}</span>
+              <span className="total-price">{Number(product.price) * count}</span>
               <span className="won">원</span>
             </div>
           </div>
+          {/* 장바구니 */}
           <div className="product-cart-wrap">
             <div className="cart-button-wrap">
               <button className="cart-button">

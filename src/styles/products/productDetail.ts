@@ -230,6 +230,7 @@ export const ProductDetailInfoTable = styled.div`
               line-height: 28px;
               color: #333;
               vertical-align: top;
+              cursor: pointer;
             }
           }
           .price {
