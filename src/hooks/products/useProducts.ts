@@ -2,23 +2,23 @@ import { MouseEvent } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 // type
-import { ProductItemVO } from "@type/product/product";
+import { ProductItemInterface } from "@type/product/product";
 // recoil
 import { cart } from "src/states/atom/atom";
 
 interface UseproductsType {
-  handleClickCart: (e: MouseEvent, item: ProductItemVO) => void;
-  isHaveCart: (item: ProductItemVO) => boolean;
+  handleClickCart: (e: MouseEvent, item: ProductItemInterface) => void;
+  isHaveCart: (item: ProductItemInterface) => boolean;
 }
 
 // product에서 사용되는 함수들
 export const useProducts = (): UseproductsType => {
   const cartValue = useRecoilState(cart);
 
-  const setCart = useSetRecoilState<Array<ProductItemVO>>(cart); // recoil
+  const setCart = useSetRecoilState<Array<ProductItemInterface>>(cart); // recoil
 
   // 장바구니 버튼 클릭
-  const handleClickCart = async (e: MouseEvent, item: ProductItemVO) => {
+  const handleClickCart = async (e: MouseEvent, item: ProductItemInterface) => {
     e.preventDefault();
     // 장바구니 있으면 삭제
     if (!isHaveCart(item)) {
@@ -35,7 +35,7 @@ export const useProducts = (): UseproductsType => {
   };
 
   // 카트에 상품이 담겨있는지
-  const isHaveCart = (item: ProductItemVO) => {
+  const isHaveCart = (item: ProductItemInterface) => {
     return cartValue[0].indexOf(item) === -1;
   };
   return { handleClickCart, isHaveCart };
