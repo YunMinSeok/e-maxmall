@@ -107,6 +107,30 @@ export const ProductDetailInfoWrap = styled.section`
       }
     }
   }
+  .product-cart-wrap {
+    display: flex;
+    margin-top: 20px;
+    .cart-button-wrap {
+      flex-grow: 1;
+      .cart-button {
+        display: block;
+        padding: 0px 10px;
+        text-align: center;
+        overflow: hidden;
+        width: 100%;
+        height: 56px;
+        border-radius: 3px;
+        color: rgb(255, 255, 255);
+        background-color: rgb(95, 0, 128);
+        border: 0px none;
+        span {
+          display: inline-block;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
 `;
 
 export const ProductDetailInfoTable = styled.div`

@@ -116,6 +116,13 @@ const ProductDetailTemplate = ({ product }: ProductDetailTemplateType) => {
               <span className="won">원</span>
             </div>
           </div>
+          <div className="product-cart-wrap">
+            <div className="cart-button-wrap">
+              <button className="cart-button">
+                <span>장바구니 담기</span>
+              </button>
+            </div>
+          </div>
         </ProductDetailInfoWrap>
       </ProductDetailMainWrap>
     </ProductDetailWrap>
