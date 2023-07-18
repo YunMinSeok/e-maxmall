@@ -58,10 +58,9 @@ export const useCart = () => {
   }, [checkedItems]);
 
   // 쿠폰 선택시
-  const setCouponData = useCallback(async (id: number) => {
-    const couponData = await getCoupon();
-    const filterCouponData = couponData.filter((coupon: CouponVO) => coupon.id === id);
-    setSelectCoupon(filterCouponData[0]);
+  const setCouponData = useCallback(async (couponId: number) => {
+    const couponData = await getCoupon(couponId);
+    setSelectCoupon(couponData);
     getDiscountPrice();
   }, []);
 

@@ -12,7 +12,7 @@ import { queryClient } from "@query/queryClient";
 import { queryKeys, commonOptions } from "@query/constant";
 
 // api
-import { getCoupon } from "@api/coupon";
+import { getCoupons } from "@api/coupon";
 
 interface CartType {
   coupons: CouponVO[];
@@ -26,7 +26,7 @@ export default Cart;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const coupons = await queryClient.fetchQuery([queryKeys.coupon], () => getCoupon(), {
+    const coupons = await queryClient.fetchQuery([queryKeys.coupon], () => getCoupons(), {
       ...commonOptions,
     });
 
