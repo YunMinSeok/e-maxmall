@@ -24,7 +24,9 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
     setCouponData,
     allCheckedItemHandler,
     checkedItemHandler,
+    getAllItemPrice,
     getDiscountPrice,
+    getTotalPrice,
   } = useCart();
   return (
     <CartWrap>
@@ -95,12 +97,12 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
             총 상품가격
             <em className="final-product-price">
               {/* 체크 기준 현재 가격 */}
-              {getDiscountPrice().allMount}원
+              {getAllItemPrice()}원
             </em>
             <span className="symbol">-</span>총 할인가격
-            <em className="final-product-price">{getDiscountPrice().discount}원</em>
+            <em className="final-product-price">{getDiscountPrice()}원</em>
             <span className="symbol">=</span>총 주문 금액
-            <em className="final-order-price">{getDiscountPrice().totalAmount}원</em>
+            <em className="final-order-price">{getTotalPrice()}원</em>
           </div>
         </div>
       </CartTotalPrice>

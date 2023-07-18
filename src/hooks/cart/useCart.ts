@@ -64,49 +64,57 @@ export const useCart = () => {
     getDiscountPrice();
   }, []);
 
-  // 할인가격, 총 주문금액 구하는 함수
-  const getDiscountPrice = useCallback(() => {
-    let discount = 0; // 할인금액
-    let allPrice = 0; // 체크 상품 총액
-    let totalPrice = 0; // 구매 총액
-
-    // 클릭한 아이템 총액 구하기
+  // 클릭한 아이템 총액 구하기
+  const getAllItemPrice = () => {
+    let allPrice = 0;
     allPrice = checkedItems.reduce((acc: number, val: ProductItemInterface) => {
       return acc + Number(val.price) * (val.count || 1);
     }, 0);
 
-    // 쿠폰을 선택 했을때
-    if (selectCoupon) {
-      // 쿠폰 가능 아이템 총액 구하기
-      const availableCouponItemAmount = checkedItems.reduce(
-        (acc: number, val: ProductItemInterface) => {
-          if (val.availableCoupon !== false) {
-            return acc + Number(val.price) * (val.count || 1);
-          }
-          return acc;
-        },
-        0,
-      );
+    return allPrice;
+  };
 
-      // 쿠폰이 원일때
-      if (selectCoupon.type === "won") {
-        discount = selectCoupon.price;
-      }
-      // 쿠폰이 퍼센트일떄
-      if (selectCoupon.type === "percent") {
-        discount = Math.floor((availableCouponItemAmount * selectCoupon.price) / 100);
-      }
+  // 할인가격 구하기
+  const getDiscountPrice = () => {
+    let discount = 0; // 할인금액
+
+    // 쿠폰을 선택 안했을때
+    if (!selectCoupon) {
+      return discount;
     }
 
-    // 총액 = 아이템 총액 - 할인 금액
-    totalPrice = Math.floor(allPrice - discount);
+    // 쿠폰 가능 아이템 총액 구하기
+    const availableCouponItemAmount = checkedItems.reduce(
+      (acc: number, val: ProductItemInterface) => {
+        if (val.availableCoupon !== false) {
+          return acc + Number(val.price) * (val.count || 1);
+        }
+        return acc;
+      },
+      0,
+    );
 
-    return {
-      allMount: String(allPrice),
-      discount: String(discount),
-      totalAmount: String(totalPrice),
-    };
-  }, [selectCoupon, checkedItems]);
+    // 쿠폰이 원일때
+    if (selectCoupon.type === "won") {
+      discount = selectCoupon.price;
+    }
+    // 쿠폰이 퍼센트일떄
+    if (selectCoupon.type === "percent") {
+      discount = Math.floor((availableCouponItemAmount * selectCoupon.price) / 100);
+    }
+
+    return discount;
+  };
+
+  // 총 주문 금액 구하기
+  const getTotalPrice = () => {
+    let totalPrice = 0; // 구매 총액
+
+    // 총액 = 아이템 총액 - 할인 금액
+    totalPrice = Math.floor(getAllItemPrice() - getDiscountPrice());
+
+    return totalPrice;
+  };
 
   return {
     cartList,
@@ -118,6 +126,8 @@ export const useCart = () => {
     setAllCheck,
     allCheckedItemHandler,
     checkedItemHandler,
+    getAllItemPrice,
     getDiscountPrice,
+    getTotalPrice,
   };
 };
