@@ -60,6 +60,7 @@ const CartItem = ({ product, checkedItems, setCheckedItems, checkedItemHandler }
                       }),
                     );
                   }}
+                  value={product.count || 1}
                 >
                   {Array.from({ length: 10 }, (_, index) => index + 1).map(element => {
                     return (
