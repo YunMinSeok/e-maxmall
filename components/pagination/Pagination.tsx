@@ -18,7 +18,7 @@ const Pagination = ({ page, totalPage }: PaginationType) => {
         <Link
           key={"product-list-previous"}
           className={firstNum === 1 ? "button disabled" : "button"}
-          href={`${router.pathname}?page=${lastNum - 5}`}
+          href={`${router.pathname}?page=${lastNum - 1}`}
         >
           &lt;
         </Link>
