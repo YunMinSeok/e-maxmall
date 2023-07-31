@@ -1,11 +1,10 @@
-import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 
 // components
 import Pagination from "@components/pagination/Pagination";
 import ProductItem from "@components/products/ProductItem";
+import Header from "@components/common/Header";
 
 // css
 import { ProductsWrap, ProductSection } from "@styles/products/products";
@@ -17,9 +16,6 @@ import { ProductVO, ProductItemVO } from "@type/product/product";
 import { getProduct } from "@api/product";
 // query
 import { queryKeys, commonOptions } from "@query/constant";
-
-//image
-import Cart from "@images/icon/shopping_cart.png";
 
 const ProductsTemplate = ({ products }: ProductVO) => {
   const router = useRouter();
@@ -35,12 +31,7 @@ const ProductsTemplate = ({ products }: ProductVO) => {
 
   return (
     <ProductsWrap>
-      <div className="section-title">
-        <span>상품 목록페이지</span>
-        <Link href={"/cart"} className="cart-icon">
-          <Image src={Cart} alt="장바구니 아이콘" width={35} height={35} />
-        </Link>
-      </div>
+      <Header title={"상품 목록페이지"} />
       <ProductSection>
         {data.productItems.map((product: ProductItemVO) => {
           return <ProductItem key={product.item_no} product={product} />;

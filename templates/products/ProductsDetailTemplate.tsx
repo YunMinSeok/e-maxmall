@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 
 // type
@@ -12,12 +11,10 @@ import {
   ProductDetailInfoTable,
 } from "@styles/products/productDetail";
 
-//image
-import Cart from "@images/icon/shopping_cart.png";
-
 // hooks
 import { useProductDetail } from "@hooks/products/useProductDetail";
 import { useProducts } from "@hooks/products/useProducts";
+import Header from "@components/common/Header";
 
 interface ProductDetailTemplateType {
   product: ProductItemVO;
@@ -28,12 +25,7 @@ const ProductDetailTemplate = ({ product }: ProductDetailTemplateType) => {
   const { handleClickCart } = useProducts();
   return (
     <ProductDetailWrap>
-      <div className="section-title">
-        <span>상품 상세페이지</span>
-        <Link href={"/cart"} className="cart-icon">
-          <Image src={Cart} alt="장바구니 아이콘" width={35} height={35} />
-        </Link>
-      </div>
+      <Header title={"상품 상세페이지"} />
       <ProductDetailMainWrap>
         {/* 상품 사진 */}
         <div className="product-image">

@@ -4,23 +4,6 @@ export const ProductsWrap = styled.div`
   width: 1050px;
   margin: 0px auto;
   padding: 40px 0px;
-  .section-title {
-    margin-bottom: 27px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    span {
-      color: rgb(51, 51, 51);
-      font-size: 28px;
-      line-height: 1.15;
-      letter-spacing: -0.26px;
-      font-weight: 500;
-    }
-    .cart-icon {
-      margin-left: auto;
-      padding-right: 18px;
-    }
-  }
 `;
 
 export const ProductSection = styled.section`
