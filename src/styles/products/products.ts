@@ -9,8 +9,8 @@ export const ProductsWrap = styled.div`
 export const ProductSection = styled.section`
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 209px);
-  gap: 31px 0;
+  grid-template-columns: repeat(auto-fill, 202px);
+  gap: 10px;
   width: 1050px;
   margin: 0px auto;
   padding-bottom: 60px;

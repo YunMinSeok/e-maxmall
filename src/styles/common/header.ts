@@ -12,8 +12,18 @@ export const HeaderWrap = styled.header`
     letter-spacing: -0.26px;
     font-weight: 500;
   }
-  .cart-icon {
+  .header-icon-wrap {
+    display: flex;
     margin-left: auto;
-    padding-right: 18px;
+    align-items: center;
+  }
+  .login-wrap {
+    margin-right: 10px;
+    span {
+      font-size: 24px;
+    }
+  }
+  .cart-icon {
+    display: block;
   }
 `;

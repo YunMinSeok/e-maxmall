@@ -15,9 +15,14 @@ const Header = ({ title }: HeaderProps) => {
   return (
     <HeaderWrap>
       <span>{title}</span>
-      <Link href={"/cart"} className="cart-icon">
-        <Image src={Cart} alt="장바구니 아이콘" width={35} height={35} />
-      </Link>
+      <div className="header-icon-wrap">
+        <Link href={"/login"} className="login-wrap">
+          <span>로그인</span>
+        </Link>
+        <Link href={"/cart"} className="cart-icon">
+          <Image src={Cart} alt="장바구니 아이콘" width={35} height={35} />
+        </Link>
+      </div>
     </HeaderWrap>
   );
 };
