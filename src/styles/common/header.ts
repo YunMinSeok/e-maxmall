@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 
 export const HeaderWrap = styled.header`
-  margin-bottom: 27px;
   display: flex;
+  margin-bottom: 27px;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px solid #454f5b;
   span {
     color: rgb(51, 51, 51);
     font-size: 28px;
