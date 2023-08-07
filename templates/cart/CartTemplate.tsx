@@ -1,5 +1,6 @@
 // components
 import CartItem from "@components/cart/CartItem";
+import { withAuth } from "@components/common/widthAuth";
 
 // hooks
 import { useCart } from "@hooks/cart/useCart";
@@ -110,4 +111,4 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
   );
 };
 
-export default CartTemplate;
+export default withAuth(CartTemplate);
