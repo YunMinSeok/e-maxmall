@@ -1,9 +1,11 @@
 // components
 import Header from "@components/common/Header";
+import { useLogin } from "@hooks/login/useLogin";
 // css
 import { LoginWrap } from "@styles/login/login";
 
 const LoginTemplate = () => {
+  const { handleLoginSubmit } = useLogin();
   return (
     <LoginWrap>
       <Header title={"로그인"} isLinkShow={false} />
@@ -19,7 +21,9 @@ const LoginTemplate = () => {
           </div>
         </div>
         <div className="member-field login-button-field">
-          <button className="login-button">로그인</button>
+          <button type="submit" className="login-button" onClick={handleLoginSubmit}>
+            로그인
+          </button>
         </div>
       </div>
     </LoginWrap>
