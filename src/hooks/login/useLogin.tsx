@@ -4,8 +4,10 @@ import { setCookie } from "@util/cookie";
 
 // api
 import { getMe } from "@api/user";
+import { useRouter } from "next/router";
 
 export const useLogin = () => {
+  const router = useRouter();
   // 로그인 버튼 클릭 사용되는 함수
   const handleLoginSubmit = async (
     email: RefObject<HTMLInputElement>,
@@ -21,6 +23,7 @@ export const useLogin = () => {
     if (!!user) {
       // 쿠키 설정
       setCookie("user", user.name);
+      router.push(router.query ? (router.query.returnTo as string) : "/products");
     }
   };
   return { handleLoginSubmit };

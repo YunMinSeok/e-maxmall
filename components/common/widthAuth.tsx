@@ -8,12 +8,13 @@ export const withAuth =
   <P extends {}>(Component: React.ComponentType<P>) =>
   (props: P) => {
     const router = useRouter();
+    console.log(router);
 
     /* 권한 분기 */
     useEffect(() => {
       if (!getCookie("user")) {
         alert("로그인 후 이용이 가능합니다.");
-        router.push("/login");
+        router.push(router.asPath ? `/login?returnTo=${router.asPath}` : "/login");
       }
     }, []);
 
