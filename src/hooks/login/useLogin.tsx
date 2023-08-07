@@ -1,6 +1,6 @@
 import { RefObject } from "react";
 // util
-import { setCookie } from "@util/cookie";
+import { setCookie, removeCookie } from "@util/cookie";
 
 // api
 import { getMe } from "@api/user";
@@ -23,8 +23,17 @@ export const useLogin = () => {
     if (!!user) {
       // 쿠키 설정
       setCookie("user", user.name);
-      router.push(router.query ? (router.query.returnTo as string) : "/products");
+      router.push(
+        (router.query.returnTo as string) ? (router.query.returnTo as string) : "/products",
+      );
     }
   };
-  return { handleLoginSubmit };
+
+  // 로그아웃 함수
+  const handleLogout = async () => {
+    removeCookie("user");
+    window.location.reload();
+  };
+
+  return { handleLoginSubmit, handleLogout };
 };
