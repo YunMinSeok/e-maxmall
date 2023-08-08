@@ -25,9 +25,9 @@ const Header = ({ title, isLinkShow }: HeaderProps) => {
         <div className="header-icon-wrap">
           {user[0] ? (
             <>
-              <Link href={"/login"} className="login-wrap">
+              <div className="login-wrap">
                 <span>{user[0]}</span>
-              </Link>
+              </div>
               <button type="button" onClick={handleLogout}>
                 로그아웃
               </button>

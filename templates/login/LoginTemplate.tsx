@@ -20,7 +20,12 @@ const LoginTemplate = () => {
         </div>
         <div className="member-field">
           <div className="member-input-field">
-            <input ref={passwordRef} className="member-input" placeholder="비밀번호" />
+            <input
+              ref={passwordRef}
+              type="password"
+              className="member-input"
+              placeholder="비밀번호"
+            />
           </div>
         </div>
         <div className="member-field login-button-field">
