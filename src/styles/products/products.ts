@@ -17,6 +17,13 @@ export const ProductSection = styled.section`
   overflow: hidden;
 `;
 
+export const ProductFilter = styled.div`
+  max-width: 100%;
+  height: 32px;
+  margin-bottom: 15px;
+  background-color: #fafafa;
+`;
+
 export const ProductItemWrap = styled.div`
   position: relative;
   width: 199px;

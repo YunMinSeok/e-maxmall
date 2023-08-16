@@ -32,7 +32,7 @@ export const useLogin = () => {
   // 로그아웃 함수
   const handleLogout = async () => {
     removeCookie("user");
-    window.location.reload();
+    window.location.reload(); // TODO : MAX => router.reload, window reload 차이점 알아보기
   };
 
   return { handleLoginSubmit, handleLogout };

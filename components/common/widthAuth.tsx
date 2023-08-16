@@ -8,7 +8,6 @@ export const withAuth =
   <P extends {}>(Component: React.ComponentType<P>) =>
   (props: P) => {
     const router = useRouter();
-    console.log(router);
 
     /* 권한 분기 */
     useEffect(() => {
