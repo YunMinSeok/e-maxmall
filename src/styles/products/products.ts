@@ -17,11 +17,30 @@ export const ProductSection = styled.section`
   overflow: hidden;
 `;
 
-export const ProductFilter = styled.div`
+export const ProductFilterWrap = styled.div`
   max-width: 100%;
   height: 32px;
   margin-bottom: 15px;
   background-color: #fafafa;
+`;
+
+export const ProductSearchSortWrap = styled.div`
+  position: relative;
+  float: left;
+
+  ul {
+    margin-top: 6px;
+    height: 20px;
+
+    li {
+      float: left;
+      height: 100%;
+      padding: 0 10px;
+      line-height: 1.5;
+      color: #555;
+      border-left: 1px solid #eee;
+    }
+  }
 `;
 
 export const ProductItemWrap = styled.div`
