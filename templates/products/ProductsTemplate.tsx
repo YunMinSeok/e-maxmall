@@ -12,7 +12,7 @@ import { ProductsWrap, ProductSection } from "@styles/products/products";
 
 // type
 import { ProductVO, ProductItemVO } from "@type/product/product";
-
+import { getProductPropsType } from "@constant/searchSort";
 // api
 import { getProduct } from "@api/product";
 // query
@@ -21,9 +21,24 @@ import { queryKeys, commonOptions } from "@query/constant";
 const ProductsTemplate = ({ products }: ProductVO) => {
   const router = useRouter();
 
+  const handleFilter = (value: string) => {
+    const newQuery = {
+      ...router.query,
+      ...Object.fromEntries(new URLSearchParams(`sort=${value}`)),
+    };
+    router.push({
+      pathname: router.pathname,
+      query: newQuery,
+    });
+  };
+
   const { data } = useQuery(
-    [queryKeys.product, router.query.page],
-    () => getProduct(String(router.query.page)),
+    [queryKeys.product, router.query],
+    () =>
+      getProduct({
+        page: String(router.query.page || 1),
+        sort: String(router.query.sort || "desc"),
+      }),
     {
       initialData: products,
       ...commonOptions,
@@ -33,7 +48,7 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   return (
     <ProductsWrap>
       <Header title={"상품 목록페이지"} />
-      <ProductFilter />
+      <ProductFilter state={String(router.query.sort || "desc")} onChange={handleFilter} />
       <ProductSection>
         {data.productItems.map((product: ProductItemVO) => {
           return <ProductItem key={product.item_no} product={product} />;

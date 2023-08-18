@@ -12,13 +12,27 @@ const Pagination = ({ page, totalPage }: PaginationType) => {
   const router = useRouter();
   const firstNum = Math.floor((page - 1) / 5) * 5 + 1;
   const lastNum = Math.min(firstNum + 4, totalPage);
+
+  const handleRouter = (targetPage: number) => {
+    const newQuery = {
+      ...router.query,
+      page: targetPage.toString(),
+    };
+    const nestedUrl = {
+      pathname: router.pathname,
+      query: newQuery,
+    };
+
+    return nestedUrl;
+  };
+
   return (
     <PaginationWrap>
       <div className="pagination-list-wrap">
         <Link
           key={"product-list-previous"}
           className={firstNum === 1 ? "button disabled" : "button"}
-          href={`${router.pathname}?page=${lastNum - 1}`}
+          href={handleRouter(lastNum - 1)}
         >
           &lt;
         </Link>
@@ -29,7 +43,7 @@ const Pagination = ({ page, totalPage }: PaginationType) => {
               <Link
                 key={"product-list-" + i}
                 className={firstNum + i === page ? "selected" : ""}
-                href={`${router.pathname}?page=${firstNum + i}`}
+                href={handleRouter(firstNum + i)}
               >
                 {firstNum + i}
               </Link>
@@ -38,7 +52,7 @@ const Pagination = ({ page, totalPage }: PaginationType) => {
         <Link
           key={"product-list-next"}
           className={lastNum === totalPage ? "button disabled" : "button"}
-          href={`${router.pathname}?page=${lastNum + 1}`}
+          href={handleRouter(lastNum + 1)}
         >
           &gt;
         </Link>

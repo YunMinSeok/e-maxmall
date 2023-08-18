@@ -40,6 +40,11 @@ export const ProductSearchSortWrap = styled.div`
       color: #555;
       border-left: 1px solid #eee;
     }
+
+    .selected {
+      color: #0073e9;
+      font-weight: bold;
+    }
   }
 `;
 
