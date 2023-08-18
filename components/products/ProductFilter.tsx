@@ -1,14 +1,20 @@
 // constant
 import { SearchSortData, toSortType } from "@constant/searchSort";
 // styles
-import { ProductFilterWrap, ProductSearchSortWrap } from "@styles/products/products";
+import {
+  ProductFilterWrap,
+  ProductSearchSortWrap,
+  ProductSortingList,
+} from "@styles/products/products";
 
 interface ProductFilterPropsType {
-  state: string;
-  onChange: (value: string) => void;
+  sortState: string;
+  sizeState: string;
+  onChange: (type: string, value: string) => void;
 }
 
-const ProductFilter = ({ state, onChange }: ProductFilterPropsType) => {
+const ProductFilter = ({ sortState, sizeState, onChange }: ProductFilterPropsType) => {
+  console.log(sizeState);
   return (
     <ProductFilterWrap>
       <ProductSearchSortWrap>
@@ -18,8 +24,8 @@ const ProductFilter = ({ state, onChange }: ProductFilterPropsType) => {
             return (
               <li
                 key={sort.value + "-" + String(index)}
-                onClick={() => onChange(revertSortValue)}
-                className={state === revertSortValue ? "selected" : ""}
+                onClick={() => onChange("sort", revertSortValue)}
+                className={sortState === revertSortValue ? "selected" : ""}
               >
                 <input type={"radio"} />
                 <label>{sort.value}</label>
@@ -28,6 +34,19 @@ const ProductFilter = ({ state, onChange }: ProductFilterPropsType) => {
           })}
         </ul>
       </ProductSearchSortWrap>
+      <ProductSortingList>
+        <ul>
+          <li className={sizeState === "5" ? "selected" : ""} onClick={() => onChange("size", "5")}>
+            5개씩 보기
+          </li>
+          <li
+            className={sizeState === "10" ? "selected" : ""}
+            onClick={() => onChange("size", "10")}
+          >
+            10개씩 보기
+          </li>
+        </ul>
+      </ProductSortingList>
     </ProductFilterWrap>
   );
 };

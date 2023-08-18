@@ -48,6 +48,45 @@ export const ProductSearchSortWrap = styled.div`
   }
 `;
 
+export const ProductSortingList = styled.div`
+  position: relative;
+  float: right;
+  width: 105px;
+  height: 32px;
+  color: #555;
+  z-index: 4;
+
+  ul {
+    width: 100%;
+    height: 32px;
+    max-height: 32px;
+    background-color: #fafafa;
+    overflow: hidden;
+
+    li {
+      display: none;
+      height: 21px;
+      padding: 11px 5px 0;
+      line-height: 1;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .selected {
+      display: block;
+    }
+  }
+  ul:hover {
+    height: auto;
+    max-height: 500px;
+    li {
+      display: block;
+    }
+  }
+`;
+
 export const ProductItemWrap = styled.div`
   position: relative;
   width: 199px;

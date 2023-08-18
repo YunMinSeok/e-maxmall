@@ -12,7 +12,6 @@ import { ProductsWrap, ProductSection } from "@styles/products/products";
 
 // type
 import { ProductVO, ProductItemVO } from "@type/product/product";
-import { getProductPropsType } from "@constant/searchSort";
 // api
 import { getProduct } from "@api/product";
 // query
@@ -21,10 +20,10 @@ import { queryKeys, commonOptions } from "@query/constant";
 const ProductsTemplate = ({ products }: ProductVO) => {
   const router = useRouter();
 
-  const handleFilter = (value: string) => {
+  const handleFilter = (type: string, value: string) => {
     const newQuery = {
       ...router.query,
-      ...Object.fromEntries(new URLSearchParams(`sort=${value}`)),
+      ...Object.fromEntries(new URLSearchParams(`${type}=${value}`)),
     };
     router.push({
       pathname: router.pathname,
@@ -38,6 +37,7 @@ const ProductsTemplate = ({ products }: ProductVO) => {
       getProduct({
         page: String(router.query.page || 1),
         sort: String(router.query.sort || "desc"),
+        size: String(router.query.size || "5"),
       }),
     {
       initialData: products,
@@ -48,7 +48,11 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   return (
     <ProductsWrap>
       <Header title={"상품 목록페이지"} />
-      <ProductFilter state={String(router.query.sort || "desc")} onChange={handleFilter} />
+      <ProductFilter
+        sortState={String(router.query.sort || "desc")}
+        sizeState={String(router.query.size || "5")}
+        onChange={handleFilter}
+      />
       <ProductSection>
         {data.productItems.map((product: ProductItemVO) => {
           return <ProductItem key={product.item_no} product={product} />;

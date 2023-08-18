@@ -4,13 +4,12 @@ import axios from "axios";
 import { getProductPropsType } from "@constant/searchSort";
 
 // 상품 조회하기
-export const getProduct = async ({ page, sort }: getProductPropsType) => {
-  console.log(page, sort);
+export const getProduct = async ({ page, sort, size }: getProductPropsType) => {
   const res = await axios.get("http://localhost:3000/api/products", {
     headers: {
       "Content-Type": "application/json",
     },
-    params: { page: page, sort: sort },
+    params: { page: page, sort: sort, size: size },
   });
 
   return res.data;

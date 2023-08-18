@@ -1,6 +1,7 @@
 export interface getProductPropsType {
   page: string;
   sort: string;
+  size: string;
 }
 
 interface SearchSortDataType {
