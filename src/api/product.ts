@@ -25,3 +25,14 @@ export const getProductDetail = async (productNo: string) => {
 
   return res.data.product;
 };
+
+export const getAllProduct = async () => {
+  const res = await axios.get("http://localhost:3000/api/products", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    params: { page: 1, sort: "desc", size: 30 },
+  });
+
+  return res.data;
+};
