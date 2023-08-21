@@ -14,7 +14,6 @@ interface ProductFilterPropsType {
 }
 
 const ProductFilter = ({ sortState, sizeState, onChange }: ProductFilterPropsType) => {
-  console.log(sizeState);
   return (
     <ProductFilterWrap>
       <ProductSearchSortWrap>

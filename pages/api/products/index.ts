@@ -7,7 +7,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const page = Number(req.query.page || 1) * Number(req.query.size || 5);
   const sort = String(req.query.sort) || "desc";
 
-  console.log(page);
   // score 기준 내림차순 / 오름차순
   productItems.sort((a: any, b: any) => {
     if (sort === "asc") {

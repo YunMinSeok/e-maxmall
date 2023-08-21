@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect } from "react";
 
 // image
 import Cart from "@images/icon/shopping_cart.png";
 
 // style
 import { HeaderWrap } from "@styles/common/header";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getCookie } from "@util/cookie";
 import { useLogin } from "@hooks/login/useLogin";
 
@@ -16,17 +17,23 @@ interface HeaderProps {
 }
 
 const Header = ({ title, isLinkShow }: HeaderProps) => {
-  const user = useState(getCookie("user")); // 유저정보 가져오기
+  const [user, setUser] = useState("");
   const { handleLogout } = useLogin();
+
+  useEffect(() => {
+    const cookieValue = getCookie("user");
+    setUser(cookieValue);
+  }, []);
+
   return (
     <HeaderWrap>
       <span>{title}</span>
       {isLinkShow && (
         <div className="header-icon-wrap">
-          {user[0] ? (
+          {user ? (
             <>
               <div className="login-wrap">
-                <span>{user[0]}</span>
+                <span>{user}</span>
               </div>
               <button type="button" onClick={handleLogout}>
                 로그아웃
