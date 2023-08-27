@@ -29,7 +29,13 @@ const ProductDetailTemplate = ({ product }: ProductDetailTemplateType) => {
       <ProductDetailMainWrap>
         {/* 상품 사진 */}
         <div className="product-image">
-          <Image src={product.detail_image_url} alt={product.item_name} width={430} height={552} />
+          <Image
+            priority
+            src={product.detail_image_url}
+            alt={product.item_name}
+            width={430}
+            height={552}
+          />
         </div>
         {/* 상품 정보 */}
         <ProductDetailInfoWrap>
