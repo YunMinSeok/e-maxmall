@@ -12,7 +12,7 @@ export const getProduct = async ({ page, sort, size }: getProductPropsType) => {
     params: { page: page, sort: sort, size: size },
   });
 
-  return res.data;
+  return res;
 };
 
 // 상품 상세 조회하기
