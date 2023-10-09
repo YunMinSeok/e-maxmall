@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const page = context.query.page ?? 1;
     const products = await queryClient.fetchQuery(
       [queryKeys.product, page],
-      () => getProduct(String(page)),
+      () => getProduct({ page: String(page), sort: "desc", size: "5" }),
       {
         ...commonOptions,
       },
