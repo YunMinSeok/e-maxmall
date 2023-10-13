@@ -1,3 +1,4 @@
+import { ProductVO } from "./../type/product/product";
 import axios from "axios";
 
 // constant
@@ -12,7 +13,7 @@ export const getProduct = async ({ page, sort, size }: getProductPropsType) => {
     params: { page: page, sort: sort, size: size },
   });
 
-  return res;
+  return res.data;
 };
 
 // 상품 상세 조회하기
