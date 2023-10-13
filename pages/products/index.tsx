@@ -34,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
     return {
       props: {
-        products: products.data,
+        products: products,
       },
     };
   } catch (err) {
