@@ -2,7 +2,7 @@ import { NextPage, GetServerSideProps } from "next";
 
 // templates
 import CartTemplate from "@templates/cart/CartTemplate";
-import { dehydrate } from "react-query";
+import { dehydrate } from "@tanstack/react-query";
 
 // type
 import { CouponVO } from "@type/coupon/coupon";
@@ -26,7 +26,7 @@ export default Cart;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const coupons = await queryClient.fetchQuery([queryKeys.coupon], () => getCoupons(), {
+    const coupons = await queryClient.fetchQuery(queryKeys.coupon, () => getCoupons(), {
       ...commonOptions,
     });
 

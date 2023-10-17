@@ -4,17 +4,17 @@ import "../styles/global.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { RecoilRoot } from "recoil";
-import { Hydrate, QueryClientProvider } from "react-query";
+import { HydrationBoundary, QueryClientProvider } from "@tanstack/react-query";
 
 // query
-import { ReactQueryDevtools } from "react-query/devtools";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { queryClient } from "@query/queryClient";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydrateState}>
+        <HydrationBoundary state={pageProps.dehydrateState}>
           <Head>
             <title>e-maxmall</title>
             <meta charSet="UTF-8" />
@@ -25,7 +25,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           </Head>
           <Component {...pageProps} />
           <ReactQueryDevtools />
-        </Hydrate>
+        </HydrationBoundary>
       </QueryClientProvider>
     </RecoilRoot>
   );
