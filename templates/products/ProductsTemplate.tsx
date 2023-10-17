@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 // components
 import Pagination from "@components/pagination/Pagination";

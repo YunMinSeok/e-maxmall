@@ -1,5 +1,4 @@
 import { NextPage, GetServerSideProps } from "next";
-import { dehydrate } from "react-query";
 
 // templates
 import ProductsTemplate from "@templates/products/ProductsTemplate";
