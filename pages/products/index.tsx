@@ -23,13 +23,12 @@ export default Products;
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
     const page = context.query.page ?? 1;
-    const products = await queryClient.fetchQuery(
-      [queryKeys.product, page],
-      () => getProduct({ page: String(page), sort: "desc", size: "5" }),
-      {
-        ...commonOptions,
-      },
-    );
+    const products = await queryClient.fetchQuery({
+      queryKey: [queryKeys.product, page],
+      queryFn: () => getProduct({ page: String(page), sort: "desc", size: "5" }),
+
+      ...commonOptions,
+    });
 
     return {
       props: {

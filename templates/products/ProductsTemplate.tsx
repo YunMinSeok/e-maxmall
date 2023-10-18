@@ -31,19 +31,18 @@ const ProductsTemplate = ({ products }: ProductVO) => {
     });
   };
 
-  const { data } = useQuery(
-    [queryKeys.product, router.query],
-    () =>
+  const { data } = useQuery({
+    queryKey: [queryKeys.product, router.query],
+    queryFn: () =>
       getProduct({
         page: String(router.query.page || 1),
         sort: String(router.query.sort || "desc"),
         size: String(router.query.size || "5"),
       }),
-    {
-      initialData: products,
-      ...commonOptions,
-    },
-  );
+
+    initialData: products,
+    ...commonOptions,
+  });
 
   return (
     <ProductsWrap>
