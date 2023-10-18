@@ -26,7 +26,9 @@ export default Cart;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const coupons = await queryClient.fetchQuery(queryKeys.coupon, () => getCoupons(), {
+    const coupons = await queryClient.fetchQuery({
+      queryKey: [queryKeys.coupon],
+      queryFn: () => getCoupons(),
       ...commonOptions,
     });
 
