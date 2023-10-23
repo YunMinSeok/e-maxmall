@@ -2,7 +2,7 @@ import { QueryClient, DefaultOptions } from "@tanstack/react-query";
 
 function queryErrorHandler(error: unknown): void {
   const title = error instanceof Error ? error.message : "error connecting to server";
-  console.log(title);
+  console.error(title);
 }
 
 export const queryClient = new QueryClient({

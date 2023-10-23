@@ -10,9 +10,6 @@ import { HydrationBoundary, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { queryClient } from "@query/queryClient";
 
-// test
-import Toast from "@components/common/Toast";
-
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <RecoilRoot>
@@ -27,7 +24,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             />
           </Head>
           <Component {...pageProps} />
-          <Toast message="오류다" type="error" />
           <ReactQueryDevtools />
         </HydrationBoundary>
       </QueryClientProvider>
