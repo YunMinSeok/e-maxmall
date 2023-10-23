@@ -24,7 +24,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             />
           </Head>
           <Component {...pageProps} />
-          <ReactQueryDevtools />
+          <ReactQueryDevtools buttonPosition={"bottom-left"} initialIsOpen={false} />
         </HydrationBoundary>
       </QueryClientProvider>
     </RecoilRoot>
