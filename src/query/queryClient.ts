@@ -14,6 +14,7 @@ export const queryClient = new QueryClient({
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
+      useErrorBoundary: true,
     },
     mutations: {
       onError: queryErrorHandler,
