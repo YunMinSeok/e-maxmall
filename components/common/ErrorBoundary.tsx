@@ -1,39 +1,31 @@
-import React, { ErrorInfo, ReactNode } from "react";
+import { Component } from "react";
 
-interface Props {
-  children?: ReactNode;
-  fallback: React.ElementType;
-}
+import { Props, State, ErrorFallbackProps } from "@type/common/ErrorType";
 
-interface State {
-  hasError: boolean;
-  info: Error | null;
-}
+const initialState = { hasError: false, error: null };
 
-class ErrorBoundary extends React.Component<Props, State> {
+class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      hasError: false,
-      info: null,
-    };
+    this.state = initialState;
   }
 
   static getDerivedStateFromError(error: Error) {
-    return { hasError: true, info: error };
+    return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.log("error: ", error);
-    console.log("errorInfo: ", errorInfo);
-  }
+  resetQuery = () => {
+    const { onReset } = this.props;
+    onReset?.();
+    this.setState(initialState);
+  };
 
   render() {
-    const { hasError, info } = this.state;
-    const { children } = this.props;
-    if (hasError) {
-      return <this.props.fallback error={info} />;
-    }
+    const { hasError, error } = this.state;
+    const { children, errorFallback } = this.props;
+    const isErrExist = hasError && error !== null;
+    const fallbacKUI = (err: ErrorFallbackProps["error"]) => <div>error</div>;
+    if (isErrExist) return fallbacKUI(error);
     return children;
   }
 }
