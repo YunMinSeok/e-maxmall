@@ -1,19 +1,15 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 
 export type ErrorFallbackProps<ErrorType extends Error = Error> = {
   error: ErrorType;
 };
 
-export type ErrorFallbackType = <ErrorType extends Error>(
-  props: ErrorFallbackProps<ErrorType>,
-  reset: (...args: unknown[]) => void,
-) => JSX.Element;
-
 export type Props = {
-  errorFallback: ErrorFallbackType;
+  errorFallback: () => React.ReactElement;
   children: ReactElement;
   onReset?: () => void;
-  fallback: (reset: () => void) => React.ReactElement;
+  fallback: () => React.ReactElement;
+  suspenseFallback: () => React.ReactElement;
 };
 
 export type State = {

@@ -4,10 +4,10 @@ import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 // components
 import ErrorBoundary from "@components/common/ErrorBoundary";
 // type
-import { Props } from "@type/common/ErrorType";
+import { Props } from "@type/common/errorType";
 
 function AsyncWrapper(props: Props) {
-  const { children, errorFallback } = props;
+  const { children, errorFallback, suspenseFallback } = props;
   const { reset } = useQueryErrorResetBoundary();
   const resetHandler = useCallback(() => {
     reset();
@@ -15,7 +15,7 @@ function AsyncWrapper(props: Props) {
 
   return (
     <ErrorBoundary fallback={errorFallback} onReset={resetHandler}>
-      <Suspense fallback={<div>fallback</div>}>{children}</Suspense>
+      <Suspense fallback={suspenseFallback}>{children}</Suspense>
     </ErrorBoundary>
   );
 }

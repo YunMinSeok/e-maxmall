@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import { Props, State, ErrorFallbackProps } from "@type/common/ErrorType";
+import { Props, State, ErrorFallbackProps } from "@type/common/errorType";
 
 const initialState = { hasError: false, error: null };
 
@@ -22,7 +22,7 @@ class ErrorBoundary extends Component<Props, State> {
 
   render() {
     const { hasError, error } = this.state;
-    const { children, errorFallback } = this.props;
+    const { children } = this.props;
     const isErrExist = hasError && error !== null;
     const fallbacKUI = (err: ErrorFallbackProps["error"]) => <div>error</div>;
     if (isErrExist) return fallbacKUI(error);
