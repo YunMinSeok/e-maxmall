@@ -24,7 +24,7 @@ class ErrorBoundary extends Component<Props, State> {
     const { hasError, error } = this.state;
     const { children } = this.props;
     const isErrExist = hasError && error !== null;
-    const fallbacKUI = (err: ErrorFallbackProps["error"]) => <div>error</div>;
+    const fallbacKUI = (err: ErrorFallbackProps["error"]) => <div>{String(err)}</div>;
     if (isErrExist) return fallbacKUI(error);
     return children;
   }
