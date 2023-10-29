@@ -8,7 +8,7 @@ export type Props = {
   errorFallback?: (err: ErrorFallbackProps["error"]) => ReactElement;
   children?: ReactElement;
   onReset?: () => void;
-  fallback?: (err: ErrorFallbackProps["error"]) => ReactElement;
+  fallback?: (err: ErrorFallbackProps["error"]) => ReactElement | null;
   suspenseFallback?: ReactElement;
 };
 

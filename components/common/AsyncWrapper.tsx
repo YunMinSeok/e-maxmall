@@ -15,7 +15,7 @@ function AsyncWrapper(props: Props) {
 
   return (
     <ErrorBoundary
-      fallback={(err: ErrorFallbackProps["error"]) => errorFallback(err)}
+      fallback={(err: ErrorFallbackProps["error"]) => errorFallback?.(err) || null}
       onReset={resetHandler}
     >
       <Suspense fallback={suspenseFallback}>{children}</Suspense>
