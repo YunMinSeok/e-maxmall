@@ -1,3 +1,5 @@
+"use client";
+
 import { Component } from "react";
 
 import { Props, State, ErrorFallbackProps } from "@type/common/errorType";
