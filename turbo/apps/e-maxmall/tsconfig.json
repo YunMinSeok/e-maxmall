@@ -1,8 +1,14 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "types": ["node"],
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,20 +24,57 @@
     "jsxImportSource": "@emotion/react",
     "baseUrl": ".",
     "paths": {
-      "@templates/*": ["templates/*"],
-      "@components/*": ["components/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@api/*": ["src/api/*"],
-      "@styles/*": ["src/styles/*"],
-      "@constant/*": ["src/constant/*"],
-      "@type/*": ["src/type/*"],
-      "@util/*": ["src/util/*"],
-      "@config/*": ["src/config/*"],
-      "@states/*": ["src/states/*"],
-      "@images/*": ["src/images/*"],
-      "@query/*": ["src/query/*"]
-    }
+      "@templates/*": [
+        "templates/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@api/*": [
+        "src/api/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@constant/*": [
+        "src/constant/*"
+      ],
+      "@type/*": [
+        "src/type/*"
+      ],
+      "@util/*": [
+        "src/util/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ],
+      "@states/*": [
+        "src/states/*"
+      ],
+      "@images/*": [
+        "src/images/*"
+      ],
+      "@query/*": [
+        "src/query/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.css"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.css",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

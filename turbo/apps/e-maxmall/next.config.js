@@ -1,5 +1,8 @@
 // next.config.js
 module.exports = {
+  experimental: {
+    appDir: true,
+  },
   webpack(config, options) {
     config.module.rules.push({
       test: /\.svg$/,
