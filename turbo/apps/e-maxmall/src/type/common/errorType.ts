@@ -6,7 +6,7 @@ export type ErrorFallbackProps<ErrorType extends Error = Error> = {
 
 export type Props = {
   errorFallback?: (err: ErrorFallbackProps["error"]) => ReactElement;
-  children?: ReactElement;
+  children?: React.ReactNode;
   onReset?: () => void;
   fallback?: (err: ErrorFallbackProps["error"]) => ReactElement | null;
   suspenseFallback?: ReactElement;
