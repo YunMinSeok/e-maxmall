@@ -20,5 +20,8 @@
     "*.{js,jsx,ts,tsx}": [
       "prettier —write"
     ]
+  },
+  "dependencies": {
+    "lint-staged": "^15.0.2"
   }
 }
