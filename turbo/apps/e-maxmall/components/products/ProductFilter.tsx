@@ -1,3 +1,5 @@
+"use client";
+
 // constant
 import { SearchSortData, toSortType } from "@constant/searchSort";
 // styles

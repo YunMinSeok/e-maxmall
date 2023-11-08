@@ -1,3 +1,5 @@
+"use client";
+
 import { Suspense, useCallback } from "react";
 // react-query
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
