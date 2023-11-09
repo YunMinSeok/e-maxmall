@@ -1,5 +1,5 @@
 import { NextPage, GetStaticPaths, GetStaticProps } from "next";
-import { dehydrate } from "react-query";
+import { dehydrate } from "@tanstack/react-query";
 
 // templates
 import ProductDetailTemplate from "@templates/products/ProductsDetailTemplate";
@@ -38,13 +38,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const page = params?.id as string;
-    const product = await queryClient.fetchQuery(
-      [queryKeys.product, page],
-      () => getProductDetail(page),
-      {
-        ...commonOptions,
-      },
-    );
+    const product = await queryClient.fetchQuery({
+      queryKey: [queryKeys.product, page],
+      queryFn: () => getProductDetail(page),
+      ...commonOptions,
+    });
 
     return {
       props: {

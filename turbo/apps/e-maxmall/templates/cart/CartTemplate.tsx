@@ -1,3 +1,5 @@
+"use client";
+
 // components
 import CartItem from "@components/cart/CartItem";
 import { withAuth } from "@components/common/widthAuth";
