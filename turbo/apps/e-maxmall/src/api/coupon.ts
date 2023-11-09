@@ -5,11 +5,7 @@ import { CouponVO } from "@type/coupon/coupon";
 
 // 쿠폰 전체 보내기
 export const getCoupons = async () => {
-  const res = await axios.get("http://localhost:3000/api/coupons", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const res = await axios.get("http://localhost:3000/api/coupons");
 
   return res.data.coupons;
 };

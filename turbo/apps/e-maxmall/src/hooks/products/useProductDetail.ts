@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 // productDetail 에서 사용되는 함수들
