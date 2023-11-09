@@ -1,4 +1,4 @@
-import { NextPage, GetServerSideProps } from "next";
+import { NextPage } from "next";
 
 // templates
 import CartTemplate from "@templates/cart/CartTemplate";
@@ -18,15 +18,9 @@ interface CartType {
   coupons: CouponVO[];
 }
 
-const Cart: NextPage<CartType> = ({ coupons }) => {
-  return <CartTemplate coupons={coupons} />;
-};
-
-export default Cart;
-
-export const getServerSideProps: GetServerSideProps = async () => {
+async function fetchData() {
   try {
-    const coupons = await queryClient.fetchQuery({
+    const coupons: CartType = await queryClient.fetchQuery({
       queryKey: [queryKeys.coupon],
       queryFn: () => getCoupons(),
       ...commonOptions,
@@ -48,4 +42,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
   } finally {
     queryClient.clear();
   }
+}
+
+const Cart = async () => {
+  const coupons = await fetchData();
+  return <CartTemplate coupons={coupons.props!.coupons.coupons} />;
 };
+
+export default Cart;
