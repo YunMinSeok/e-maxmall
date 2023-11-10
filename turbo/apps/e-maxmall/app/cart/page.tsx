@@ -1,5 +1,3 @@
-import { NextPage } from "next";
-
 // templates
 import CartTemplate from "@templates/cart/CartTemplate";
 import { dehydrate } from "@tanstack/react-query";
@@ -13,6 +11,7 @@ import { queryKeys, commonOptions } from "@query/constant";
 
 // api
 import { getCoupons } from "@api/coupon";
+import { NextPage } from "next";
 
 interface CartType {
   coupons: CouponVO[];
