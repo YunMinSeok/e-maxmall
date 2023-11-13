@@ -1,6 +1,6 @@
-import { NextPage } from "next";
+"use client";
 
-const Home: NextPage = () => {
+const Home = () => {
   return <>메인 페이지</>;
 };
 

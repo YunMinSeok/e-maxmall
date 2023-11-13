@@ -1,3 +1,4 @@
+"use client";
 // templates
 import LoginTemplate from "@templates/login/LoginTemplate";
 

@@ -1,3 +1,4 @@
+"use client";
 import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import { dehydrate } from "@tanstack/react-query";
 

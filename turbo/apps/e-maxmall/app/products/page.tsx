@@ -1,3 +1,4 @@
+"use client";
 import { NextPage, GetServerSideProps } from "next";
 
 // templates

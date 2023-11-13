@@ -1,3 +1,4 @@
+"use client";
 import { destroyCookie, parseCookies, setCookie as SetCookie } from "nookies";
 import type { GetServerSidePropsContext, NextPageContext } from "next";
 
