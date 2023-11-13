@@ -1,5 +1,3 @@
-"use client";
-
 // components
 import Header from "@components/common/Header";
 import { useLogin } from "@hooks/login/useLogin";
