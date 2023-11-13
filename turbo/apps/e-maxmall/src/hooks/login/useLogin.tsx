@@ -4,7 +4,7 @@ import { setCookie, removeCookie } from "@util/cookie";
 
 // api
 import { getMe } from "@api/user";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const useLogin = () => {
   const router = useRouter();
