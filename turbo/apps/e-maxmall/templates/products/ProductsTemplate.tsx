@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
 // components
@@ -19,25 +19,24 @@ import { queryKeys, commonOptions } from "@query/constant";
 
 const ProductsTemplate = ({ products }: ProductVO) => {
   const router = useRouter();
+  const params = useSearchParams();
+  const pathname = usePathname();
 
   const handleFilter = (type: string, value: string) => {
     const newQuery = {
-      ...router.query,
+      ...params,
       ...Object.fromEntries(new URLSearchParams(`${type}=${value}`)),
     };
-    router.push({
-      pathname: router.pathname,
-      query: newQuery,
-    });
+    router.push(pathname + "?" + newQuery);
   };
 
   const { data } = useQuery({
-    queryKey: [queryKeys.product, router.query],
+    queryKey: [queryKeys.product, params],
     queryFn: () =>
       getProduct({
-        page: String(router.query.page || 1),
-        sort: String(router.query.sort || "desc"),
-        size: String(router.query.size || "5"),
+        page: String(params.get("page") || 1),
+        sort: String(params.get("sort") || "desc"),
+        size: String(params.get("size") || "5"),
       }),
 
     initialData: products,
@@ -48,8 +47,8 @@ const ProductsTemplate = ({ products }: ProductVO) => {
     <ProductsWrap>
       <Header title={"상품 목록페이지"} />
       <ProductFilter
-        sortState={String(router.query.sort || "desc")}
-        sizeState={String(router.query.size || "5")}
+        sortState={String(params.get("sort") || "desc")}
+        sizeState={String(params.get("size") || "5")}
         onChange={handleFilter}
       />
       <ProductSection>
