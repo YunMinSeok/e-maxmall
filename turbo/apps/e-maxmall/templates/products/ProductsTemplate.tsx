@@ -43,6 +43,7 @@ const ProductsTemplate = ({ products }: ProductVO) => {
     ...commonOptions,
   });
 
+  console.log(data);
   return (
     <ProductsWrap>
       <Header title={"상품 목록페이지"} />
@@ -52,11 +53,11 @@ const ProductsTemplate = ({ products }: ProductVO) => {
         onChange={handleFilter}
       />
       <ProductSection>
-        {data.productItems.map((product: ProductItemVO) => {
+        {/* {data.productItems.map((product: ProductItemVO) => {
           return <ProductItem key={product.item_no} product={product} />;
-        })}
+        })} */}
       </ProductSection>
-      <Pagination page={data.page} totalPage={data.totalPage} />
+      {/* <Pagination page={data.page} totalPage={data.totalPage} /> */}
     </ProductsWrap>
   );
 };
