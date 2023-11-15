@@ -1,3 +1,5 @@
+"use client";
+
 import { RefObject } from "react";
 // util
 import { setCookie, removeCookie } from "@util/cookie";
@@ -9,7 +11,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 export const useLogin = () => {
   const router = useRouter();
   const params = useSearchParams();
-  console.log(params);
   // 로그인 버튼 클릭 사용되는 함수
   const handleLoginSubmit = async (
     email: RefObject<HTMLInputElement>,

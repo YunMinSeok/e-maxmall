@@ -47,7 +47,9 @@ async function fetchData() {
 // 상품 리스트 페이지
 const Products = async () => {
   const products = await fetchData();
-  return <ProductsTemplate products={products.props!.products.products} />;
+
+  if (!!products.props) return;
+  return <ProductsTemplate products={products.props?.products.products} />;
 };
 
 export default Products;

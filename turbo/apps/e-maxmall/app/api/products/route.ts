@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
 import { productItems } from "@constant/products";
 
@@ -16,7 +17,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
   });
 
-  res.status(200).json({
+  console.log(2222);
+  res.json({
     page: Number(req.query.page || 1),
     totalPage: 6,
     productItems: productItems.slice(page - Number(req.query.size || 5), page),

@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 
 // 유저 정보 가져오기
