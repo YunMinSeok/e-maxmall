@@ -44,7 +44,7 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   });
 
   /// gnb 이름 오류 뜨는거 먼저 하고 Products api 쪽 봐야함
-  console.log(data);
+
   return (
     <ProductsWrap>
       <Header title={"상품 목록페이지"} />
