@@ -1,5 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+"use client";
+import { NextResponse, NextRequest } from "next/server";
 
 import { productItems } from "@constant/products";
 import { useSearchParams } from "next/navigation";
@@ -27,13 +27,11 @@ const searchParams = useSearchParams();
 //   });
 // }
 
-export async function GET(req: Request) {
-  const queryPage = searchParams.get("page");
-  const querySize = searchParams.get("size");
-  const querySort = searchParams.get("sort");
+export async function GET(req: NextRequest) {
+  const { reaPage, reqSize, reqSort } = await req.json();
 
-  const page = Number(queryPage || 1) * Number(querySize || 5);
-  const sort = String(querySort) || "desc";
+  const page = Number(reaPage || 1) * Number(reqSize || 5);
+  const sort = String(reqSort) || "desc";
 
   // score 기준 내림차순 / 오름차순
   productItems.sort((a: any, b: any) => {
@@ -44,10 +42,9 @@ export async function GET(req: Request) {
     }
   });
 
-  console.log(2222);
   return NextResponse.json({
-    page: Number(queryPage || 1),
+    page: Number(page || 1),
     totalPage: 6,
-    productItems: productItems.slice(page - Number(querySize || 5), page),
+    productItems: productItems.slice(page - Number(reqSize || 5), page),
   });
 }

@@ -2,7 +2,7 @@
 
 import { ProductVO } from "./../type/product/product";
 import axios from "axios";
-
+import { NextResponse } from "next/server";
 // constant
 import { getProductPropsType } from "@constant/searchSort";
 
