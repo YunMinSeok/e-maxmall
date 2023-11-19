@@ -45,9 +45,9 @@ export async function GET(req: Request) {
   });
 
   console.log(2222);
-  return {
+  return NextResponse.json({
     page: Number(queryPage || 1),
     totalPage: 6,
     productItems: productItems.slice(page - Number(querySize || 5), page),
-  };
+  });
 }
