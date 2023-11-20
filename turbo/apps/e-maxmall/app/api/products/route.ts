@@ -27,24 +27,33 @@ const searchParams = useSearchParams();
 //   });
 // }
 
-export async function GET(req: NextRequest) {
-  const { reaPage, reqSize, reqSort } = await req.json();
+// export async function GET(req: NextRequest) {
+//   const { reaPage, reqSize, reqSort } = await req.json();
 
-  const page = Number(reaPage || 1) * Number(reqSize || 5);
-  const sort = String(reqSort) || "desc";
+//   const page = Number(reaPage || 1) * Number(reqSize || 5);
+//   const sort = String(reqSort) || "desc";
 
-  // score 기준 내림차순 / 오름차순
-  productItems.sort((a: any, b: any) => {
-    if (sort === "asc") {
-      return a.score - b.score;
-    } else {
-      return b.score - a.score;
-    }
-  });
+//   // score 기준 내림차순 / 오름차순
+//   productItems.sort((a: any, b: any) => {
+//     if (sort === "asc") {
+//       return a.score - b.score;
+//     } else {
+//       return b.score - a.score;
+//     }
+//   });
 
-  return NextResponse.json({
-    page: Number(page || 1),
-    totalPage: 6,
-    productItems: productItems.slice(page - Number(reqSize || 5), page),
-  });
+//   return NextResponse.json({
+//     page: Number(page || 1),
+//     totalPage: 6,
+//     productItems: productItems.slice(page - Number(reqSize || 5), page),
+//   });
+// }
+
+export async function GET(request: NextRequest) {
+  const greeting = "Hello World!!";
+  const json = {
+    greeting,
+  };
+
+  return NextResponse.json(json);
 }

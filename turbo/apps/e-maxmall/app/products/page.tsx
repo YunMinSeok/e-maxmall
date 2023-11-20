@@ -29,7 +29,7 @@ async function fetchData() {
 
     return {
       props: {
-        products: products,
+        products,
       },
     };
   } catch (err) {
@@ -48,8 +48,9 @@ async function fetchData() {
 const Products = async () => {
   const products = await fetchData();
 
-  if (!!products.props) return;
-  return <ProductsTemplate products={products.props?.products.products} />;
+  if (!!products.props?.products) return;
+
+  return <ProductsTemplate products={products.props?.products} />;
 };
 
 export default Products;
