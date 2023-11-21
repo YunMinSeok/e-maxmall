@@ -20,10 +20,9 @@ async function fetchData() {
   const params = useSearchParams();
   try {
     const page = params.get("page") ?? 1;
-    const products: ProductVO = await queryClient.fetchQuery({
+    const products = await queryClient.fetchQuery({
       queryKey: [queryKeys.product, page],
       queryFn: () => getProduct({ page: String(page), sort: "desc", size: "5" }),
-
       ...commonOptions,
     });
 
