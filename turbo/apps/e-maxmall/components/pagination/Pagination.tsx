@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 // style
 import { PaginationWrap } from "@styles/pagination/pagination";
 
@@ -12,16 +12,20 @@ interface PaginationType {
 
 const Pagination = ({ page, totalPage }: PaginationType) => {
   const router = useRouter();
+  const params = useSearchParams();
+  const pathname = usePathname();
+
   const firstNum = Math.floor((page - 1) / 5) * 5 + 1;
   const lastNum = Math.min(firstNum + 4, totalPage);
 
   const handleRouter = (targetPage: number) => {
     const newQuery = {
-      ...router.query,
+      sort: String(params.get("sort") || "desc"),
+      size: String(params.get("size") || "5"),
       page: targetPage.toString(),
     };
     const nestedUrl = {
-      pathname: router.pathname,
+      pathname: pathname,
       query: newQuery,
     };
 

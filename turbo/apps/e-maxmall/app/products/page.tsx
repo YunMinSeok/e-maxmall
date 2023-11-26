@@ -45,7 +45,7 @@ async function fetchData() {
 const Products = async () => {
   const products = await fetchData();
 
-  if (!!products.products) return;
+  if (!products.products) return;
 
   return <ProductsTemplate products={products.products} />;
 };
