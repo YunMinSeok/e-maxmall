@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 // style
 import { PaginationWrap } from "@styles/pagination/pagination";
 
@@ -11,7 +11,6 @@ interface PaginationType {
 }
 
 const Pagination = ({ page, totalPage }: PaginationType) => {
-  const router = useRouter();
   const params = useSearchParams();
   const pathname = usePathname();
 

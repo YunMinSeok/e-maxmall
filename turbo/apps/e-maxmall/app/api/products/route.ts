@@ -22,7 +22,7 @@ export async function GET(request: Request) {
   });
 
   return NextResponse.json({
-    page: Number(page || 1),
+    page: Number(reqPage || 1),
     totalPage: 6,
     productItems: productItems.slice(page - Number(reqSize || 5), page),
   });

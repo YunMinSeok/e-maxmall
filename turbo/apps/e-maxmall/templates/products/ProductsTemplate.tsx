@@ -44,7 +44,6 @@ const ProductsTemplate = ({ products }: ProductVO) => {
     ...commonOptions,
   });
 
-  console.log(data.page);
   return (
     <ProductsWrap>
       <Header title={"상품 목록페이지"} />
