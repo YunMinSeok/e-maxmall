@@ -24,7 +24,6 @@ const Header = ({ title, isLinkShow }: HeaderProps) => {
 
   useEffect(() => {
     const cookieValue = getCookie("user");
-    console.log(cookieValue);
     setUser(cookieValue);
   }, []);
 
