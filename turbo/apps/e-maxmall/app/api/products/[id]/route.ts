@@ -1,14 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
 import { productItems } from "@constant/products";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(request: Request) {
+  const url = new URL(request.url);
   // 상품 유니크값 가져오기
-  const productNo = req.query.id;
+  const productNo = url.searchParams.get("id");
   // 상품 찾기
   const product = productItems.filter(product => product.item_no === Number(productNo))[0];
 
-  res.status(200).json({
-    product,
-  });
+  return NextResponse.json({ product });
 }
