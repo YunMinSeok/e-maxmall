@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
 const couponArray = [
   {
@@ -63,8 +63,6 @@ const couponArray = [
   },
 ];
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json({
-    coupons: couponArray,
-  });
+export async function GET(request: Request) {
+  return NextResponse.json({ coupons: couponArray });
 }
