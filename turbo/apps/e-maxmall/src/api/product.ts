@@ -2,7 +2,7 @@
 
 import { ProductVO } from "./../type/product/product";
 import axios from "axios";
-import { NextResponse } from "next/server";
+
 // constant
 import { getProductPropsType } from "@constant/searchSort";
 
@@ -12,7 +12,6 @@ export const getProduct = async ({ page, sort, size }: getProductPropsType) => {
     params: { page: page, sort: sort, size: size },
   });
 
-  console.log(res);
   return res.data;
 };
 

@@ -1,3 +1,4 @@
+"use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
@@ -44,6 +45,7 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   });
 
   /// gnb 이름 오류 뜨는거 먼저 하고 Products api 쪽 봐야함
+  console.log(data);
 
   return (
     <ProductsWrap>
@@ -54,11 +56,11 @@ const ProductsTemplate = ({ products }: ProductVO) => {
         onChange={handleFilter}
       />
       <ProductSection>
-        {/* {data.productItems.map((product: ProductItemVO) => {
+        {data.productItems.map((product: ProductItemVO) => {
           return <ProductItem key={product.item_no} product={product} />;
-        })} */}
+        })}
       </ProductSection>
-      {/* <Pagination page={data.page} totalPage={data.totalPage} /> */}
+      <Pagination page={data.page} totalPage={data.totalPage} />
     </ProductsWrap>
   );
 };
