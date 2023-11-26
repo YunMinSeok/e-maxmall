@@ -1,6 +1,5 @@
 "use client";
 
-import { ProductVO } from "./../type/product/product";
 import axios from "axios";
 
 // constant

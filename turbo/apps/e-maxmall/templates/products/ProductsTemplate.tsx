@@ -24,8 +24,9 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   const pathname = usePathname();
 
   const handleFilter = (type: string, value: string) => {
+    console.log(type, value);
     const newQuery = {
-      ...params,
+      sort: String(params.get("sort") || "desc"),
       ...Object.fromEntries(new URLSearchParams(`${type}=${value}`)),
     };
     router.push(pathname + "?" + newQuery);
