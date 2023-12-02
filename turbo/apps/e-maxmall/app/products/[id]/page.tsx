@@ -20,17 +20,15 @@ interface ProductDetailType {
 export async function generateStaticParams() {
   const productIds = await getAllProduct();
 
-  console.log(productIds);
   return productIds.productItems.map((product: ProductItemVO) => ({
     params: { id: String(product.item_no) },
   }));
 }
 // get product detail data
 async function fetchData(id: string) {
-  console.log("id", id);
   try {
     const product = await queryClient.fetchQuery({
-      queryKey: [queryKeys.product, id],
+      queryKey: [queryKeys.productDetail, id],
       queryFn: () => getProductDetail(id),
       ...commonOptions,
     });
@@ -51,12 +49,12 @@ async function fetchData(id: string) {
 }
 
 const ProductDetail = async ({ params }: { params: { id: string } }) => {
-  console.log(params);
   const product = await fetchData(params.id);
 
   if (!product.product) return;
 
-  return <ProductDetailTemplate product={product.product} />;
+  // return <ProductDetailTemplate product={product.product} />;
+  return null;
 };
 
 export default ProductDetail;

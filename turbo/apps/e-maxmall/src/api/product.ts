@@ -1,5 +1,3 @@
-"use client";
-
 import axios from "axios";
 
 // constant
@@ -17,6 +15,9 @@ export const getProduct = async ({ page, sort, size }: getProductPropsType) => {
 // 상품 상세 조회하기
 export const getProductDetail = async (productNo: string) => {
   const res = await axios.get(`http://localhost:3000/api/products/${productNo}`);
+
+  console.log(res);
+  console.log(productNo);
 
   return res.data.product;
 };
