@@ -18,7 +18,7 @@ interface HeaderProps {
   isLinkShow?: boolean;
 }
 
-const Header = ({ title, isLinkShow }: HeaderProps) => {
+const Header = ({ title, isLinkShow = true }: HeaderProps) => {
   const [user, setUser] = useState("");
   const { handleLogout } = useLogin();
 
@@ -56,7 +56,3 @@ const Header = ({ title, isLinkShow }: HeaderProps) => {
 };
 
 export default Header;
-
-Header.defaultProps = {
-  isLinkShow: true,
-};
