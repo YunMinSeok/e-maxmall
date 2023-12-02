@@ -1,3 +1,5 @@
+"use client";
+
 import { dehydrate } from "@tanstack/react-query";
 
 // templates
@@ -16,14 +18,6 @@ interface ProductDetailType {
   product: ProductItemVO;
 }
 
-// get product id
-export async function generateStaticParams() {
-  const productIds = await getAllProduct();
-
-  return productIds.productItems.map((product: ProductItemVO) => ({
-    params: { id: String(product.item_no) },
-  }));
-}
 // get product detail data
 async function fetchData(id: string) {
   try {
@@ -53,8 +47,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
 
   if (!product.product) return;
 
-  // return <ProductDetailTemplate product={product.product} />;
-  return null;
+  return <ProductDetailTemplate product={product.product} />;
 };
 
 export default ProductDetail;

@@ -1,6 +1,9 @@
 "use client";
 import Image from "next/image";
 
+// component
+import Header from "@components/common/Header";
+
 // type
 import { ProductItemVO } from "@type/product/product";
 
@@ -15,7 +18,6 @@ import {
 // hooks
 import { useProductDetail } from "@hooks/products/useProductDetail";
 import { useProducts } from "@hooks/products/useProducts";
-import Header from "@components/common/Header";
 
 interface ProductDetailTemplateType {
   product: ProductItemVO;
