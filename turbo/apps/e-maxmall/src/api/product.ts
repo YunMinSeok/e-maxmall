@@ -17,8 +17,6 @@ export const getProductDetail = async (productNo: string) => {
   const res = await axios.get(`http://localhost:3000/api/products/${productNo}`);
 
   console.log(res);
-  console.log(productNo);
-
   return res.data.product;
 };
 
