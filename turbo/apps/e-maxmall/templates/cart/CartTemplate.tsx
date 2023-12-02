@@ -62,17 +62,18 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
             </th>
           </tr>
         </thead>
-        {cartList.map((product, index) => {
-          return (
-            <CartItem
-              key={"cart -" + product.item_no + index}
-              product={product}
-              checkedItems={checkedItems}
-              setCheckedItems={setCheckedItems}
-              checkedItemHandler={checkedItemHandler}
-            />
-          );
-        })}
+        {cartList &&
+          cartList.map((product, index) => {
+            return (
+              <CartItem
+                key={"cart -" + product.item_no + index}
+                product={product}
+                checkedItems={checkedItems}
+                setCheckedItems={setCheckedItems}
+                checkedItemHandler={checkedItemHandler}
+              />
+            );
+          })}
       </CartTable>
       <CartCoupon>
         <div className="coupon-info">
@@ -82,13 +83,14 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
         <div className="coupon-select">
           <select className="coupon-select" onChange={e => setCouponData(Number(e.target.value))}>
             <option value="">선택 안 함</option>
-            {coupons.map((element, index) => {
-              return (
-                <option key={element.price + element.name + index} value={element.id}>
-                  {element.price + element.name}
-                </option>
-              );
-            })}
+            {coupons &&
+              coupons.map((element, index) => {
+                return (
+                  <option key={element.price + element.name + index} value={element.id}>
+                    {element.price + element.name}
+                  </option>
+                );
+              })}
           </select>
         </div>
       </CartCoupon>
