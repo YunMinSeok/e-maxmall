@@ -19,7 +19,7 @@ interface CartType {
 
 async function fetchData() {
   try {
-    const coupons: CartType = await queryClient.fetchQuery({
+    const coupons = await queryClient.fetchQuery({
       queryKey: [queryKeys.coupon],
       queryFn: () => getCoupons(),
       ...commonOptions,
@@ -45,7 +45,8 @@ async function fetchData() {
 
 const Cart = async () => {
   const coupons = await fetchData();
-  return <CartTemplate coupons={coupons.props!.coupons.coupons} />;
+
+  return <CartTemplate coupons={coupons.props!.coupons} />;
 };
 
 export default Cart;
