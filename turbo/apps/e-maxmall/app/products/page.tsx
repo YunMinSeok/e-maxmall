@@ -3,9 +3,6 @@
 // templates
 import ProductsTemplate from "@templates/products/ProductsTemplate";
 
-// type
-import { ProductVO } from "@type/product/product";
-
 // query
 import { queryClient } from "@query/queryClient";
 import { queryKeys, commonOptions } from "@query/constant";
@@ -27,7 +24,7 @@ async function fetchData() {
     });
 
     return {
-      products,
+      products: products,
     };
   } catch (err) {
     return {
@@ -45,7 +42,7 @@ async function fetchData() {
 const Products = async () => {
   const products = await fetchData();
 
-  if (!products.products) return;
+  if (!products?.products) return;
 
   return <ProductsTemplate products={products.products} />;
 };
