@@ -23,12 +23,17 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   const pathname = usePathname();
 
   const handleFilter = (type: string, value: string) => {
-    console.log(type, value);
+    console.log(params.get("sort"));
     const newQuery = {
       sort: String(params.get("sort") || "desc"),
-      ...Object.fromEntries(new URLSearchParams(`${type}=${value}`)),
+      size: String(params.get("size") || "5"),
+      page: String(params.get("page")),
     };
-    router.push(pathname + "?" + newQuery);
+    const nestedUrl = {
+      pathname: pathname,
+      query: newQuery,
+    };
+    router.push(`${pathname}?${newQuery}`);
   };
 
   const { data } = useQuery({
