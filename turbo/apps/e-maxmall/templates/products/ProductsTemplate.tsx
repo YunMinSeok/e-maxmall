@@ -16,6 +16,7 @@ import { ProductVO, ProductItemVO } from "@type/product/product";
 import { getProduct } from "@api/product";
 // query
 import { queryKeys, commonOptions } from "@query/constant";
+import { useEffect } from "react";
 
 const ProductsTemplate = ({ products }: ProductVO) => {
   const router = useRouter();
@@ -26,16 +27,12 @@ const ProductsTemplate = ({ products }: ProductVO) => {
     const sort = String(params.get("sort") || "desc");
     const size = String(params.get("size") || "5");
     const page = String(params.get("page"));
-    const newQuery = {
-      sort: String(params.get("sort") || "desc"),
-      size: String(params.get("size") || "5"),
-      page: String(params.get("page")),
-    };
+    console.log(1);
     router.push(`${pathname}?sort=${sort}?size=${size}?page=${page}`);
   };
 
   const { data } = useQuery({
-    queryKey: [queryKeys.product, params],
+    queryKey: [queryKeys.product, params.get("sort"), params.get("size"), params.get("page")],
     queryFn: () =>
       getProduct({
         page: String(params.get("page") || 1),
@@ -46,6 +43,10 @@ const ProductsTemplate = ({ products }: ProductVO) => {
     initialData: products,
     ...commonOptions,
   });
+
+  useEffect(() => {
+    console.log(params);
+  }, [params]);
 
   return (
     <ProductsWrap>
