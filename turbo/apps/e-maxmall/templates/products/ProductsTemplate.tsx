@@ -24,18 +24,9 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   const pathname = usePathname();
 
   const handleFilter = (type: string, value: string) => {
-    // const sort = String(params.get("sort") || "desc");
-    // const size = String(params.get("size") || "5");
-    // const page = String(params.get("page"));
-    // const newQuery = {
-    //   sort: String(params.get("sort") || "desc"),
-    //   size: String(params.get("size") || "5"),
-    //   page: String(params.get("page")),
-    // };
     const queryParams = new URLSearchParams(params);
     queryParams.set(type, value);
 
-    console.log(queryParams);
     router.push(pathname + "?" + queryParams);
   };
 
