@@ -30,8 +30,8 @@ function RootLayout({ children }: { children: React.ReactNode }) {
                 />
               </Head>
               <AsyncWrapper>{children}</AsyncWrapper>
-              <ReactQueryDevtools buttonPosition={"bottom-left"} initialIsOpen={false} />
             </HydrationBoundary>
+            <ReactQueryDevtools initialIsOpen position="bottom" buttonPosition="bottom-left" />
           </QueryClientProvider>
         </RecoilRoot>
       </body>
