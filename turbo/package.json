@@ -5,6 +5,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "maxmall:build": "turbo run build --scope='e-maxmall'",
     "maxmall:dev": "turbo run dev --scope='e-maxmall'",
     "prepare": "husky install"
   },
