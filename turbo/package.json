@@ -7,6 +7,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "maxmall:build": "turbo run build --scope='e-maxmall'",
     "maxmall:dev": "turbo run dev --scope='e-maxmall'",
+    "maxmall:test": "concurrently \"cd apps/e-maxmall && pnpm run test \" \"turbo run dev --scope='e-maxmall'\"",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -23,6 +24,7 @@
     ]
   },
   "dependencies": {
+    "concurrently": "^8.2.2",
     "lint-staged": "^15.0.2"
   }
 }
