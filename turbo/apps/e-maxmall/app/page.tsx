@@ -1,7 +1,7 @@
 "use client";
 
 const Home = () => {
-  return <>메인 페이지</>;
+  return <div>메인 페이지</div>;
 };
 
 export default Home;
