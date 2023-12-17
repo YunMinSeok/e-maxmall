@@ -11,10 +11,10 @@ describe("template spec", () => {
 
   it("상품 페이지 확인용", () => {
     // 상품 목록 페이지으로 잘 들어왔는지 확인
-    cy.contains("span", "상품 목록페이지").should("be.visible");
+    expect(cy.contains("span", "상품 목록페이지").should("be.visible"));
   });
 
-  it("React Query로 데이터가 성공적으로 렌더링되었는지 확인하기", async () => {
+  it("React Query로 데이터가 성공적으로 렌더링되었는지 확인하기", () => {
     // React Query로 데이터를 받아온 후 렌더링되는 요소를 확인합니다.
     // products 값이 초기값이 아닌지 확인
     expect(products).not.to.be.undefined;
@@ -23,22 +23,23 @@ describe("template spec", () => {
     expect(products.productItems).to.exist;
   });
 
-  it("필터링 작동 잘하는지 확인", async () => {
+  it("필터링 작동 잘하는지 확인", () => {
     // 필터링 점수 낮은순
     cy.contains("label", "점수 낮은순").click();
-    cy.url().should("include", "sort=asc");
+    expect(cy.url().should("include", "sort=asc"));
 
     // 필터링 점수 높은순
     cy.contains("label", "점수 높은순").click();
-    cy.url().should("include", "sort=desc");
+    expect(cy.url().should("include", "sort=desc"));
   });
 
-  it("페이지네이션 작동 잘하는지 확인", async () => {
+  it("페이지네이션 작동 잘하는지 확인", () => {
     // 페이지네이션 요소 선택하여 변수에 저장
     const pagination = cy.get(".pagination-list-wrap");
-
+    // 예: 1초 기다림
+    cy.wait(1000);
     // 변수를 이용해 "2" 텍스트를 포함한 링크 클릭
     pagination.contains("2").click();
-    cy.url().should("include", "page=2");
+    expect(cy.url().should("include", "page=2"));
   });
 });
