@@ -1,4 +1,3 @@
-import { productItems } from "@constant/products";
 import { getProduct } from "@api/product";
 
 describe("template spec", () => {

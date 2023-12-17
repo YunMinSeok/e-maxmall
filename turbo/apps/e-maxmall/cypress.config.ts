@@ -11,6 +11,7 @@ export default defineConfig({
   e2e: {
     specPattern: "cypress/integration/**/*.cy.ts",
     baseUrl: "http://localhost:3000/",
+    testIsolation: false,
     setupNodeEvents(on, config) {
       // implement node event ßlisteners here
     },
