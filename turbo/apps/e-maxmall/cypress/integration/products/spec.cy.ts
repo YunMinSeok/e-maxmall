@@ -8,8 +8,9 @@ describe("template spec", () => {
     cy.visit("/products");
     products = await getProduct({ page: "1", sort: "desc", size: "5" });
   });
+
   it("상품 페이지 확인용", () => {
-    //
+    // 상품 목록 페이지으로 잘 들어왔는지 확인
     cy.contains("span", "상품 목록페이지").should("be.visible");
   });
 
@@ -20,5 +21,24 @@ describe("template spec", () => {
     expect(products).not.to.be.null;
     // products 값이 있는지 확인
     expect(products.productItems).to.exist;
+  });
+
+  it("필터링 작동 잘하는지 확인", async () => {
+    // 필터링 점수 낮은순
+    cy.contains("label", "점수 낮은순").click();
+    cy.url().should("include", "sort=asc");
+
+    // 필터링 점수 높은순
+    cy.contains("label", "점수 높은순").click();
+    cy.url().should("include", "sort=desc");
+  });
+
+  it("페이지네이션 작동 잘하는지 확인", async () => {
+    // 페이지네이션 요소 선택하여 변수에 저장
+    const pagination = cy.get(".pagination-list-wrap");
+
+    // 변수를 이용해 "2" 텍스트를 포함한 링크 클릭
+    pagination.contains("2").click();
+    cy.url().should("include", "page=2");
   });
 });
