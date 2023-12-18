@@ -23,7 +23,7 @@ describe("template spec", () => {
     expect(products.productItems).to.exist;
   });
 
-  it("필터링 작동 잘하는지 확인", () => {
+  it("필터링 점수 부분 작동 잘하는지 확인", () => {
     // 필터링 점수 낮은순
     cy.contains("label", "점수 낮은순").click();
     expect(cy.url().should("include", "sort=asc"));
@@ -31,6 +31,24 @@ describe("template spec", () => {
     // 필터링 점수 높은순
     cy.contains("label", "점수 높은순").click();
     expect(cy.url().should("include", "sort=desc"));
+  });
+
+  it("필터링 갯수 부분 작동 잘하는지 확인", () => {
+    // 필터링 갯수 5개
+    cy.get("ul")
+      .find("li") // li 요소 선택
+      .trigger("mouseover") // li 요소 위로 마우스 커서 이동
+      .contains("5개씩 보기")
+      .click(); // 클릭 이벤트 발생
+    expect(cy.url().should("include", "size=5"));
+
+    // 필터링 갯수 10개
+    cy.get("ul")
+      .find("li") // li 요소 선택
+      .trigger("mouseover") // li 요소 위로 마우스 커서 이동
+      .contains("10개씩 보기")
+      .click(); // 클릭 이벤트 발생
+    expect(cy.url().should("include", "size=10"));
   });
 
   it("페이지네이션 작동 잘하는지 확인", () => {
