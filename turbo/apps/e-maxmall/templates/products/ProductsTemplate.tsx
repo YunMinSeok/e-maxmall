@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
@@ -16,7 +17,6 @@ import { ProductVO, ProductItemVO } from "@type/product/product";
 import { getProduct } from "@api/product";
 // query
 import { queryKeys, commonOptions } from "@query/constant";
-import { useEffect } from "react";
 
 const ProductsTemplate = ({ products }: ProductVO) => {
   const router = useRouter();
@@ -26,7 +26,6 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   const handleFilter = (type: string, value: string) => {
     const queryParams = new URLSearchParams(params);
     queryParams.set(type, value);
-
     router.push(pathname + "?" + queryParams);
   };
 
@@ -34,7 +33,7 @@ const ProductsTemplate = ({ products }: ProductVO) => {
     queryKey: [queryKeys.product, params.get("sort"), params.get("size"), params.get("page")],
     queryFn: () =>
       getProduct({
-        page: String(params.get("page") || 1),
+        page: String(params.get("page") || "1"),
         sort: String(params.get("sort") || "desc"),
         size: String(params.get("size") || "5"),
       }),
@@ -42,7 +41,7 @@ const ProductsTemplate = ({ products }: ProductVO) => {
     initialData: products,
     ...commonOptions,
   });
-
+  console.log(data);
   return (
     <ProductsWrap>
       <Header title={"상품 목록페이지"} />

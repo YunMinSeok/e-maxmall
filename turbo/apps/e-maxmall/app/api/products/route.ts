@@ -11,6 +11,7 @@ export async function GET(request: Request) {
 
   const page = Number(reqPage || 1) * Number(reqSize || 5);
   const sort = String(reqSort) || "desc";
+  const size = Number(reqSize || 5);
 
   // score 기준 내림차순 / 오름차순
   productItems.sort((a: any, b: any) => {
@@ -24,6 +25,6 @@ export async function GET(request: Request) {
   return NextResponse.json({
     page: Number(reqPage || 1),
     totalPage: 6,
-    productItems: productItems.slice(page - Number(reqSize || 5), page),
+    productItems: productItems.slice(page - size, page),
   });
 }
