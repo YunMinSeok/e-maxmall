@@ -23,6 +23,10 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   const params = useSearchParams();
   const pathname = usePathname();
 
+  const paramsPage = String(params.get("page") || "1");
+  const paramsSort = String(params.get("sort") || "desc");
+  const paramsSize = String(params.get("size") || "5");
+
   const handleFilter = (type: string, value: string) => {
     const queryParams = new URLSearchParams(params);
     queryParams.set(type, value);
@@ -30,17 +34,12 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   };
 
   const { data } = useQuery({
-    queryKey: [
-      queryKeys.product,
-      String(params.get("page") || "1"),
-      String(params.get("sort") || "desc"),
-      String(params.get("size") || "5"),
-    ],
+    queryKey: [queryKeys.product, paramsPage, paramsSort, paramsSize],
     queryFn: () =>
       getProduct({
-        page: String(params.get("page") || "1"),
-        sort: String(params.get("sort") || "desc"),
-        size: String(params.get("size") || "5"),
+        page: paramsPage,
+        sort: paramsSort,
+        size: paramsSize,
       }),
     initialData: products,
     ...commonOptions,
@@ -49,11 +48,7 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   return (
     <ProductsWrap>
       <Header title={"상품 목록페이지"} />
-      <ProductFilter
-        sortState={String(params.get("sort") || "desc")}
-        sizeState={String(params.get("size") || "5")}
-        onChange={handleFilter}
-      />
+      <ProductFilter sortState={paramsSort} sizeState={paramsSize} onChange={handleFilter} />
       <ProductSection>
         {data.productItems.map((product: ProductItemVO) => {
           return <ProductItem key={product.item_no} product={product} />;
