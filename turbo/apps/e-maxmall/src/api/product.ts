@@ -8,7 +8,7 @@ export const getProduct = async ({ page, sort, size }: getProductPropsType) => {
   const res = await axios.get("http://localhost:3000/api/products", {
     params: { page: page, sort: sort, size: size },
   });
-
+  console.log("api", res.data);
   return res.data;
 };
 

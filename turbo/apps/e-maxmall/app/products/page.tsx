@@ -33,8 +33,6 @@ async function fetchData() {
         statusCode: 307,
       },
     };
-  } finally {
-    queryClient.clear();
   }
 }
 
