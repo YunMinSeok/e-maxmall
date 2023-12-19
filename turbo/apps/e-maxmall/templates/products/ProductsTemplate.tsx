@@ -30,18 +30,22 @@ const ProductsTemplate = ({ products }: ProductVO) => {
   };
 
   const { data } = useQuery({
-    queryKey: [queryKeys.product, params.get("sort"), params.get("size"), params.get("page")],
+    queryKey: [
+      queryKeys.product,
+      String(params.get("page") || "1"),
+      String(params.get("sort") || "desc"),
+      String(params.get("size") || "5"),
+    ],
     queryFn: () =>
       getProduct({
         page: String(params.get("page") || "1"),
         sort: String(params.get("sort") || "desc"),
         size: String(params.get("size") || "5"),
       }),
-
     initialData: products,
     ...commonOptions,
   });
-  console.log(data);
+
   return (
     <ProductsWrap>
       <Header title={"상품 목록페이지"} />
