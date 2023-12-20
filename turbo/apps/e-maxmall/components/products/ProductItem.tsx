@@ -20,7 +20,7 @@ const ProductItem = ({ product }: ProductItem) => {
 
   return (
     <ProductItemWrap>
-      <Link href={`/products/${product.item_no}`}>
+      <Link className="product-item" href={`/products/${product.item_no}`}>
         <div className="product-image-container">
           <Image
             className="product-image"

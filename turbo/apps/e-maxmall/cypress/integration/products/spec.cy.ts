@@ -64,4 +64,39 @@ describe("template spec", () => {
     pagination.contains("2").click();
     expect(cy.url().should("include", "page=2"));
   });
+
+  it("상품 상세로 잘 이동하는지 확인", () => {
+    // 0번째 선택후 상품이동
+    cy.get(".product-item")
+      .eq(0)
+      .invoke("attr", "href")
+      .then(href => {
+        cy.get(".product-item").eq(0).click();
+        expect(cy.url().should("eq", Cypress.config().baseUrl! + href!));
+      });
+
+    // 상품 상세 페이지에서 뒤로가기
+    cy.go(-1);
+
+    // 2번째 선택후 상품이동
+    cy.get(".product-item")
+      .eq(2)
+      .invoke("attr", "href")
+      .then(href => {
+        cy.get(".product-item").eq(2).click();
+        expect(cy.url().should("eq", Cypress.config().baseUrl! + href!));
+      });
+
+    // 상품 상세 페이지에서 뒤로가기
+    cy.go(-1);
+
+    // 4번째 선택후 상품이동
+    cy.get(".product-item")
+      .eq(4)
+      .invoke("attr", "href")
+      .then(href => {
+        cy.get(".product-item").eq(4).click();
+        expect(cy.url().should("eq", Cypress.config().baseUrl! + href!));
+      });
+  });
 });
