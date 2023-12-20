@@ -35,19 +35,23 @@ describe("template spec", () => {
 
   it("필터링 갯수 부분 작동 잘하는지 확인", () => {
     // 필터링 갯수 5개
-    cy.get("ul")
-      .find("li") // li 요소 선택
-      .trigger("mouseover") // li 요소 위로 마우스 커서 이동
+    cy.get(".product_filter_wrap")
+      .trigger("mouseover")
+      // 5개씩 보기 글자가 포함된 li 요소 찾기
       .contains("5개씩 보기")
-      .click(); // 클릭 이벤트 발생
+      // 클릭 이벤트 발생
+      .click();
+
     expect(cy.url().should("include", "size=5"));
 
-    // 필터링 갯수 10개
-    cy.get("ul")
-      .find("li") // li 요소 선택
-      .trigger("mouseover") // li 요소 위로 마우스 커서 이동
+    // // 필터링 갯수 10개
+    cy.get(".product_filter_wrap")
+      .trigger("mouseover")
+      // 10개씩 보기 글자가 포함된 li 요소 찾기
       .contains("10개씩 보기")
-      .click(); // 클릭 이벤트 발생
+      // 클릭 이벤트 발생
+      .click({ force: true });
+
     expect(cy.url().should("include", "size=10"));
   });
 

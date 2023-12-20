@@ -36,7 +36,7 @@ const ProductFilter = ({ sortState, sizeState, onChange }: ProductFilterPropsTyp
         </ul>
       </ProductSearchSortWrap>
       <ProductSortingList>
-        <ul>
+        <ul className="product_filter_wrap">
           <li className={sizeState === "5" ? "selected" : ""} onClick={() => onChange("size", "5")}>
             5개씩 보기
           </li>
