@@ -2,6 +2,12 @@ describe("template spec", () => {
   before(() => {
     cy.visit("/products");
   });
+  it("로그인 먼저 하기", () => {
+    cy.get(".login-wrap").click();
+    cy.get(".member-input").eq(0).type("yunminseok");
+    cy.get(".member-input").eq(1).type("1234");
+    cy.get(".login-button").click();
+  });
   it("장바구니에 상품 담기", () => {
     // 첫번쨰꺼 클릭
     let productName: string = "";
@@ -38,4 +44,5 @@ describe("template spec", () => {
       expect(str).to.equal(`장바구니에 ${productName}을 담았습니다.`);
     });
   });
+  it("장바구니 클릭시 이동", () => {});
 });
