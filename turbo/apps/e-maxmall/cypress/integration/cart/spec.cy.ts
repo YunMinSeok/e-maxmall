@@ -44,5 +44,8 @@ describe("template spec", () => {
       expect(str).to.equal(`장바구니에 ${productName}을 담았습니다.`);
     });
   });
-  it("장바구니 클릭시 이동", () => {});
+  it("장바구니 클릭시 이동", () => {
+    cy.get(".cart-icon").click();
+    expect(cy.url().should("eq", Cypress.config().baseUrl! + "/cart"));
+  });
 });
