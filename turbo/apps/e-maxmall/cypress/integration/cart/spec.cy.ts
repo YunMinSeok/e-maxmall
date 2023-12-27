@@ -62,7 +62,16 @@ describe("template spec", () => {
   });
 
   it("상품 수량 변경하기", () => {
-    cy.get(".quantity-select").trigger("mouseover").contains("3").click({ force: true });
-    // expect(cy.get())
+    // 첫번째 상품 수량 3으로 변경
+    cy.get(".quantity-select").eq(0).select("3");
+    expect(cy.get(".quantity-select").eq(0).should("have.value", "3"));
+
+    // 2번째 상품 수량 6로 변경
+    cy.get(".quantity-select").eq(0).select("6");
+    expect(cy.get(".quantity-select").eq(0).should("have.value", "6"));
+
+    // 3번째 상품 수량 6로 변경
+    cy.get(".quantity-select").eq(0).select("9");
+    expect(cy.get(".quantity-select").eq(0).should("have.value", "9"));
   });
 });
