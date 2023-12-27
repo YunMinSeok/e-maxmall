@@ -52,5 +52,17 @@ describe("template spec", () => {
     expect(cy.get(".cartTable-itemWrap").should("have.length", 3));
   });
 
-  it("장바구니 상품 선택", () => {});
+  it("장바구니 상품 선택", () => {
+    // 상품 전체선택 클릭
+    cy.get("input.all-item-select").click();
+    cy.get('td.product-select-event input[type="checkbox"]').each($checkbox => {
+      // 각각의 checkbox가 체크되어 있는지 확인
+      expect($checkbox).to.be.checked; // 체크되어 있는지 확인
+    });
+  });
+
+  it("상품 수량 변경하기", () => {
+    cy.get(".quantity-select").trigger("mouseover").contains("3").click({ force: true });
+    // expect(cy.get())
+  });
 });

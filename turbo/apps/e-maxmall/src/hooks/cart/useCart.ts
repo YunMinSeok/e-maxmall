@@ -17,7 +17,6 @@ export const useCart = () => {
   const [checkedItems, setCheckedItems] = useState<Array<ProductItemInterface>>([]);
   const [allCheck, setAllCheck] = useState(false);
   const [selectCoupon, setSelectCoupon] = useState<CouponVO | null>(null);
-
   // 체크 버트 누르면 일어나는 함수
   const checkedItemHandler = (
     product: ProductItemInterface,
