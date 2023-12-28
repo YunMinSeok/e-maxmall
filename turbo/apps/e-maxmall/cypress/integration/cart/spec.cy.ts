@@ -74,4 +74,14 @@ describe("template spec", () => {
     cy.get(".quantity-select").eq(0).select("9");
     expect(cy.get(".quantity-select").eq(0).should("have.value", "9"));
   });
+
+  it("쿠폰 선택하기", () => {
+    // 쿠폰 1500원 선택
+    cy.get("select.coupon-select").select("1500원 할인");
+    expect(cy.get("select.coupon-select").should("have.value", "1500원 할인"));
+
+    // 쿠폰 10% 선택
+    cy.get("select.coupon-select").select("10% 할인");
+    expect(cy.get("select.coupon-select").should("have.value", "10% 할인"));
+  });
 });

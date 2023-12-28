@@ -86,7 +86,10 @@ const CartTemplate = ({ coupons }: CartTemplateType) => {
             {coupons &&
               coupons.map((element, index) => {
                 return (
-                  <option key={element.price + element.name + index} value={element.id}>
+                  <option
+                    key={element.price + element.name + index}
+                    value={element.price + element.name}
+                  >
                     {element.price + element.name}
                   </option>
                 );
