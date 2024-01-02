@@ -1,7 +1,9 @@
 "use client";
 
+import HomeTemplate from "@templates/home/HomeTemplate";
+
 const Home = () => {
-  return <div>메인 페이지</div>;
+  return <HomeTemplate />;
 };
 
 export default Home;
