@@ -10,7 +10,7 @@ html {
 body {
   box-sizing: border-box;
   color: #111;
-  font-family: Dotum, \\B3CB\C6C0, sans-serif;
+  font-family: Roboto;
 }
 
 option {
@@ -63,4 +63,8 @@ input[type="checkbox" i] {
   margin: 1px 3px 3px 4px;
   padding: initial;
   border: initial;
+}
+a {
+  color: hsl(187, 85%, 60%);
+  transition: all 0.3s ease;
 }
