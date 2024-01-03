@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { HomeHeaderWrapper, HomeMainWrapper, HomeWrapper } from "@styles/home/home";
+// style
+import { HomeHeaderWrapper, HomeMainWrapper, HomeWrapper, ShowCase } from "@styles/home/home";
 
 const HomeTemplate = () => {
   return (
@@ -26,6 +27,22 @@ const HomeTemplate = () => {
             <mark>realistic effects</mark> of e-maxmall's products. Cards provide ui using
             <mark>3d conversion</mark>,<mark> filters</mark>,<mark> blend mode</mark>,
             <mark>CSS gradient</mark> and interaction
+          </section>
+          <ShowCase>
+            <div className="card" />
+            <div className="overlay" />
+          </ShowCase>
+          <section className="info">
+            <h2>Click on a Card to take a Closer look!</h2>
+            <hr />
+            <p className="small">
+              I'm using NextJS to handle interactivity and state;
+              <strong>assigning values to css custom properties</strong> (variables) which in-turn
+              drive the effects and 3d transforms.
+              <br />
+              <a href="https://github.com/YunMinSeok/e-maxmall">Source code is in the repository</a>
+              .
+            </p>
           </section>
         </HomeHeaderWrapper>
       </HomeMainWrapper>
