@@ -72,16 +72,17 @@ export const HomeHeaderWrapper = styled.header`
 `;
 
 export const ShowCase = styled.div`
+  position: relative;
   grid-column: 2;
   grid-row: 1/5;
   width: 220px;
   height: 310px;
   transition: all 0.1s;
-  position: relative;
 
   .card {
     width: 220px;
     height: 310px;
+    border-radius: 10px;
     background-image: url(${ProductImage.src});
     background-size: cover;
   }

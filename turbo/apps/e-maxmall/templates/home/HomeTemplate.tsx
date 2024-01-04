@@ -1,7 +1,7 @@
 import Link from "next/link";
 // style
 import { HomeHeaderWrapper, HomeMainWrapper, HomeWrapper, ShowCase } from "@styles/home/home";
-import { MouseEventHandler, useRef } from "react";
+import { useRef } from "react";
 
 const HomeTemplate = () => {
   const container = useRef<HTMLDivElement>(null);
