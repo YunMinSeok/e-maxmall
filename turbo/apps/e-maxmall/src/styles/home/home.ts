@@ -72,9 +72,6 @@ export const HomeHeaderWrapper = styled.header`
 `;
 
 export const ShowCase = styled.div`
-  z-index: 99;
-  max-width: min(330px, 80vw);
-  margin: auto;
   grid-column: 2;
   grid-row: 1/5;
   width: 220px;
