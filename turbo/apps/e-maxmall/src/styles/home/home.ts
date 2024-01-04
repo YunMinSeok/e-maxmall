@@ -23,6 +23,7 @@ export const HomeHeaderWrapper = styled.header`
   margin: auto;
 
   h1 {
+    font-size: 32px;
     font-family: "Roboto Condensed";
     sup {
       font-weight: 300;
@@ -46,16 +47,6 @@ export const HomeHeaderWrapper = styled.header`
     font-size: 16px;
   }
 
-  .intro {
-    mark {
-      background: #006065;
-      color: white;
-      font-style: italic;
-      font-weight: bold;
-      padding-inline: 0.25em;
-      border-radius: 3px;
-    }
-  }
   .info {
     h2 {
       margin-top: 0;
@@ -71,6 +62,18 @@ export const HomeHeaderWrapper = styled.header`
   }
 `;
 
+export const HomeSectionWrapper = styled.section`
+  margin-top: 12em;
+  h2 {
+    font-size: 24px;
+    margin-bottom: 0.25em;
+  }
+  p {
+    font-style: italic;
+    margin-bottom: 1em;
+  }
+`;
+
 export const ShowCase = styled.div`
   position: relative;
   grid-column: 2;
@@ -82,7 +85,7 @@ export const ShowCase = styled.div`
   .card {
     width: 220px;
     height: 310px;
-    border-radius: 10px;
+    border-radius: 4.55% / 3.5%;
     background-image: url(${ProductImage.src});
     background-size: cover;
   }

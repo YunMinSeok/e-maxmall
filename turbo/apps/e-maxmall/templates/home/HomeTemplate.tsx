@@ -1,6 +1,12 @@
 import Link from "next/link";
 // style
-import { HomeHeaderWrapper, HomeMainWrapper, HomeWrapper, ShowCase } from "@styles/home/home";
+import {
+  HomeHeaderWrapper,
+  HomeMainWrapper,
+  HomeSectionWrapper,
+  HomeWrapper,
+  ShowCase,
+} from "@styles/home/home";
 import { useRef } from "react";
 
 const HomeTemplate = () => {
@@ -72,6 +78,15 @@ const HomeTemplate = () => {
             </p>
           </section>
         </HomeHeaderWrapper>
+        <HomeSectionWrapper>
+          <h2>Product Card List</h2>
+          <p>
+            All cards get a 3d rotation with CSS based on the cursor position.
+            <br />
+            The default basic non-holo cards simply apply a <mark>flare/glare</mark> effect to the
+            card which follows the mouse.
+          </p>
+        </HomeSectionWrapper>
       </HomeMainWrapper>
     </HomeWrapper>
   );

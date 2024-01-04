@@ -11,6 +11,7 @@ body {
   box-sizing: border-box;
   color: #111;
   font-family: Roboto;
+  font-size: 16px;
 }
 
 option {
@@ -67,4 +68,13 @@ input[type="checkbox" i] {
 a {
   color: hsl(187, 85%, 60%);
   transition: all 0.3s ease;
+}
+
+mark {
+  background: #006065;
+  color: white;
+  font-style: italic;
+  font-weight: bold;
+  padding-inline: 0.25em;
+  border-radius: 3px;
 }
