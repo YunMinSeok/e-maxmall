@@ -1,12 +1,8 @@
 // style
 import { HomeMainWrapper, HomeSectionWrapper, HomeWrapper } from "@styles/home/home";
-import { useRef } from "react";
 import HomeHeader from "@components/home/HomeHeader";
 
 const HomeTemplate = () => {
-  const container = useRef<HTMLDivElement>(null);
-  const overlay = useRef<HTMLDivElement>(null);
-
   return (
     <HomeWrapper>
       <HomeMainWrapper>

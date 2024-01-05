@@ -35,7 +35,12 @@ const HomeHeader = () => {
         <mark>3d conversion</mark>,<mark> filters</mark>,<mark> blend mode</mark>,
         <mark>CSS gradient</mark> and interaction
       </section>
-      <ShowCaseCard />
+      <ShowCaseCard
+        containerRef={container}
+        overlayRef={overlay}
+        mouseMoveEvent={handleMouseMove}
+        mouseOutEvent={handleMouseOut}
+      />
       <section className="info">
         <h2>Click on a Card to take a Closer look!</h2>
         <hr />
