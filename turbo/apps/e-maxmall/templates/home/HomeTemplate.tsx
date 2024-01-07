@@ -1,6 +1,8 @@
+// components
+import HomeHeader from "@components/home/HomeHeader";
+import HomeProductList from "@components/home/HomeProductList";
 // style
 import { HomeMainWrapper, HomeSectionWrapper, HomeWrapper } from "@styles/home/home";
-import HomeHeader from "@components/home/HomeHeader";
 
 const HomeTemplate = () => {
   return (
@@ -15,7 +17,7 @@ const HomeTemplate = () => {
             The default basic non-holo cards simply apply a <mark>flare/glare</mark> effect to the
             card which follows the mouse.
           </p>
-          <section></section>
+          <HomeProductList />
         </HomeSectionWrapper>
       </HomeMainWrapper>
     </HomeWrapper>
