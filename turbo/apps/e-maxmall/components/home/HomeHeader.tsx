@@ -6,6 +6,8 @@ import ShowCaseCard from "@components/home/ShowCase";
 import { useMouseEvent } from "@hooks/home/useMouseEvent";
 // styles
 import { HomeHeaderWrapper } from "@styles/home/home";
+// image
+import ProductImage from "@images/product_image_1.jpg";
 
 const HomeHeader = () => {
   const container = useRef<HTMLDivElement>(null);
@@ -36,6 +38,7 @@ const HomeHeader = () => {
         <mark>CSS gradient</mark> and interaction
       </section>
       <ShowCaseCard
+        cardImage={ProductImage}
         containerRef={container}
         overlayRef={overlay}
         mouseMoveEvent={handleMouseMove}

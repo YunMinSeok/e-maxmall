@@ -1,7 +1,5 @@
+import { StaticImageData } from "next/image";
 import styled from "@emotion/styled";
-
-// image
-import ProductImage from "@images/product_image_1.jpg";
 
 export const HomeWrapper = styled.div`
   font-family: Roboto;
@@ -74,7 +72,11 @@ export const HomeSectionWrapper = styled.section`
   }
 `;
 
-export const ShowCase = styled.div`
+type ShowCaseType = {
+  image: StaticImageData;
+};
+
+export const ShowCase = styled.div<ShowCaseType>`
   position: relative;
   grid-column: 2;
   grid-row: 1/5;
@@ -86,7 +88,7 @@ export const ShowCase = styled.div`
     width: 220px;
     height: 310px;
     border-radius: 4.55% / 3.5%;
-    background-image: url(${ProductImage.src});
+    background-image: url(${({ image }) => image.src});
     background-size: cover;
   }
   .overlay {
@@ -108,4 +110,16 @@ export const ShowCase = styled.div`
     background-position: 100%;
     transition: all 0.1s;
   }
+`;
+
+export const ProductListWrap = styled.section`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 50px 2vw;
+  transform-style: preserve-3d;
+  height: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px;
+  position: relative;
 `;
