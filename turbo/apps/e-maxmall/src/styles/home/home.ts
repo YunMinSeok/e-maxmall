@@ -85,8 +85,8 @@ export const ShowCase = styled.div<ShowCaseType>`
   transition: all 0.1s;
 
   .card {
-    width: 220px;
-    height: 310px;
+    width: 100%;
+    height: 100%;
     border-radius: 4.55% / 3.5%;
     background-image: url(${({ image }) => image.src});
     background-size: cover;
@@ -95,8 +95,8 @@ export const ShowCase = styled.div<ShowCaseType>`
     position: absolute;
     z-index: 100;
     top: 0;
-    width: 220px;
-    height: 310px;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(
       105deg,
       transparent 40%,
@@ -113,13 +113,14 @@ export const ShowCase = styled.div<ShowCaseType>`
 `;
 
 export const ProductListWrap = styled.section`
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr;
+  //   grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 50px 2vw;
   transform-style: preserve-3d;
   height: 100%;
   max-width: 1200px;
   margin: auto;
   padding: 50px;
-  position: relative;
 `;
