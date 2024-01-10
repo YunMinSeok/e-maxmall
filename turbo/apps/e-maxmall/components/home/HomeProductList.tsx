@@ -15,21 +15,20 @@ const HomeProductList = () => {
 
   const { handleMouseMove, handleMouseOut } = useMouseEvent(container, overlay);
 
-  console.log(ProductImages);
+  const ImageArray = Object.values(ProductImages);
   return (
     <ProductListWrap>
-      {/* {result.map((productImage: StaticImageData) => {
-        console.log(productImage);
+      {ImageArray.map((productImage: StaticImageData) => {
         return (
           <ShowCaseCard
-            cardImage={productImage.src}
+            cardImage={productImage}
             containerRef={container}
             overlayRef={overlay}
             mouseMoveEvent={handleMouseMove}
             mouseOutEvent={handleMouseOut}
           />
         );
-      })} */}
+      })}
     </ProductListWrap>
   );
 };
