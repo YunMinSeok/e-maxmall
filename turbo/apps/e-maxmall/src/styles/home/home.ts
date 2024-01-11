@@ -115,7 +115,6 @@ export const ShowCase = styled.div<ShowCaseType>`
 export const ProductListWrap = styled.section`
   position: relative;
   display: grid;
-  //   grid-template-columns: repeat(3, 1fr);
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 50px 2vw;
   transform-style: preserve-3d;
@@ -123,4 +122,9 @@ export const ProductListWrap = styled.section`
   max-width: 1200px;
   margin: auto;
   padding: 50px;
+
+  div {
+    grid-column: inherit;
+    grid-row: inherit;
+  }
 `;
