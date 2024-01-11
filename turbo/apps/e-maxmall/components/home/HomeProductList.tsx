@@ -10,15 +10,14 @@ import * as ProductImages from "@images/index";
 import { ProductListWrap } from "@styles/home/home";
 
 const HomeProductList = () => {
-  const container = useRef<HTMLDivElement>(null);
-  const overlay = useRef<HTMLDivElement>(null);
-
-  const { handleMouseMove, handleMouseOut } = useMouseEvent(container, overlay);
-
   const ImageArray = Object.values(ProductImages);
   return (
     <ProductListWrap>
       {ImageArray.map((productImage: StaticImageData) => {
+        const container = useRef<HTMLDivElement>(null);
+        const overlay = useRef<HTMLDivElement>(null);
+
+        const { handleMouseMove, handleMouseOut } = useMouseEvent(container, overlay);
         return (
           <ShowCaseCard
             cardImage={productImage}
