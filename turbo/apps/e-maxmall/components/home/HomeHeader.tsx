@@ -8,8 +8,14 @@ import { useMouseEvent } from "@hooks/home/useMouseEvent";
 import { HomeHeaderWrapper } from "@styles/home/home";
 // image
 import { ProductImage1 } from "@images/index";
+// type
+import { ProductItemVO } from "@type/product/product";
 
-const HomeHeader = () => {
+interface HomeHeader {
+  product: ProductItemVO | undefined;
+}
+
+const HomeHeader = ({ product }: HomeHeader) => {
   const container = useRef<HTMLDivElement>(null);
   const overlay = useRef<HTMLDivElement>(null);
 
@@ -37,13 +43,15 @@ const HomeHeader = () => {
         <mark>3d conversion</mark>,<mark> filters</mark>,<mark> blend mode</mark>,
         <mark>CSS gradient</mark> and interaction
       </section>
-      <ShowCaseCard
-        cardImage={ProductImage1}
-        containerRef={container}
-        overlayRef={overlay}
-        mouseMoveEvent={handleMouseMove}
-        mouseOutEvent={handleMouseOut}
-      />
+      {product && (
+        <ShowCaseCard
+          cardImage={product.detail_image_url}
+          containerRef={container}
+          overlayRef={overlay}
+          mouseMoveEvent={handleMouseMove}
+          mouseOutEvent={handleMouseOut}
+        />
+      )}
       <section className="info">
         <h2>Click on a Card to take a Closer look!</h2>
         <hr />

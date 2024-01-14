@@ -1,36 +1,40 @@
+import Link from "next/link";
 import { StaticImageData } from "next/image";
 import { useRef } from "react";
 // components
 import ShowCaseCard from "@components/home/ShowCase";
 // hooks
 import { useMouseEvent } from "@hooks/home/useMouseEvent";
-// image
-import * as ProductImages from "@images/index";
 // styles
 import { ProductListWrap } from "@styles/home/home";
-import Link from "next/link";
+// type
+import { ProductItemVO } from "@type/product/product";
 
-const HomeProductList = () => {
-  const ImageArray = Object.values(ProductImages);
+interface HomeProductListType {
+  productList: ProductItemVO[] | undefined;
+}
+
+const HomeProductList = ({ productList }: HomeProductListType) => {
   return (
     <ProductListWrap>
-      {ImageArray.map((productImage: StaticImageData, index: number) => {
-        const container = useRef<HTMLDivElement>(null);
-        const overlay = useRef<HTMLDivElement>(null);
+      {productList &&
+        productList.map((product: ProductItemVO) => {
+          const container = useRef<HTMLDivElement>(null);
+          const overlay = useRef<HTMLDivElement>(null);
 
-        const { handleMouseMove, handleMouseOut } = useMouseEvent(container, overlay);
-        return (
-          <Link href={`/products/${index + 1}`}>
-            <ShowCaseCard
-              cardImage={productImage}
-              containerRef={container}
-              overlayRef={overlay}
-              mouseMoveEvent={handleMouseMove}
-              mouseOutEvent={handleMouseOut}
-            />
-          </Link>
-        );
-      })}
+          const { handleMouseMove, handleMouseOut } = useMouseEvent(container, overlay);
+          return (
+            <Link href={`/products/${product.item_no}`} key={`Home-product-${product.item_no}`}>
+              <ShowCaseCard
+                cardImage={product.detail_image_url}
+                containerRef={container}
+                overlayRef={overlay}
+                mouseMoveEvent={handleMouseMove}
+                mouseOutEvent={handleMouseOut}
+              />
+            </Link>
+          );
+        })}
     </ProductListWrap>
   );
 };

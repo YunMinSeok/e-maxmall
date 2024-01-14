@@ -1,14 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
 // components
 import HomeHeader from "@components/home/HomeHeader";
 import HomeProductList from "@components/home/HomeProductList";
 // style
 import { HomeMainWrapper, HomeSectionWrapper, HomeWrapper } from "@styles/home/home";
+// api
+import { getProduct } from "@api/product";
+// query
+import { queryKeys, commonOptions } from "@query/constant";
 
 const HomeTemplate = () => {
+  const { data } = useQuery({
+    queryKey: [queryKeys.product],
+    queryFn: () =>
+      getProduct({
+        page: "1",
+        sort: "desc",
+        size: "5",
+      }),
+    ...commonOptions,
+  });
   return (
     <HomeWrapper>
       <HomeMainWrapper>
-        <HomeHeader />
+        <HomeHeader product={data?.productItems[0]} />
         <HomeSectionWrapper>
           <h2>Product Card List</h2>
           <p>
@@ -17,7 +32,7 @@ const HomeTemplate = () => {
             The default basic non-holo cards simply apply a <mark>flare/glare</mark> effect to the
             card which follows the mouse.
           </p>
-          <HomeProductList />
+          <HomeProductList productList={data?.productItems} />
         </HomeSectionWrapper>
       </HomeMainWrapper>
     </HomeWrapper>
