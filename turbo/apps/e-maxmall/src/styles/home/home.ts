@@ -74,6 +74,7 @@ export const HomeSectionWrapper = styled.section`
 
 type ShowCaseType = {
   image: StaticImageData;
+  brightType: string;
 };
 
 export const ShowCase = styled.div<ShowCaseType>`
@@ -97,13 +98,22 @@ export const ShowCase = styled.div<ShowCaseType>`
     top: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
+    background: ${({ brightType }) =>
+      brightType === "liner"
+        ? `linear-gradient(
       105deg,
       transparent 40%,
       rgba(255, 219, 112, 0.8) 45%,
       rgba(132, 50, 255, 0.6) 50%,
       transparent 54%
     );
+    `
+        : `radial-gradient(
+          farthest-corner circle at var(--pointer-x) var(--pointer-y),
+          hsla(0, 0%, 100%, 0.8) 10%,
+          hsla(0, 0%, 100%, 0.65) 20%,
+          hsla(0, 0%, 0%, 0.5) 90%
+        )`};
     filter: brightness(1.1) opacity(0);
     mix-blend-mode: color-dodge;
     background-size: 150% 150%;

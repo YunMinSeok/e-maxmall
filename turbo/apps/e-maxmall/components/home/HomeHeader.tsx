@@ -50,6 +50,7 @@ const HomeHeader = ({ product }: HomeHeader) => {
           overlayRef={overlay}
           mouseMoveEvent={handleMouseMove}
           mouseOutEvent={handleMouseOut}
+          brightType={"circle"}
         />
       )}
       <section className="info">

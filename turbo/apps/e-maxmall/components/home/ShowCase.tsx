@@ -9,6 +9,7 @@ type ShowCaseCardType = {
   overlayRef: RefObject<HTMLDivElement>;
   mouseMoveEvent: (e: React.MouseEvent<HTMLDivElement>) => void;
   mouseOutEvent: (e: React.MouseEvent<HTMLDivElement>) => void;
+  brightType?: string;
 };
 
 const ShowCaseCard = ({
@@ -17,6 +18,7 @@ const ShowCaseCard = ({
   overlayRef,
   mouseMoveEvent,
   mouseOutEvent,
+  brightType = "liner",
 }: ShowCaseCardType) => {
   return (
     <ShowCase
@@ -24,6 +26,7 @@ const ShowCaseCard = ({
       ref={containerRef}
       onMouseMove={mouseMoveEvent}
       onMouseOut={mouseOutEvent}
+      brightType={brightType}
     >
       <div className="card" />
       <div className="overlay" ref={overlayRef} />
