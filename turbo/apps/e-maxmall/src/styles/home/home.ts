@@ -109,13 +109,13 @@ export const ShowCase = styled.div<ShowCaseType>`
     );
     `
         : `radial-gradient(
-          farthest-corner circle at var(--pointer-x) var(--pointer-y),
+          farthest-corner ,
           hsla(0, 0%, 100%, 0.8) 10%,
           hsla(0, 0%, 100%, 0.65) 20%,
           hsla(0, 0%, 0%, 0.5) 90%
         )`};
     filter: brightness(1.1) opacity(0);
-    mix-blend-mode: color-dodge;
+    mix-blend-mode: ${({ brightType }) => (brightType === "liner" ? "color-dodge" : "overlay")};
     background-size: 150% 150%;
     background-position: 100%;
     transition: all 0.1s;
