@@ -16,7 +16,7 @@ const HomeTemplate = () => {
       getProduct({
         page: "1",
         sort: "desc",
-        size: "5",
+        size: "30",
       }),
     ...commonOptions,
   });

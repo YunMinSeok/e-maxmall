@@ -15,6 +15,7 @@ interface HomeProductListType {
 }
 
 const HomeProductList = ({ productList }: HomeProductListType) => {
+  // 한번에 모든 product 가져오게 바꿔야함
   return (
     <ProductListWrap>
       {productList &&
