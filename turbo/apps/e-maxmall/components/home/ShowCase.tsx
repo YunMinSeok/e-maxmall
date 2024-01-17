@@ -17,7 +17,7 @@ const ShowCaseCard = ({
   overlayRef,
   brightType = "liner",
 }: ShowCaseCardType) => {
-  const { handleMouseMove, handleMouseOut } = useMouseEvent(containerRef, overlayRef);
+  const { handleMouseMove, handleMouseOut } = useMouseEvent(containerRef, overlayRef, brightType);
 
   return (
     <ShowCase

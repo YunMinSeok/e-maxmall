@@ -3,8 +3,10 @@ import { RefObject } from "react";
 export const useMouseEvent = (
   container: RefObject<HTMLDivElement>,
   overlay: RefObject<HTMLDivElement>,
+  brightType?: string,
 ) => {
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    console.log(brightType);
     if (!overlay.current || !container.current) {
       return;
     }
@@ -14,8 +16,24 @@ export const useMouseEvent = (
     var rotateY = (-1 / 5) * x + 20;
     var rotateX = (4 / 30) * y - 20;
 
-    overlay.current.style.backgroundPosition = `${x / 5 + y / 5}%`;
-    overlay.current.style.filter = `opacity(${x / 200}) `;
+    if (brightType === "liner") {
+      overlay.current.style.backgroundImage = `linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(255, 219, 112, 0.8) 45%,
+        rgba(132, 50, 255, 0.6) 50%,
+        transparent 54%)`;
+
+      // overlay.current.style.backgroundPosition = `${x / 5 + y / 5}%`;
+      overlay.current.style.filter = `opacity(${x / 200}) brightness(1.2)`;
+      overlay.current.style.mixBlendMode = `color-dodge`;
+    }
+    if (brightType === "circle") {
+      overlay.current.style.backgroundImage = `radial-gradient( farthest-corner circle at ${x} ${y}, hsla(0, 0%, 100%, 0.8) 10%, hsla(0, 0%, 100%, 0.65) 20%, hsla(0, 0%, 0%, 0.5) 90% );`;
+      // overlay.current.style.backgroundPosition = `${x / 5 + y / 5}%`;
+      overlay.current.style.filter = `opacity(${x / 200}) brightness(1.2)`;
+      overlay.current.style.mixBlendMode = `overlay`;
+    }
 
     container.current.style.transform = `perspective(350px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   };
