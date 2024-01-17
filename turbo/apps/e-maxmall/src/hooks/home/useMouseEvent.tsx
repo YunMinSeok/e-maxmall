@@ -15,7 +15,7 @@ export const useMouseEvent = (
     var rotateX = (4 / 30) * y - 20;
 
     overlay.current.style.backgroundPosition = `${x / 5 + y / 5}%`;
-    overlay.current.style.filter = `opacity(${x / 200}) brightness(1.2)`;
+    overlay.current.style.filter = `opacity(${x / 200}) `;
 
     container.current.style.transform = `perspective(350px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   };

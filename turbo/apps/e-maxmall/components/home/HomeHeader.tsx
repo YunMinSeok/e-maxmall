@@ -19,7 +19,6 @@ const HomeHeader = ({ product }: HomeHeader) => {
   const container = useRef<HTMLDivElement>(null);
   const overlay = useRef<HTMLDivElement>(null);
 
-  const { handleMouseMove, handleMouseOut } = useMouseEvent(container, overlay);
   return (
     <HomeHeaderWrapper>
       <h1>
@@ -48,8 +47,6 @@ const HomeHeader = ({ product }: HomeHeader) => {
           cardImage={product.detail_image_url}
           containerRef={container}
           overlayRef={overlay}
-          mouseMoveEvent={handleMouseMove}
-          mouseOutEvent={handleMouseOut}
           brightType={"circle"}
         />
       )}

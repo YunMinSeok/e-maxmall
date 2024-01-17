@@ -23,15 +23,12 @@ const HomeProductList = ({ productList }: HomeProductListType) => {
           const container = useRef<HTMLDivElement>(null);
           const overlay = useRef<HTMLDivElement>(null);
 
-          const { handleMouseMove, handleMouseOut } = useMouseEvent(container, overlay);
           return (
             <Link href={`/products/${product.item_no}`} key={`Home-product-${product.item_no}`}>
               <ShowCaseCard
                 cardImage={product.detail_image_url}
                 containerRef={container}
                 overlayRef={overlay}
-                mouseMoveEvent={handleMouseMove}
-                mouseOutEvent={handleMouseOut}
               />
             </Link>
           );
