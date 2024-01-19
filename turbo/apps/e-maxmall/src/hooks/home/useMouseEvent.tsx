@@ -6,7 +6,6 @@ export const useMouseEvent = (
   brightType?: string,
 ) => {
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log(brightType);
     if (!overlay.current || !container.current) {
       return;
     }
@@ -24,14 +23,17 @@ export const useMouseEvent = (
         rgba(132, 50, 255, 0.6) 50%,
         transparent 54%)`;
 
-      // overlay.current.style.backgroundPosition = `${x / 5 + y / 5}%`;
+      overlay.current.style.backgroundPosition = `${x / 5 + y / 5}%`;
       overlay.current.style.filter = `opacity(${x / 200}) brightness(1.2)`;
       overlay.current.style.mixBlendMode = `color-dodge`;
     }
     if (brightType === "circle") {
-      overlay.current.style.backgroundImage = `radial-gradient( farthest-corner circle at ${x} ${y}, hsla(0, 0%, 100%, 0.8) 10%, hsla(0, 0%, 100%, 0.65) 20%, hsla(0, 0%, 0%, 0.5) 90% );`;
-      // overlay.current.style.backgroundPosition = `${x / 5 + y / 5}%`;
-      overlay.current.style.filter = `opacity(${x / 200}) brightness(1.2)`;
+      overlay.current.style.backgroundImage = `radial-gradient( 
+        farthest-corner circle at ${x} ${y}, 
+        hsla(0, 0%, 100%, 0.8) 10%, 
+        hsla(0, 0%, 100%, 0.65) 20%, 
+        hsla(0, 0%, 0%, 0.5) 90% );`;
+      overlay.current.style.backgroundPosition = `${x / 5 + y / 5}%`;
       overlay.current.style.mixBlendMode = `overlay`;
     }
 

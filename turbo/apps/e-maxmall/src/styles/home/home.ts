@@ -101,6 +101,8 @@ export const ShowCase = styled.div<ShowCaseType>`
     // filter: brightness(1.1) opacity(0);
     background-size: 150% 150%;
     transition: all 0.1s;
+    will-change: transform, opacity, background-image, background-size, background-position,
+      background-blend-mode, filter;
   }
 `;
 
