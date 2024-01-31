@@ -15,6 +15,9 @@ export const useMouseEvent = (
     var rotateY = (-1 / 5) * x + 20;
     var rotateX = (4 / 30) * y - 20;
 
+    const gradientPositionX = (x / overlay.current.clientWidth) * 100;
+    const gradientPositionY = (y / overlay.current.clientHeight) * 100;
+
     if (brightType === "liner") {
       overlay.current.style.backgroundImage = `linear-gradient(
         105deg,
@@ -29,10 +32,10 @@ export const useMouseEvent = (
     }
     if (brightType === "circle") {
       overlay.current.style.backgroundImage = `radial-gradient( 
-        farthest-corner circle at ${x} ${y}, 
+        farthest-corner circle at ${gradientPositionX}% ${gradientPositionY}%, 
         hsla(0, 0%, 100%, 0.8) 10%, 
         hsla(0, 0%, 100%, 0.65) 20%, 
-        hsla(0, 0%, 0%, 0.5) 90% );`;
+        hsla(0, 0%, 0%, 0.5) 90% )`;
       overlay.current.style.backgroundPosition = `${x / 5 + y / 5}%`;
       overlay.current.style.mixBlendMode = `overlay`;
     }
