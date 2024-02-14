@@ -24,13 +24,13 @@ const HomeProductList = ({ productList }: HomeProductListType) => {
           const overlay = useRef<HTMLDivElement>(null);
 
           return (
-            <Link href={`/products/${product.item_no}`} key={`Home-product-${product.item_no}`}>
-              <ShowCaseCard
-                cardImage={product.detail_image_url}
-                containerRef={container}
-                overlayRef={overlay}
-              />
-            </Link>
+            <ShowCaseCard
+              key={`Home-product-${product.item_no}`}
+              cardImage={product.detail_image_url}
+              containerRef={container}
+              overlayRef={overlay}
+              itemNo={product.item_no}
+            />
           );
         })}
     </ProductListWrap>

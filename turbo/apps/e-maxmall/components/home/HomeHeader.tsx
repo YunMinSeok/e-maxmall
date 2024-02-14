@@ -2,12 +2,8 @@ import { useRef } from "react";
 import Link from "next/link";
 // components
 import ShowCaseCard from "@components/home/ShowCase";
-// hooks
-import { useMouseEvent } from "@hooks/home/useMouseEvent";
 // styles
 import { HomeHeaderWrapper } from "@styles/home/home";
-// image
-import { ProductImage1 } from "@images/index";
 // type
 import { ProductItemVO } from "@type/product/product";
 
@@ -48,6 +44,7 @@ const HomeHeader = ({ product }: HomeHeader) => {
           containerRef={container}
           overlayRef={overlay}
           brightType={"circle"}
+          itemNo={product.item_no}
         />
       )}
       <section className="info">

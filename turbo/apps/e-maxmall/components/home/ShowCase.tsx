@@ -3,12 +3,14 @@ import { RefObject } from "react";
 // styles
 import { ShowCase } from "@styles/home/home";
 import { useMouseEvent } from "@hooks/home/useMouseEvent";
+import Link from "next/link";
 
 type ShowCaseCardType = {
   cardImage: StaticImageData;
   containerRef: RefObject<HTMLDivElement>;
   overlayRef: RefObject<HTMLDivElement>;
   brightType?: string;
+  itemNo: number;
 };
 
 const ShowCaseCard = ({
@@ -16,6 +18,7 @@ const ShowCaseCard = ({
   containerRef,
   overlayRef,
   brightType = "liner",
+  itemNo,
 }: ShowCaseCardType) => {
   const { handleMouseMove, handleMouseOut } = useMouseEvent(containerRef, overlayRef, brightType);
 
@@ -27,8 +30,10 @@ const ShowCaseCard = ({
       onMouseOut={handleMouseOut}
       brightType={brightType}
     >
-      <div className="card" />
-      <div className="overlay" ref={overlayRef} />
+      <Link href={`/products/${itemNo}`} key={`Home-product-${itemNo}`}>
+        <div className="card" />
+        <div className="overlay" ref={overlayRef} />
+      </Link>
     </ShowCase>
   );
 };

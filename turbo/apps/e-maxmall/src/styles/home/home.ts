@@ -98,7 +98,6 @@ export const ShowCase = styled.div<ShowCaseType>`
     top: 0;
     width: 100%;
     height: 100%;
-    // filter: brightness(1.1) opacity(0);
     background-size: 150% 150%;
     transition: all 0.1s;
     will-change: transform, opacity, background-image, background-size, background-position,
