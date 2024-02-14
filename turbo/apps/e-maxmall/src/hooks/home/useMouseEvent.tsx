@@ -15,7 +15,6 @@ export const useMouseEvent = (
     var rotateY = (-1 / 5) * x + 20;
     var rotateX = (4 / 30) * y - 20;
 
-    console.log(brightType);
     const gradientPositionX = (x / overlay.current.clientWidth) * 100;
     const gradientPositionY = (y / overlay.current.clientHeight) * 100;
 
@@ -27,8 +26,10 @@ export const useMouseEvent = (
         rgba(132, 50, 255, 0.6) 50%,
         transparent 54%)`;
 
+      overlay.current.style.backgroundSize = `500px 100%, 200% 700%, 300% 100%, 200% 100%`;
+      overlay.current.style.backgroundBlendMode = `screen, hue, hard-light`;
       overlay.current.style.backgroundPosition = `${x / 5 + y / 5}%`;
-      overlay.current.style.filter = `opacity(${x / 200}) brightness(1.2)`;
+      overlay.current.style.filter = `brightness(0.8) contrast(2.95) saturate(0.65);`;
       overlay.current.style.mixBlendMode = `color-dodge`;
     }
     if (brightType === "circle") {
