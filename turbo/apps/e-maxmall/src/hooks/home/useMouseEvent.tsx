@@ -26,9 +26,8 @@ export const useMouseEvent = (
         rgba(132, 50, 255, 0.6) 50%,
         transparent 54%)`;
 
-      overlay.current.style.backgroundSize = `500px 100%, 200% 700%, 300% 100%, 200% 100%`;
-      overlay.current.style.backgroundBlendMode = `screen, hue, hard-light`;
       overlay.current.style.backgroundPosition = `${x / 5 + y / 5}%`;
+      overlay.current.style.backgroundBlendMode = `screen, hue, hard-light`;
       overlay.current.style.filter = `brightness(0.8) contrast(2.95) saturate(0.65)`;
       overlay.current.style.mixBlendMode = `color-dodge`;
     }
